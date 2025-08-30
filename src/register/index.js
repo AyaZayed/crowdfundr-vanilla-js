@@ -24,6 +24,7 @@ registerForm.addEventListener('submit', async function (e) {
         try {
                 await registerUser(formData.get('name'), formData.get('email'), formData.get('password'))
                 alert('Added you!')
+                window.location.href = '/'
         } catch (err) {
                 alert(err.message)
         }

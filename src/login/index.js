@@ -31,6 +31,7 @@ loginForm.addEventListener('submit', async function (e) {
         try {
                 await login(formData.get('email'), formData.get('password'))
                 alert('Logged In!')
+                window.location.href = '/'
         } catch (err) {
                 alert(err.message)
         }

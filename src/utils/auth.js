@@ -15,6 +15,13 @@ export function authenticate() {
         }
 }
 
+export function isAdmin() {
+        const user = getUser();
+        if (!user || user.role !== 'admin') {
+                window.location.href = "/src/login/";
+        }
+}
+
 const logoutBtn = document.querySelector('#logoutBtn')
 
 if (logoutBtn) {

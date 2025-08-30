@@ -23,15 +23,29 @@
          crossorigin="anonymous"
          referrerpolicy="no-referrer" />
    </head>
+
    <body>
       <div id="app">
          <h1>Crowdfundr</h1>
 
          <a href="/src/campaigns/">Campaigns</a>
-         <a href="/src/login/">Login</a>
-         <a href="/src/register/">Register</a>
+         <div id="auth">
+            <div id="loggedOut">
+               <a href="/src/login/">Login</a>
+               <a href="/src/register/">Register</a>
+            </div>
+            <a href="/" id="logoutBtn" style="display: none">logout</a>
+         </div>
          <a href="/src/admin/">Admin</a>
       </div>
       <script type="module" src="src/main.js"></script>
+      <script type="module" defer>
+         import { getUser } from "./src/utils/auth.js";
+         const user = getUser();
+         if (user) {
+            logoutBtn.style.display = "block";
+            loggedOut.style.display = "none";
+         }
+      </script>
    </body>
 </html>

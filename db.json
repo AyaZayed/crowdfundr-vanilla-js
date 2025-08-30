@@ -1,22 +1,6 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "Jane Doe",
-      "role": "user",
-      "isActive": true,
-      "email": "jane@example.com",
-      "password": "hashed_password"
-    },
-    {
-      "id": 2,
-      "name": "John Doe",
-      "role": "user",
-      "isActive": true,
-      "email": "john@example.com",
-      "password": "hashed_pass"
-    },
-    {
       "email": "janine@example.com",
       "password": "$2a$10$Dr.vSyXu18TddkjwHU6O3u1ExH3uckFgwDCmO7XPajCe.P5g6wAtK",
       "id": 3,
@@ -25,24 +9,19 @@
       "isActive": true
     },
     {
-      "email": "aya@example.com",
-      "password": "$2a$10$zmC7C86fakd.1cs506P4EOGDIzStOmAtyI4/OD8a94M1hIn/CgywK",
-      "name": "Aya Zayed",
-      "id": 4
-    },
-    {
       "email": "ali@example.com",
       "password": "$2a$10$h1c6p9SMZ64mIMs/b25jc.Y8kiJJ0b26zERP0Vx361tYyuPQLp2fW",
       "name": "ali",
       "isActive": "true",
-      "id": 5
+      "id": 5,
+      "role": "admin"
     },
     {
-      "email": "ahmed@example.com",
-      "password": "$2a$10$pz5KICDbxK9RFHmfMZOgtuzk9G12yGYQwaFnr.7hjB3283PODpmZq",
-      "name": "Ahmed Zayed",
+      "email": "aya@example.com",
+      "password": "$2a$10$TURLtMX5kFq3IjHU1BJWgeN4FkD8DClcO94ERVCmH6pA5GWtMrOQW",
+      "name": "aya zayed",
+      "isActive": "true",
       "role": "user",
-      "isActive": true,
       "id": 6
     }
   ],

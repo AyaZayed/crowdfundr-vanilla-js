@@ -1,3 +1,3 @@
-import { authenticate } from "../utils/auth";
+import { isAdmin } from "../utils/auth";
 
-authenticate();
+isAdmin()

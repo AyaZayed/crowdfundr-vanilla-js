@@ -1,0 +1,24 @@
+@use "./abstracts" as *;
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+html {
+   font-family: $primary-font;
+}
+
+a {
+   text-decoration: none;
+   color: inherit;
+}
+
+button {
+   cursor: pointer;
+}
+
+ul {
+   list-style: none;
+}

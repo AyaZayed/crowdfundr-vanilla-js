@@ -8,7 +8,7 @@
          name="description"
          content="Crowdfundr is a crowdfunding platform that allows users to create and fund campaigns." />
       <meta name="author" content="Aya Zayed" />
-      <title>Crowdfundr | Campaigns</title>
+      <title>Crowdfundr | Create a Campaign</title>
       <!-- google fonts -->
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,11 +27,32 @@
    <script type="module"></script>
    <body>
       <div id="app">
-         <h1>Campaigns</h1>
-         <a href="./create/" class="btn btn-primary">Add Campaign</a>
-         <div id="campaigns"></div>
+         <form id="createForm" method="post">
+            <label for="title">Camapaign Title</label>
+            <input
+               type="title"
+               name="title"
+               id="title"
+               placeholder="Ex: New Guitar"
+               required />
+            <label for="goal">Goal</label>
+            <input
+               type="number"
+               name="goal"
+               id="goal"
+               placeholder="Ex: 1000"
+               required />
+            <label for="deadline">Deadline</label>
+            <input
+               type="date"
+               name="deadline"
+               id="deadline"
+               placeholder="Ex: 2026-01-01"
+               required />
+            <button type="submit" class="btn">Add</button>
+         </form>
       </div>
-      <script type="module" src="./index.js"></script>
+      <script type="module" src="./index.js" defer></script>
       <script type="module" src="/src/main.js"></script>
    </body>
 </html>

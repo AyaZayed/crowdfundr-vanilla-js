@@ -21,4 +21,21 @@ ul {
   list-style: none;
 }
 
+.btn {
+  border: none;
+  outline: none;
+  padding: 0.5em 1em;
+  display: inline-block;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  margin: 1em 0;
+}
+.btn-primary {
+  background-color: #283618;
+  color: #ffffff;
+}
+
 /*# sourceMappingURL=main.css.map */

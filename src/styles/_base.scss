@@ -22,3 +22,13 @@ button {
 ul {
    list-style: none;
 }
+
+@font-face {
+   font-family: "Poppins";
+   src: url(/public/fonts/Poppins/Poppins-Regular.ttf);
+}
+
+@font-face {
+   font-family: "Dosis";
+   src: url(/public/fonts/Dosis/Dosis-VariableFont_wght.ttf);
+}

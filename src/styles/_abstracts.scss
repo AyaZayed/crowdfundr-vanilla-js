@@ -10,6 +10,34 @@ $quaternary-color: $earth-yellow;
 $quinary-color: $tigers-eye;
 $white: #ffffff;
 $black: #000000;
+$card-border: rgba(0, 0, 0, 0.1);
+$sidebar-border: rgb(229, 229, 229);
+$dashboard-grey: #eceef2;
+$dashboard-background: $white;
+$dashboard-padding: 1rem;
+$dashboard-text: $black;
+$dashboard-text-grey: #717182;
+$dashboard-red: #d4183d;
+$dashboard-blue: #3b82f6;
+$dashboard-green: #22c55e;
+$dashboard-orange: #f59e0b;
+$dashboard-violet: #8b5cf6;
 $primary-font: "Poppins", sans-serif;
-$secondary-font: "Outfit", sans-serif;
+// $secondary-font: "Outfit", sans-serif;
 $tertiary-font: "Dosis", sans-serif;
+
+@mixin transitionAll($duration: 0.3s) {
+   transition: all $duration ease-in-out;
+   -webkit-transition: all $duration ease-in-out;
+   -moz-transition: all $duration ease-in-out;
+   -ms-transition: all $duration ease-in-out;
+   -o-transition: all $duration ease-in-out;
+}
+
+@mixin borderRadius($radius: 10px) {
+   border-radius: $radius;
+   -webkit-border-radius: $radius;
+   -moz-border-radius: $radius;
+   -ms-border-radius: $radius;
+   -o-border-radius: $radius;
+}

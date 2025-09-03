@@ -1,3 +1,4 @@
+@import "/node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 * {
   margin: 0;
   padding: 0;
@@ -21,6 +22,188 @@ ul {
   list-style: none;
 }
 
+@font-face {
+  font-family: "Poppins";
+  src: url(/public/fonts/Poppins/Poppins-Regular.ttf);
+}
+@font-face {
+  font-family: "Dosis";
+  src: url(/public/fonts/Dosis/Dosis-VariableFont_wght.ttf);
+}
+.admin {
+  background-color: #ffffff;
+  color: #000000;
+  min-height: 100vh;
+}
+.admin__header {
+  border-bottom: 1px solid rgb(229, 229, 229);
+  padding: 1rem 1rem;
+}
+.admin__header button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 20px;
+  padding: 0.4em;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.admin__header button:hover {
+  background-color: #eceef2;
+}
+.admin .main-content {
+  display: flex;
+  height: 100vh;
+}
+.admin__sidebar {
+  display: none;
+  height: 100%;
+  border-right: 1px solid rgb(229, 229, 229);
+  font-size: 14px;
+  padding-top: 1em;
+}
+.admin__sidebar.open {
+  display: block;
+}
+.admin__sidebar--title {
+  font-size: 16px;
+  margin: 1rem 0.7em;
+  padding: 0 1rem;
+  white-space: nowrap;
+}
+.admin__sidebar--list {
+  padding: 1rem;
+}
+.admin__sidebar--list:first-of-type {
+  border-bottom: 2px solid rgb(229, 229, 229);
+}
+.admin__sidebar--list .item {
+  padding: 0.4em 1em;
+  margin-bottom: 0.5em;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+}
+.admin__sidebar--list .item:hover {
+  background-color: #eceef2;
+}
+.admin__sidebar--list .item a {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.admin__sidebar--list .item a#logoutBtn {
+  color: #d4183d;
+}
+.admin__sidebar--list .item a#logoutBtn:hover {
+  color: #000000;
+}
+.admin__main {
+  padding: 2rem;
+  width: 100%;
+}
+.admin__main--title {
+  font-size: 24px;
+  margin-bottom: 0.1em;
+}
+.admin__main--title + p {
+  color: #717182;
+  margin-bottom: 2em;
+}
+.admin__main .cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+@media screen and (max-width: 1024px) {
+  .admin__main .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 768px) {
+  .admin__main .cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.admin__main .cards .card {
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.admin__main .cards .card .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.admin__main .cards .card .title h3 {
+  font-size: 14px;
+}
+.admin__main .cards .card .title i {
+  font-size: 18px;
+}
+.admin__main .cards .card .title .fa-user-group {
+  color: #3b82f6;
+}
+.admin__main .cards .card .title .fa-bullseye {
+  color: #22c55e;
+}
+.admin__main .cards .card .title .fa-credit-card {
+  color: #f59e0b;
+}
+.admin__main .cards .card .title .fa-gift {
+  color: #8b5cf6;
+}
+.admin__main .cards .card .stat-number {
+  font-size: 24px;
+}
+
+.admin__users .cards {
+  grid-template-columns: repeat(3, 1fr);
+}
+.admin__users .cards .card .fa-user-slash {
+  color: #d4183d;
+}
+.admin__users .cards .card .fa-user-tie {
+  color: #f59e0b;
+}
+
+.admin__campaigns .cards .card .fa-circle-check {
+  color: #22c55e;
+}
+.admin__campaigns .cards .card .fa-bullseye {
+  color: #f59e0b !important;
+}
+.admin__campaigns .cards .card .fa-arrow-trend-up {
+  color: #8b5cf6;
+}
+
+.admin__pledges .cards {
+  grid-template-columns: repeat(3, 1fr);
+}
+.admin__pledges .cards .card .fa-dollar-sign {
+  color: #22c55e;
+}
+.admin__pledges .cards .card .fa-chart-simple {
+  color: #8b5cf6;
+}
+
 .btn {
   border: none;
   outline: none;
@@ -36,6 +219,16 @@ ul {
 .btn-primary {
   background-color: #283618;
   color: #ffffff;
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 /*# sourceMappingURL=main.css.map */

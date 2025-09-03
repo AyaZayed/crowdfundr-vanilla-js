@@ -1,21 +1,7 @@
+import { registerUser } from "../utils/auth"
+import { isValidEmail, isValidName, isValidPassword } from "../utils/validation"
+
 const registerForm = document.querySelector('#registerForm')
-
-async function registerUser(name, email, password, role = 'user') {
-        const res = await fetch('http://localhost:5000/users', {
-                method: 'POST',
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, password, isActive: 'true', role })
-        })
-
-        if (!res.ok) {
-                throw Error('Problem with registration, try again!')
-        }
-        const data = await res.json()
-        localStorage.setItem('token', data.accessToken)
-        localStorage.setItem('user', JSON.stringify(data.user))
-
-        return data.user
-}
 
 registerForm.addEventListener('submit', async function (e) {
         e.preventDefault()
@@ -24,8 +10,32 @@ registerForm.addEventListener('submit', async function (e) {
         try {
                 await registerUser(formData.get('name'), formData.get('email'), formData.get('password'))
                 alert('Added you!')
-                window.location.href = '/'
+
+                const redirectUrl = localStorage.getItem('redirect-url')
+                window.location.href = redirectUrl || '/'
+
         } catch (err) {
                 alert(err.message)
         }
+})
+
+nameInput.addEventListener('input', async function (e) {
+        e.preventDefault()
+        const nameVal = this.value
+        const msgs = isValidName(nameVal)
+        nameErrors.textContent = msgs
+})
+
+email.addEventListener('input', async function (e) {
+        e.preventDefault()
+        const emailVal = this.value
+        const msgs = isValidEmail(emailVal)
+        emailErrors.textContent = msgs
+})
+
+password.addEventListener('input', async function (e) {
+        e.preventDefault()
+        const passVal = this.value
+        const msgs = isValidPassword(passVal)
+        passErrors.textContent = msgs
 })

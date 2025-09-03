@@ -9,26 +9,96 @@
          content="Crowdfundr is a crowdfunding platform that allows users to create and fund campaigns." />
       <meta name="author" content="Aya Zayed" />
       <title>Admin Dashboard</title>
-      <!-- google fonts -->
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-         href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-         rel="stylesheet" />
-      <!-- font awesome -->
-      <link
-         rel="stylesheet"
-         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-         integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
-         crossorigin="anonymous"
-         referrerpolicy="no-referrer" />
+      <script type="module" src="./index.js"></script>
+
    </head>
    <body>
-      <div id="app">
-         <h1>Admin</h1>
-         <a href="/" id="logoutBtn">Logout</a>
+      <div id="app" class="admin">
+         <header class="admin__header">
+            <button id="openSidebar"><i class="fa-solid fa-bars"></i></button>
+         </header>
+         <div class="main-content">
+            <aside class="admin__sidebar open" id="sidebar">
+               <h1 class="admin__sidebar--title">
+                  <span id="siteName">Crowdfundr</span> Admin
+               </h1>
+               <ul class="admin__sidebar--list">
+                  <li class="item">
+                     <a href="/src/admin/"
+                        ><i class="fa-solid fa-house"></i>
+                        <span>Dashboard</span></a
+                     >
+                  </li>
+                  <li class="item">
+                     <a href="/src/admin/users/"
+                        ><i class="fa-solid fa-user-group"></i>
+                        <span>Users</span></a
+                     >
+                  </li class="item">
+                  <li class="item">
+                     <a href="/src/admin/campaigns/"
+                        ><i class="fa-solid fa-bullseye"></i>
+                        <span>Campaigns</span></a
+                     >
+                  </li>
+                  <li class="item">
+                     <a href="/src/admin/pledges/"
+                        ><i class="fa-solid fa-credit-card"></i
+                        ><span>Pledges</span></a
+                     >
+                  </li>
+               </ul>
+               <ul class="admin__sidebar--list">
+                  <li class="item">
+                     <a href="./settings/"
+                        ><i class="fa-solid fa-gear"></i> Settings</a
+                     >
+                  </li>
+                  <li class="item">
+                     <a href="/" id="logoutBtn"
+                        ><i class="fa-solid fa-arrow-right-from-bracket"></i
+                        >Logout</a
+                     >
+                  </li>
+               </ul>
+            </aside>
+            <main class="admin__main">
+               <h2 class="admin__main--title">Dashboard Overview</h2>
+               <p>Welcome to your crowdfunding platform admin dashboard</p>
+
+               <section class="cards">
+                  <div class="card">
+                     <div class="title">
+                        <h3>Total Users</h3>
+                        <i class="fa-solid fa-user-group"></i>
+                     </div>
+                     <h4 id="users" class="stat-number">2,847</h4>
+                  </div>
+                  <div class="card">
+                     <div class="title">
+                        <h3>Active Campaigns</h3>
+                        <i class="fa-solid fa-bullseye"></i>
+                     </div>
+                     <h4 id="users" class="stat-number">156</h4>
+                  </div>
+                  <div class="card">
+                     <div class="title">
+                        <h3>Total Pledges</h3>
+                        <i class="fa-solid fa-credit-card"></i>
+                     </div>
+                     <h4 id="users" class="stat-number">12,456</h4>
+                  </div>
+                  <div class="card">
+                     <div class="title">
+                        <h3>Total Rewards</h3>
+                        <i class="fa-solid fa-gift"></i>
+                     </div>
+                     <h4 id="users" class="stat-number">12,456</h4>
+                  </div>
+               </section>
+            </main>
+         </div>
       </div>
-      <script type="module" src="./index.js" defer></script>
       <script type="module" src="/src/main.js"></script>
    </body>
 </html>

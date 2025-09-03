@@ -1,92 +1,94 @@
 {
-  "users": [
-    {
-      "email": "janine@example.com",
-      "password": "$2a$10$Dr.vSyXu18TddkjwHU6O3u1ExH3uckFgwDCmO7XPajCe.P5g6wAtK",
-      "id": 3,
-      "name": "Janine Doe",
-      "role": "user",
-      "isActive": true
-    },
-    {
-      "email": "ali@example.com",
-      "password": "$2a$10$h1c6p9SMZ64mIMs/b25jc.Y8kiJJ0b26zERP0Vx361tYyuPQLp2fW",
-      "name": "ali",
-      "isActive": "true",
-      "id": 5,
-      "role": "admin"
-    },
-    {
-      "email": "aya@example.com",
-      "password": "$2a$10$TURLtMX5kFq3IjHU1BJWgeN4FkD8DClcO94ERVCmH6pA5GWtMrOQW",
-      "name": "aya zayed",
-      "isActive": "true",
-      "role": "user",
-      "id": 6
-    },
-    {
-      "email": "ahmedzzz@example",
-      "password": "$2a$10$TfEEz1lxtiZRsfbNq2Ez.urPW.NLycG5jrExRAPsV47FNzEO8efDm",
-      "name": "Ahmed Zayed",
-      "id": 7
-    }
-  ],
-  "campaigns": [
-    {
-      "id": "1",
-      "title": "Smart Watch",
-      "creatorId": 1,
-      "goal": 5000,
-      "deadline": "2024-12-31",
-      "isApproved": false,
-      "rewards": [
-        {
-          "id": 1,
-          "title": "Early Bird",
-          "amount": 50
-        }
-      ]
-    },
-    {
-      "title": "Medical Bills",
-      "creatorId": 2,
-      "goal": 10000,
-      "deadline": "2025-12-31",
-      "isApproved": true,
-      "id": "7ucaqnO"
-    },
-    {
-      "title": "Cancer patient wish",
-      "creatorId": 6,
-      "goal": 7000,
-      "deadline": "2025-11-24",
-      "isApproved": true,
-      "id": "4RTw_UU"
-    },
-    {
-      "title": "New Shoes for child",
-      "goal": "500",
-      "deadline": "2025-09-01",
-      "isApproved": false,
-      "creatorId": 5,
-      "id": "od_mIyb"
-    },
-    {
-      "title": "Lover ",
-      "goal": "100",
-      "deadline": "2025-09-18",
-      "isApproved": false,
-      "creatorId": 5,
-      "id": "AFWuG0q"
-    }
-  ],
-  "pledges": [
-    {
-      "id": "1",
-      "campaignId": 1,
-      "userId": 2,
-      "amount": 100,
-      "rewardId": 1
-    }
-  ]
+   "users": [
+      {
+         "email": "janine@example.com",
+         "password": "$2a$10$Dr.vSyXu18TddkjwHU6O3u1ExH3uckFgwDCmO7XPajCe.P5g6wAtK",
+         "id": 3,
+         "name": "Janine Doe",
+         "role": "user",
+         "isActive": true
+      },
+      {
+         "email": "ali@example.com",
+         "password": "$2a$10$h1c6p9SMZ64mIMs/b25jc.Y8kiJJ0b26zERP0Vx361tYyuPQLp2fW",
+         "name": "ali",
+         "isActive": "true",
+         "id": 5,
+         "role": "admin"
+      },
+      {
+         "email": "aya@example.com",
+         "password": "$2a$10$TURLtMX5kFq3IjHU1BJWgeN4FkD8DClcO94ERVCmH6pA5GWtMrOQW",
+         "name": "aya zayed",
+         "isActive": "true",
+         "role": "user",
+         "id": 6
+      },
+      {
+         "email": "ahmedzzz@example",
+         "password": "$2a$10$TfEEz1lxtiZRsfbNq2Ez.urPW.NLycG5jrExRAPsV47FNzEO8efDm",
+         "name": "Ahmed Zayed",
+         "id": 7,
+         "isActive": "true",
+         "role": "user"
+      }
+   ],
+   "campaigns": [
+      {
+         "id": "1",
+         "title": "Smart Watch",
+         "creatorId": 1,
+         "goal": 5000,
+         "deadline": "2024-12-31",
+         "isApproved": false,
+         "rewards": [
+            {
+               "id": 1,
+               "title": "Early Bird",
+               "amount": 50
+            }
+         ]
+      },
+      {
+         "title": "Medical Bills",
+         "creatorId": 2,
+         "goal": 10000,
+         "deadline": "2025-12-31",
+         "isApproved": true,
+         "id": "7ucaqnO"
+      },
+      {
+         "title": "Cancer patient wish",
+         "creatorId": 6,
+         "goal": 7000,
+         "deadline": "2025-11-24",
+         "isApproved": true,
+         "id": "4RTw_UU"
+      },
+      {
+         "title": "New Shoes for child",
+         "goal": "500",
+         "deadline": "2025-09-01",
+         "isApproved": false,
+         "creatorId": 5,
+         "id": "od_mIyb"
+      },
+      {
+         "title": "Lover ",
+         "goal": "100",
+         "deadline": "2025-09-18",
+         "isApproved": false,
+         "creatorId": 5,
+         "id": "AFWuG0q"
+      }
+   ],
+   "pledges": [
+      {
+         "id": "1",
+         "campaignId": 1,
+         "userId": 2,
+         "amount": 100,
+         "rewardId": 1
+      }
+   ]
 }

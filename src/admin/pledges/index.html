@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <!-- seo -->
+      <meta
+         name="description"
+         content="Crowdfundr is a crowdfunding platform that allows users to create and fund campaigns." />
+      <meta name="author" content="Aya Zayed" />
+      <title>Dashboard | Pledges</title>
+   </head>
+   <body>
+      <div id="app" class="admin admin__pledges">
+         <header class="admin__header">
+            <button id="openSidebar"><i class="fa-solid fa-bars"></i></button>
+         </header>
+         <div class="main-content">
+             <aside class="admin__sidebar open" id="sidebar">
+               <h1 class="admin__sidebar--title">
+                  <span id="siteName">Crowdfundr</span> Admin
+               </h1>
+               <ul class="admin__sidebar--list">
+                  <li class="item">
+                     <a href="/src/admin/"
+                        ><i class="fa-solid fa-house"></i>
+                        <span>Dashboard</span></a
+                     >
+                  </li>
+                  <li class="item">
+                     <a href="/src/admin/users/"
+                        ><i class="fa-solid fa-user-group"></i>
+                        <span>Users</span></a
+                     >
+                  </li class="item">
+                  <li class="item">
+                     <a href="/src/admin/campaigns/"
+                        ><i class="fa-solid fa-bullseye"></i>
+                        <span>Campaigns</span></a
+                     >
+                  </li>
+                  <li class="item">
+                     <a href="/src/admin/pledges/"
+                        ><i class="fa-solid fa-credit-card"></i
+                        ><span>Pledges</span></a
+                     >
+                  </li>
+               </ul>
+               <ul class="admin__sidebar--list">
+                  <li class="item">
+                     <a href="./settings/"
+                        ><i class="fa-solid fa-gear"></i> Settings</a
+                     >
+                  </li>
+                  <li class="item">
+                     <a href="/" id="logoutBtn"
+                        ><i class="fa-solid fa-arrow-right-from-bracket"></i
+                        >Logout</a
+                     >
+                  </li>
+               </ul>
+            </aside>
+            <main class="admin__main">
+               <h2 class="admin__main--title">Pledge Management</h2>
+               <p>Monitor all pledges, payments, and transactions across campaigns</p>
+
+               <section class="cards">
+                  <div class="card">
+                     <div class="title">
+                        <h3>Total Pledges</h3>
+                        <i class="fa-solid fa-credit-card"></i>
+                     </div>
+                     <h4 id="users" class="stat-number">54</h4>
+                  </div>
+                  <div class="card">
+                     <div class="title">
+                        <h3>Total Amount</h3>
+                        <i class="fa-solid fa-dollar-sign"></i>
+                     </div>
+                     <h4 id="users" class="stat-number">$875</h4>
+                  </div>
+                   <div class="card">
+                     <div class="title">
+                        <h3>Average Pledge</h3>
+                        <i class="fa-solid fa-chart-simple"></i>
+                     </div>
+                     <h4 id="users" class="stat-number">$175</h4>
+                  </div>
+               </section>
+            </main>
+         </div>
+      </div>
+
+      <script type="module" src="./index.js"></script>
+      <script type="module" src="../index.js"></script>
+      <script type="module" src="/src/main.js"></script>
+   </body>
+</html>

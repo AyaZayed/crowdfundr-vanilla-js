@@ -1,0 +1,203 @@
+@use "./abstracts" as *;
+
+.admin {
+   background-color: $dashboard-background;
+   color: $dashboard-text;
+   min-height: 100vh;
+
+   &__header {
+      border-bottom: 1px solid $sidebar-border;
+      padding: 1rem $dashboard-padding;
+
+      button {
+         border: none;
+         outline: none;
+         background-color: transparent;
+         font-size: 20px;
+         padding: 0.4em;
+         @include transitionAll();
+         @include borderRadius();
+
+         &:hover {
+            background-color: $dashboard-grey;
+         }
+      }
+   }
+   .main-content {
+      display: flex;
+      height: 100vh;
+   }
+
+   &__sidebar {
+      display: none;
+      height: 100%;
+      border-right: 1px solid $sidebar-border;
+      font-size: 14px;
+      padding-top: 1em;
+
+      &.open {
+         display: block;
+      }
+
+      &--title {
+         font-size: 16px;
+         margin: 1rem 0.7em;
+         padding: 0 $dashboard-padding;
+         white-space: nowrap;
+      }
+
+      &--list {
+         padding: $dashboard-padding;
+
+         &:first-of-type {
+            border-bottom: 2px solid $sidebar-border;
+         }
+
+         .item {
+            padding: 0.4em 1em;
+            margin-bottom: 0.5em;
+            @include transitionAll();
+            @include borderRadius(7px);
+
+            &:hover {
+               background-color: $dashboard-grey;
+            }
+         }
+
+         .item a {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+
+            &#logoutBtn {
+               color: $dashboard-red;
+
+               &:hover {
+                  color: $dashboard-text;
+               }
+            }
+         }
+      }
+   }
+
+   &__main {
+      padding: 2rem;
+      width: 100%;
+
+      &--title {
+         font-size: 24px;
+         margin-bottom: 0.1em;
+
+         + p {
+            color: $dashboard-text-grey;
+            margin-bottom: 2em;
+         }
+      }
+
+      .cards {
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         gap: 1rem;
+
+         @media screen and (max-width: 1024px) {
+            grid-template-columns: repeat(2, 1fr);
+         }
+
+         @media screen and (max-width: 768px) {
+            grid-template-columns: repeat(1, 1fr);
+         }
+
+         .card {
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+
+            .title {
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+
+               h3 {
+                  font-size: 14px;
+               }
+
+               i {
+                  font-size: 18px;
+               }
+
+               .fa-user-group {
+                  color: $dashboard-blue;
+               }
+
+               .fa-bullseye {
+                  color: $dashboard-green;
+               }
+
+               .fa-credit-card {
+                  color: $dashboard-orange;
+               }
+
+               .fa-gift {
+                  color: $dashboard-violet;
+               }
+            }
+
+            .stat-number {
+               font-size: 24px;
+            }
+         }
+      }
+   }
+}
+
+.admin__users {
+   .cards {
+      grid-template-columns: repeat(3, 1fr);
+
+      .card {
+         .fa-user-slash {
+            color: $dashboard-red;
+         }
+
+         .fa-user-tie {
+            color: $dashboard-orange;
+         }
+      }
+   }
+}
+
+.admin__campaigns {
+   .cards {
+      .card {
+         .fa-circle-check {
+            color: $dashboard-green;
+         }
+
+         .fa-bullseye {
+            color: $dashboard-orange !important;
+         }
+
+         .fa-arrow-trend-up {
+            color: $dashboard-violet;
+         }
+      }
+   }
+}
+
+.admin__pledges {
+   .cards {
+      grid-template-columns: repeat(3, 1fr);
+
+      .card {
+         .fa-dollar-sign {
+            color: $dashboard-green;
+         }
+
+         .fa-chart-simple {
+            color: $dashboard-violet;
+         }
+      }
+   }
+}

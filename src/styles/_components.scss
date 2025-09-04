@@ -3,7 +3,7 @@
 .btn {
    border: none;
    outline: none;
-   padding: 0.5em 1em;
+   padding: 0.6em;
    display: inline-block;
    border-radius: 5px;
    -webkit-border-radius: 5px;
@@ -16,6 +16,54 @@
       background-color: $primary-color;
       color: $white;
    }
+
+   &-danger-outline {
+      border: 1px solid $dashboard-red;
+      color: $dashboard-red;
+      background-color: transparent;
+      @include transitionAll();
+
+      &:hover {
+         background-color: $dashboard-red;
+         color: $white;
+      }
+   }
+
+   &-blue-outline {
+      border: 1px solid $dashboard-blue;
+      color: $dashboard-blue;
+      background-color: transparent;
+      @include transitionAll();
+
+      &:hover {
+         background-color: $dashboard-blue;
+         color: $white;
+      }
+   }
+
+   &-success-outline {
+      border: 1px solid $dashboard-green;
+      color: $dashboard-green;
+      background-color: transparent;
+      @include transitionAll();
+
+      &:hover {
+         background-color: $dashboard-green;
+         color: $white;
+      }
+   }
+
+   &-secondary-outline {
+      border: 1px solid $dashboard-text-grey;
+      color: $dashboard-text-grey;
+      background-color: transparent;
+      @include transitionAll();
+
+      &:hover {
+         background-color: $dashboard-text-grey;
+         color: $white;
+      }
+   }
 }
 
 .card {
@@ -26,4 +74,8 @@
    -moz-border-radius: 10px;
    -ms-border-radius: 10px;
    -o-border-radius: 10px;
+}
+
+.text-muted {
+   color: $dashboard-text-grey;
 }

@@ -16,7 +16,7 @@
             <button id="openSidebar"><i class="fa-solid fa-bars"></i></button>
          </header>
          <div class="main-content">
-             <aside class="admin__sidebar open" id="sidebar">
+            <aside class="admin__sidebar open" id="sidebar">
                <h1 class="admin__sidebar--title">
                   <span id="siteName">Crowdfundr</span> Admin
                </h1>
@@ -32,7 +32,7 @@
                         ><i class="fa-solid fa-user-group"></i>
                         <span>Users</span></a
                      >
-                  </li class="item">
+                  </li>
                   <li class="item">
                      <a href="/src/admin/campaigns/"
                         ><i class="fa-solid fa-bullseye"></i>
@@ -48,7 +48,7 @@
                </ul>
                <ul class="admin__sidebar--list">
                   <li class="item">
-                     <a href="./settings/"
+                     <a href="/src/admin/settings/"
                         ><i class="fa-solid fa-gear"></i> Settings</a
                      >
                   </li>
@@ -62,35 +62,78 @@
             </aside>
             <main class="admin__main">
                <h2 class="admin__main--title">User Management</h2>
-               <p>Manage platform users, view their activity, and moderate accounts</p>
+               <p class="text-muted">
+                  Manage platform users, view their activity, and moderate
+                  accounts
+               </p>
 
-               <section class="cards">
+               <section class="stats cards">
                   <div class="card">
                      <div class="title">
                         <h3>Active Users</h3>
                         <i class="fa-solid fa-user-group"></i>
                      </div>
-                     <h4 id="users" class="stat-number">28</h4>
+                     <h4 id="totalUsers" class="stat-number"></h4>
                   </div>
                   <div class="card">
                      <div class="title">
                         <h3>Banned Users</h3>
                         <i class="fa-solid fa-user-slash"></i>
                      </div>
-                     <h4 id="users" class="stat-number">4</h4>
+                     <h4 id="totalBanned" class="stat-number"></h4>
                   </div>
                   <div class="card">
                      <div class="title">
                         <h3>Admin Users</h3>
                         <i class="fa-solid fa-user-tie"></i>
                      </div>
-                     <h4 id="users" class="stat-number">2</h4>
+                     <h4 id="totalAdmins" class="stat-number"></h4>
+                  </div>
+               </section>
+               <section class="card users-section">
+                  <div id="emptyUsers">
+                     <i class="fa-solid fa-user-plus"></i>
+                     <h4 class="users-section--title">No users yet</h4>
+                     <p class="text-muted">
+                        Your platform doesn't have any registered users yet.
+                        Users will appear here once they start signing up for
+                        your crowdfunding platform.
+                     </p>
+                  </div>
+                  <div id="usersInfo">
+                     <h4 class="users-section--title">All Users</h4>
+                     <p class="text-muted">Search and manage platform users</p>
+                     <label for="searchInput" class="search">
+                        <i
+                           class="fa-solid fa-magnifying-glass"
+                           aria-hidden="true"></i>
+                        <input
+                           type="search"
+                           id="searchInput"
+                           placeholder="Search users by name or email..." />
+                     </label>
+                     <div class="table-container">
+                        <table>
+                           <thead>
+                              <tr>
+                                 <th>Name</th>
+                                 <th>Email</th>
+                                 <th>Join Date</th>
+                                 <th>Status</th>
+                                 <!-- <th>Campaigns</th>
+                              <th>Total Pledged</th> -->
+                                 <th>Role</th>
+                                 <th>Actions</th>
+                              </tr>
+                           </thead>
+                           <tbody id="usersList"></tbody>
+                        </table>
+                     </div>
                   </div>
                </section>
             </main>
          </div>
       </div>
-
       <script type="module" src="./index.js"></script>
       <script type="module" src="../index.js"></script>
       <script type="module" src="/src/main.js"></script>

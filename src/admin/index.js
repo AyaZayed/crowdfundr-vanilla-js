@@ -5,7 +5,16 @@ await isAdmin()
 const openSidebar = document.querySelector('#openSidebar')
 const sidebar = document.querySelector('#sidebar')
 
-openSidebar && openSidebar.addEventListener('click', () => {
+function toggleSidebar() {
         sidebar && sidebar.classList.toggle('open')
-        console.log('sidebar toggled');
+}
+
+openSidebar && openSidebar.addEventListener('click', () => {
+        toggleSidebar()
+})
+
+window.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && (e.key === 'o' || e.key === 'O')) {
+                toggleSidebar()
+        }
 })

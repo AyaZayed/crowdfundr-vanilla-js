@@ -16,30 +16,30 @@
             <button id="openSidebar"><i class="fa-solid fa-bars"></i></button>
          </header>
          <div class="main-content">
-             <aside class="admin__sidebar open" id="sidebar">
+            <aside class="admin__sidebar open" id="sidebar">
                <h1 class="admin__sidebar--title">
                   <span id="siteName">Crowdfundr</span> Admin
                </h1>
                <ul class="admin__sidebar--list">
-                  <li class="item">
+                  <li class="item" id="home">
                      <a href="/src/admin/"
                         ><i class="fa-solid fa-house"></i>
                         <span>Dashboard</span></a
                      >
                   </li>
-                  <li class="item">
+                  <li class="item" id="users">
                      <a href="/src/admin/users/"
                         ><i class="fa-solid fa-user-group"></i>
                         <span>Users</span></a
                      >
-                  </li class="item">
-                  <li class="item">
+                  </li>
+                  <li class="item" id="campaigns">
                      <a href="/src/admin/campaigns/"
                         ><i class="fa-solid fa-bullseye"></i>
                         <span>Campaigns</span></a
                      >
                   </li>
-                  <li class="item">
+                  <li class="item" id="pledges">
                      <a href="/src/admin/pledges/"
                         ><i class="fa-solid fa-credit-card"></i
                         ><span>Pledges</span></a
@@ -47,7 +47,7 @@
                   </li>
                </ul>
                <ul class="admin__sidebar--list">
-                  <li class="item">
+                  <li class="item" id="settings">
                      <a href="/src/admin/settings/"
                         ><i class="fa-solid fa-gear"></i> Settings</a
                      >
@@ -62,42 +62,87 @@
             </aside>
             <main class="admin__main">
                <h2 class="admin__main--title">Campaign Management</h2>
-               <p>Monitor and manage all crowdfunding campaigns on the platform</p>
+               <p>
+                  Monitor and manage all crowdfunding campaigns on the platform
+               </p>
 
-               <section class="cards">
+               <section class="stats-cards">
                   <div class="card">
                      <div class="title">
                         <h3>Active Campaigns</h3>
                         <i class="fa-solid fa-bullseye"></i>
                      </div>
-                     <h4 id="users" class="stat-number">33</h4>
+                     <h4 id="totalCampaigns" class="stat-number"></h4>
                   </div>
                   <div class="card">
                      <div class="title">
                         <h3>Completed</h3>
                         <i class="fa-solid fa-circle-check"></i>
                      </div>
-                     <h4 id="users" class="stat-number">10</h4>
+                     <h4 id="totalCompleted" class="stat-number"></h4>
                   </div>
                   <div class="card">
                      <div class="title">
                         <h3>Total Raised</h3>
                         <i class="fa-solid fa-arrow-trend-up"></i>
                      </div>
-                     <h4 id="users" class="stat-number">2287</h4>
+                     <h4 id="totalRaised" class="stat-number">$</h4>
                   </div>
-                   <div class="card">
+                  <div class="card">
                      <div class="title">
                         <h3>Total Backers</h3>
                         <i class="fa-solid fa-user-group"></i>
                      </div>
-                     <h4 id="users" class="stat-number">421</h4>
+                     <h4 id="totalBackers" class="stat-number"></h4>
+                  </div>
+               </section>
+               <section class="card data-section">
+                  <div class="empty" id="emptyCampaigns">
+                     <i class="fa-solid fa-plus"></i>
+                     <h4 class="data-section--title">No campaigns yet</h4>
+                     <p class="text-muted">
+                        Your platform doesn't have any campaigns yet. Campaigns
+                        will appear here once users start creating projects to
+                        fund on your platform.
+                     </p>
+                  </div>
+                  <div id="campaignsInfo" class="data-container">
+                     <h4 class="data-section--title">All Campaigns</h4>
+                     <p class="text-muted">
+                        Search and manage platform campaigns
+                     </p>
+                     <label for="searchInput" class="search">
+                        <i
+                           class="fa-solid fa-magnifying-glass"
+                           aria-hidden="true"></i>
+                        <input
+                           type="search"
+                           id="searchInput"
+                           placeholder="Search camapigns by title" />
+                     </label>
+                     <div class="table-container">
+                        <table>
+                           <thead>
+                              <tr>
+                                 <th>Title</th>
+                                 <th>Goal</th>
+                                 <th>Creation Date</th>
+                                 <th>Deadline</th>
+                                 <th>Status</th>
+                                 <!-- <th>Campaigns</th>
+                              <th>Total Pledged</th> -->
+                                 <th>Reward</th>
+                                 <th>Actions</th>
+                              </tr>
+                           </thead>
+                           <tbody id="camapignsList"></tbody>
+                        </table>
+                     </div>
                   </div>
                </section>
             </main>
          </div>
       </div>
-
       <script type="module" src="./index.js"></script>
       <script type="module" src="../index.js"></script>
       <script type="module" src="/src/main.js"></script>

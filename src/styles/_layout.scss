@@ -16,9 +16,29 @@
          padding: 0.4em;
          @include transitionAll();
          @include borderRadius();
+         position: relative;
 
          &:hover {
             background-color: $dashboard-grey;
+
+            &::after {
+               opacity: 1;
+            }
+         }
+
+         &:after {
+            content: "Ctrl + O";
+            position: absolute;
+            top: 50%;
+            right: -170%;
+            transform: translateY(-50%);
+            border: 1px solid $black;
+            color: $black;
+            padding: 4px 8px;
+            @include borderRadius(5px);
+            font-size: 12px;
+            opacity: 0;
+            pointer-events: none;
          }
       }
    }
@@ -27,14 +47,24 @@
    }
 
    &__sidebar {
-      display: none;
+      @include closeSidebar();
       border-right: 1px solid $sidebar-border;
       font-size: 14px;
       padding-top: 1em;
+      width: 0;
+      overflow: hidden;
 
       &.open {
-         display: block;
+         @include openSidebar();
+         min-width: $sidebar-width !important;
+         overflow: auto !important;
       }
+
+      // @include md() {
+      //    @include openSidebar();
+      //    min-width: $sidebar-width;
+      //    overflow: auto;
+      // }
 
       &--title {
          font-size: 16px;
@@ -51,12 +81,16 @@
          }
 
          .item {
-            padding: 0.4em 1em;
+            padding: 0.6em 1em;
             margin-bottom: 0.5em;
             @include transitionAll();
             @include borderRadius(7px);
 
             &:hover {
+               background-color: $dashboard-grey;
+            }
+
+            &.active {
                background-color: $dashboard-grey;
             }
          }
@@ -87,21 +121,22 @@
 
          + p {
             margin-bottom: 2em;
+            color: $dashboard-text-grey;
          }
       }
 
-      .cards {
+      .stats-cards {
          display: grid;
-         grid-template-columns: repeat(4, 1fr);
+         grid-template-columns: repeat(1, 1fr);
          gap: 1rem;
          margin-bottom: 2em;
 
-         @media screen and (max-width: 1024px) {
+         @include md() {
             grid-template-columns: repeat(2, 1fr);
          }
 
-         @media screen and (max-width: 768px) {
-            grid-template-columns: repeat(1, 1fr);
+         @include lg() {
+            grid-template-columns: repeat(4, 1fr);
          }
 
          .card {
@@ -146,12 +181,147 @@
             }
          }
       }
+
+      .data-section {
+         &--title {
+            margin: 1em 0 0.5em;
+            font-size: 16px;
+         }
+
+         .search {
+            position: relative;
+            display: block;
+            margin-top: 1em;
+            color: $dashboard-text-grey;
+
+            i {
+               position: absolute;
+               top: 50%;
+               left: 10px;
+               transform: translateY(-50%);
+            }
+
+            input {
+               width: 100%;
+               padding: 0.9em 1em 0.9em 2.5em;
+               border: none;
+               outline: none;
+               background-color: #f3f3f5;
+               @include borderRadius();
+
+               &:focus {
+                  outline: 1px solid $dashboard-text-grey;
+               }
+            }
+         }
+
+         .empty {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+            gap: 1em;
+            text-align: center;
+
+            i {
+               font-size: 40px;
+               padding: 1.3em;
+               background-color: $dashboard-muted;
+               @include borderRadius(50%);
+               width: 48px;
+               height: 48px;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               color: $dashboard-text-grey;
+            }
+
+            p {
+               width: 80%;
+               color: $dashboard-text-grey;
+            }
+         }
+
+         .table-container {
+            overflow-x: auto;
+            width: 100%;
+         }
+
+         table {
+            width: 100%;
+            margin-top: 1em;
+            border-collapse: collapse;
+            min-width: 400px;
+
+            th:not(:last-child) {
+               text-align: left;
+            }
+
+            th:last-child {
+               text-align: right;
+            }
+
+            th,
+            td {
+               white-space: nowrap;
+               padding: 0.7em;
+            }
+
+            tr:not(:last-child) th,
+            tr:not(:last-child) td {
+               border-bottom: 1px solid $sidebar-border;
+            }
+
+            td:not(#email) {
+               text-transform: capitalize;
+            }
+
+            td.actions {
+               display: grid;
+               grid-template-columns: 1.5fr 1fr;
+               gap: 0.5em;
+            }
+
+            tbody tr {
+               &:hover {
+                  background-color: color-mix(
+                     in oklab,
+                     $dashboard-muted 50%,
+                     transparent
+                  );
+               }
+            }
+         }
+      }
+   }
+}
+
+.admin__home {
+   #emptyData,
+   #dataInfo {
+      flex-direction: column;
+      gap: 1em;
+
+      @include lg() {
+         flex-direction: row;
+      }
+   }
+
+   .empty {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+      padding: 2rem 0;
    }
 }
 
 .admin__users {
-   .cards {
-      grid-template-columns: repeat(3, 1fr);
+   .stats-cards {
+      @include lg() {
+         grid-template-columns: repeat(3, 1fr);
+      }
 
       .card {
          .fa-user-slash {
@@ -163,121 +333,10 @@
          }
       }
    }
-
-   .users-section {
-      &--title {
-         margin: 1em 0 0.5em;
-         font-size: 16px;
-      }
-
-      .search {
-         position: relative;
-         display: block;
-         margin-top: 1em;
-         color: $dashboard-text-grey;
-
-         i {
-            position: absolute;
-            top: 50%;
-            left: 10px;
-            transform: translateY(-50%);
-         }
-
-         input {
-            width: 100%;
-            padding: 0.9em 1em 0.9em 2.5em;
-            border: none;
-            outline: none;
-            background-color: #f3f3f5;
-            @include borderRadius();
-
-            &:focus {
-               outline: 1px solid $dashboard-text-grey;
-            }
-         }
-      }
-
-      #emptyUsers {
-         display: none;
-         flex-direction: column;
-         align-items: center;
-         justify-content: center;
-         padding: 2rem 0;
-         gap: 1em;
-         text-align: center;
-
-         .fa-user-plus {
-            font-size: 50px;
-            padding: 1em;
-            background-color: $dashboard-muted;
-            @include borderRadius(50%);
-            width: 48px;
-            height: 48px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: $dashboard-text-grey;
-         }
-
-         p {
-            width: 80%;
-            color: $dashboard-text-grey;
-         }
-      }
-
-      .table-container {
-         overflow-x: auto;
-         width: 100%;
-      }
-
-      table {
-         width: 100%;
-         margin-top: 1em;
-         border-collapse: collapse;
-         min-width: 400px;
-
-         th:not(:last-child) {
-            text-align: left;
-         }
-
-         th:last-child {
-            text-align: right;
-         }
-
-         th,
-         td {
-            white-space: nowrap;
-            padding: 0.7em;
-         }
-
-         tr:not(:last-child) th,
-         tr:not(:last-child) td {
-            border-bottom: 1px solid $sidebar-border;
-         }
-
-         td:not(#email) {
-            text-transform: capitalize;
-         }
-
-         td:last-child {
-            text-align: right;
-         }
-
-         tbody tr {
-            &:hover {
-               background-color: color-mix(
-                  in oklab,
-                  $dashboard-muted 50%,
-                  transparent
-               );
-            }
-         }
-      }
-   }
 }
 
 .admin__campaigns {
-   .cards {
+   .stats-cards {
       .card {
          .fa-circle-check {
             color: $dashboard-green;
@@ -291,8 +350,10 @@
 }
 
 .admin__pledges {
-   .cards {
-      grid-template-columns: repeat(3, 1fr);
+   .stats-cards {
+      @include lg() {
+         grid-template-columns: repeat(3, 1fr);
+      }
 
       .card {
          .fa-dollar-sign {

@@ -54,13 +54,13 @@
    }
 
    &-secondary-outline {
-      border: 1px solid $dashboard-text-grey;
-      color: $dashboard-text-grey;
+      border: 1px solid $black;
+      color: $black;
       background-color: transparent;
       @include transitionAll();
 
       &:hover {
-         background-color: $dashboard-text-grey;
+         background-color: $black;
          color: $white;
       }
    }

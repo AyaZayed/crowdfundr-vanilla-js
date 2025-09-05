@@ -62,21 +62,65 @@ ul {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+  position: relative;
 }
 .admin__header button:hover {
   background-color: #eceef2;
+}
+.admin__header button:hover::after {
+  opacity: 1;
+}
+.admin__header button:after {
+  content: "Ctrl + O";
+  position: absolute;
+  top: 50%;
+  right: -170%;
+  transform: translateY(-50%);
+  border: 1px solid #000000;
+  color: #000000;
+  padding: 4px 8px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
 }
 .admin .main-content {
   display: flex;
 }
 .admin__sidebar {
-  display: none;
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  -webkit-transition: transform 0.3s ease;
+  -moz-transition: transform 0.3s ease;
+  -ms-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
   border-right: 1px solid rgb(229, 229, 229);
   font-size: 14px;
   padding-top: 1em;
+  width: 0;
+  overflow: hidden;
 }
 .admin__sidebar.open {
-  display: block;
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transition: transform 0.3s ease;
+  -webkit-transition: transform 0.3s ease;
+  -moz-transition: transform 0.3s ease;
+  -ms-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+  min-width: 200px !important;
+  overflow: auto !important;
 }
 .admin__sidebar--title {
   font-size: 16px;
@@ -91,7 +135,7 @@ ul {
   border-bottom: 2px solid rgb(229, 229, 229);
 }
 .admin__sidebar--list .item {
-  padding: 0.4em 1em;
+  padding: 0.6em 1em;
   margin-bottom: 0.5em;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
@@ -105,6 +149,9 @@ ul {
   -o-border-radius: 7px;
 }
 .admin__sidebar--list .item:hover {
+  background-color: #eceef2;
+}
+.admin__sidebar--list .item.active {
   background-color: #eceef2;
 }
 .admin__sidebar--list .item a {
@@ -128,83 +175,74 @@ ul {
 }
 .admin__main--title + p {
   margin-bottom: 2em;
+  color: #717182;
 }
-.admin__main .cards {
+.admin__main .stats-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 1rem;
   margin-bottom: 2em;
 }
-@media screen and (max-width: 1024px) {
-  .admin__main .cards {
+@media screen and (min-width: 768px) {
+  .admin__main .stats-cards {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media screen and (max-width: 768px) {
-  .admin__main .cards {
-    grid-template-columns: repeat(1, 1fr);
+@media screen and (min-width: 1024px) {
+  .admin__main .stats-cards {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
-.admin__main .cards .card {
+.admin__main .stats-cards .card {
   min-height: 130px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
 }
-.admin__main .cards .card .title {
+.admin__main .stats-cards .card .title {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.admin__main .cards .card .title h3 {
+.admin__main .stats-cards .card .title h3 {
   font-size: 14px;
 }
-.admin__main .cards .card .title i {
+.admin__main .stats-cards .card .title i {
   font-size: 18px;
 }
-.admin__main .cards .card .title .fa-user-group {
+.admin__main .stats-cards .card .title .fa-user-group {
   color: #3b82f6;
 }
-.admin__main .cards .card .title .fa-bullseye {
+.admin__main .stats-cards .card .title .fa-bullseye {
   color: #f59e0b;
 }
-.admin__main .cards .card .title .fa-credit-card {
+.admin__main .stats-cards .card .title .fa-credit-card {
   color: #22c55e;
 }
-.admin__main .cards .card .title .fa-gift {
+.admin__main .stats-cards .card .title .fa-gift {
   color: #8b5cf6;
 }
-.admin__main .cards .card .stat-number {
+.admin__main .stats-cards .card .stat-number {
   font-size: 24px;
 }
-
-.admin__users .cards {
-  grid-template-columns: repeat(3, 1fr);
-}
-.admin__users .cards .card .fa-user-slash {
-  color: #d4183d;
-}
-.admin__users .cards .card .fa-user-tie {
-  color: #f59e0b;
-}
-.admin__users .users-section--title {
+.admin__main .data-section--title {
   margin: 1em 0 0.5em;
   font-size: 16px;
 }
-.admin__users .users-section .search {
+.admin__main .data-section .search {
   position: relative;
   display: block;
   margin-top: 1em;
   color: #717182;
 }
-.admin__users .users-section .search i {
+.admin__main .data-section .search i {
   position: absolute;
   top: 50%;
   left: 10px;
   transform: translateY(-50%);
 }
-.admin__users .users-section .search input {
+.admin__main .data-section .search input {
   width: 100%;
   padding: 0.9em 1em 0.9em 2.5em;
   border: none;
@@ -216,10 +254,10 @@ ul {
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
-.admin__users .users-section .search input:focus {
+.admin__main .data-section .search input:focus {
   outline: 1px solid #717182;
 }
-.admin__users .users-section #emptyUsers {
+.admin__main .data-section .empty {
   display: none;
   flex-direction: column;
   align-items: center;
@@ -228,9 +266,9 @@ ul {
   gap: 1em;
   text-align: center;
 }
-.admin__users .users-section #emptyUsers .fa-user-plus {
-  font-size: 50px;
-  padding: 1em;
+.admin__main .data-section .empty i {
+  font-size: 40px;
+  padding: 1.3em;
   background-color: #ececf0;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -244,59 +282,94 @@ ul {
   align-items: center;
   color: #717182;
 }
-.admin__users .users-section #emptyUsers p {
+.admin__main .data-section .empty p {
   width: 80%;
   color: #717182;
 }
-.admin__users .users-section .table-container {
+.admin__main .data-section .table-container {
   overflow-x: auto;
   width: 100%;
 }
-.admin__users .users-section table {
+.admin__main .data-section table {
   width: 100%;
   margin-top: 1em;
   border-collapse: collapse;
   min-width: 400px;
 }
-.admin__users .users-section table th:not(:last-child) {
+.admin__main .data-section table th:not(:last-child) {
   text-align: left;
 }
-.admin__users .users-section table th:last-child {
+.admin__main .data-section table th:last-child {
   text-align: right;
 }
-.admin__users .users-section table th,
-.admin__users .users-section table td {
+.admin__main .data-section table th,
+.admin__main .data-section table td {
   white-space: nowrap;
   padding: 0.7em;
 }
-.admin__users .users-section table tr:not(:last-child) th,
-.admin__users .users-section table tr:not(:last-child) td {
+.admin__main .data-section table tr:not(:last-child) th,
+.admin__main .data-section table tr:not(:last-child) td {
   border-bottom: 1px solid rgb(229, 229, 229);
 }
-.admin__users .users-section table td:not(#email) {
+.admin__main .data-section table td:not(#email) {
   text-transform: capitalize;
 }
-.admin__users .users-section table td:last-child {
-  text-align: right;
+.admin__main .data-section table td.actions {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 0.5em;
 }
-.admin__users .users-section table tbody tr:hover {
+.admin__main .data-section table tbody tr:hover {
   background-color: color-mix(in oklab, #ececf0 50%, transparent);
 }
 
-.admin__campaigns .cards .card .fa-circle-check {
+.admin__home #emptyData,
+.admin__home #dataInfo {
+  flex-direction: column;
+  gap: 1em;
+}
+@media screen and (min-width: 1024px) {
+  .admin__home #emptyData,
+  .admin__home #dataInfo {
+    flex-direction: row;
+  }
+}
+.admin__home .empty {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  padding: 2rem 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .admin__users .stats-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.admin__users .stats-cards .card .fa-user-slash {
+  color: #d4183d;
+}
+.admin__users .stats-cards .card .fa-user-tie {
+  color: #f59e0b;
+}
+
+.admin__campaigns .stats-cards .card .fa-circle-check {
   color: #22c55e;
 }
-.admin__campaigns .cards .card .fa-arrow-trend-up {
+.admin__campaigns .stats-cards .card .fa-arrow-trend-up {
   color: #8b5cf6;
 }
 
-.admin__pledges .cards {
-  grid-template-columns: repeat(3, 1fr);
+@media screen and (min-width: 1024px) {
+  .admin__pledges .stats-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
-.admin__pledges .cards .card .fa-dollar-sign {
+.admin__pledges .stats-cards .card .fa-dollar-sign {
   color: #f59e0b;
 }
-.admin__pledges .cards .card .fa-chart-simple {
+.admin__pledges .stats-cards .card .fa-chart-simple {
   color: #8b5cf6;
 }
 
@@ -359,8 +432,8 @@ ul {
   color: #ffffff;
 }
 .btn-secondary-outline {
-  border: 1px solid #717182;
-  color: #717182;
+  border: 1px solid #000000;
+  color: #000000;
   background-color: transparent;
   transition: all 0.3s ease-in-out;
   -webkit-transition: all 0.3s ease-in-out;
@@ -369,7 +442,7 @@ ul {
   -o-transition: all 0.3s ease-in-out;
 }
 .btn-secondary-outline:hover {
-  background-color: #717182;
+  background-color: #000000;
   color: #ffffff;
 }
 

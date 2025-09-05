@@ -1,1 +1,1 @@
-export const siteName = 'Crowdfundr'
+export const platformName = 'Crowdfundr'

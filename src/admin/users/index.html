@@ -21,25 +21,25 @@
                   <span id="siteName">Crowdfundr</span> Admin
                </h1>
                <ul class="admin__sidebar--list">
-                  <li class="item">
+                  <li class="item" id="home">
                      <a href="/src/admin/"
                         ><i class="fa-solid fa-house"></i>
                         <span>Dashboard</span></a
                      >
                   </li>
-                  <li class="item">
+                  <li class="item" id="users">
                      <a href="/src/admin/users/"
                         ><i class="fa-solid fa-user-group"></i>
                         <span>Users</span></a
                      >
                   </li>
-                  <li class="item">
+                  <li class="item" id="campaigns">
                      <a href="/src/admin/campaigns/"
                         ><i class="fa-solid fa-bullseye"></i>
                         <span>Campaigns</span></a
                      >
                   </li>
-                  <li class="item">
+                  <li class="item" id="pledges">
                      <a href="/src/admin/pledges/"
                         ><i class="fa-solid fa-credit-card"></i
                         ><span>Pledges</span></a
@@ -47,7 +47,7 @@
                   </li>
                </ul>
                <ul class="admin__sidebar--list">
-                  <li class="item">
+                  <li class="item" id="settings">
                      <a href="/src/admin/settings/"
                         ><i class="fa-solid fa-gear"></i> Settings</a
                      >
@@ -67,7 +67,7 @@
                   accounts
                </p>
 
-               <section class="stats cards">
+               <section class="stats-cards">
                   <div class="card">
                      <div class="title">
                         <h3>Active Users</h3>
@@ -90,18 +90,18 @@
                      <h4 id="totalAdmins" class="stat-number"></h4>
                   </div>
                </section>
-               <section class="card users-section">
-                  <div id="emptyUsers">
+               <section class="card data-section">
+                  <div class="empty" id="emptyUsers">
                      <i class="fa-solid fa-user-plus"></i>
-                     <h4 class="users-section--title">No users yet</h4>
+                     <h4 class="data-section--title">No users yet</h4>
                      <p class="text-muted">
                         Your platform doesn't have any registered users yet.
                         Users will appear here once they start signing up for
                         your crowdfunding platform.
                      </p>
                   </div>
-                  <div id="usersInfo">
-                     <h4 class="users-section--title">All Users</h4>
+                  <div id="usersInfo" class="data-container">
+                     <h4 class="data-section--title">All Users</h4>
                      <p class="text-muted">Search and manage platform users</p>
                      <label for="searchInput" class="search">
                         <i

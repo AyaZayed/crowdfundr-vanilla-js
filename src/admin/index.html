@@ -10,12 +10,16 @@
       <meta name="author" content="Aya Zayed" />
       <title>Admin Dashboard</title>
       <script type="module" src="./index.js"></script>
-
    </head>
    <body>
-      <div id="app" class="admin">
+      <div id="app" class="admin admin__home">
          <header class="admin__header">
-            <button id="openSidebar"><i class="fa-solid fa-bars"></i></button>
+            <button
+               id="openSidebar"
+               aria-label="Toggle sidebar"
+               data-tooltip="Ctrl + B">
+               <i class="fa-solid fa-bars"></i>
+            </button>
          </header>
          <div class="main-content">
             <aside class="admin__sidebar open" id="sidebar">
@@ -23,25 +27,25 @@
                   <span id="siteName">Crowdfundr</span> Admin
                </h1>
                <ul class="admin__sidebar--list">
-                  <li class="item">
+                  <li class="item" id="home">
                      <a href="/src/admin/"
                         ><i class="fa-solid fa-house"></i>
                         <span>Dashboard</span></a
                      >
                   </li>
-                  <li class="item">
+                  <li class="item" id="users">
                      <a href="/src/admin/users/"
                         ><i class="fa-solid fa-user-group"></i>
                         <span>Users</span></a
                      >
-                  </li class="item">
-                  <li class="item">
+                  </li>
+                  <li class="item" id="campaigns">
                      <a href="/src/admin/campaigns/"
                         ><i class="fa-solid fa-bullseye"></i>
                         <span>Campaigns</span></a
                      >
                   </li>
-                  <li class="item">
+                  <li class="item" id="pledges">
                      <a href="/src/admin/pledges/"
                         ><i class="fa-solid fa-credit-card"></i
                         ><span>Pledges</span></a
@@ -49,7 +53,7 @@
                   </li>
                </ul>
                <ul class="admin__sidebar--list">
-                  <li class="item">
+                  <li class="item" id="settings">
                      <a href="/src/admin/settings/"
                         ><i class="fa-solid fa-gear"></i> Settings</a
                      >
@@ -66,34 +70,61 @@
                <h2 class="admin__main--title">Dashboard Overview</h2>
                <p>Welcome to your crowdfunding platform admin dashboard</p>
 
-               <section class="cards">
+               <section class="stats-cards">
                   <div class="card">
                      <div class="title">
                         <h3>Total Users</h3>
                         <i class="fa-solid fa-user-group"></i>
                      </div>
-                     <h4 id="users" class="stat-number">2,847</h4>
+                     <h4 id="homeTotalUsers" class="stat-number"></h4>
                   </div>
                   <div class="card">
                      <div class="title">
                         <h3>Active Campaigns</h3>
                         <i class="fa-solid fa-bullseye"></i>
                      </div>
-                     <h4 id="users" class="stat-number">156</h4>
+                     <h4 id="homeActiveCampaigns" class="stat-number"></h4>
                   </div>
                   <div class="card">
                      <div class="title">
                         <h3>Total Pledges</h3>
                         <i class="fa-solid fa-credit-card"></i>
                      </div>
-                     <h4 id="users" class="stat-number">12,456</h4>
+                     <h4 id="homeTotalPledges" class="stat-number"></h4>
                   </div>
                   <div class="card">
                      <div class="title">
                         <h3>Total Rewards</h3>
                         <i class="fa-solid fa-gift"></i>
                      </div>
-                     <h4 id="users" class="stat-number">12,456</h4>
+                     <h4 id="homeTotalRewards" class="stat-number"></h4>
+                  </div>
+               </section>
+               <section class="data-section">
+                  <div id="emptyData">
+                     <div class="card empty">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <h4 class="data-section--title">
+                           Welcome to your crowdfunding platform!
+                        </h4>
+                        <p class="text-muted">
+                           Your dashboard will come to life once users start
+                           signing up, creating campaigns, and making pledges.
+                           Get started by configuring your platform settings.
+                        </p>
+                     </div>
+                     <div class="card empty">
+                        <i class="fa-solid fa-chart-column"></i>
+                        <h4 class="data-section--title">No stats yet</h4>
+                        <p class="text-muted">
+                           Stats will appear here once you have activity on your
+                           platform.
+                        </p>
+                     </div>
+                  </div>
+                  <div id="dataInfo">
+                     <div class="card"></div>
+                     <div class="card"></div>
                   </div>
                </section>
             </main>

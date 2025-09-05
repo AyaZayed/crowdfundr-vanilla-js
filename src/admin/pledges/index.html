@@ -16,30 +16,30 @@
             <button id="openSidebar"><i class="fa-solid fa-bars"></i></button>
          </header>
          <div class="main-content">
-             <aside class="admin__sidebar open" id="sidebar">
+            <aside class="admin__sidebar open" id="sidebar">
                <h1 class="admin__sidebar--title">
                   <span id="siteName">Crowdfundr</span> Admin
                </h1>
                <ul class="admin__sidebar--list">
-                  <li class="item">
+                  <li class="item" id="home">
                      <a href="/src/admin/"
                         ><i class="fa-solid fa-house"></i>
                         <span>Dashboard</span></a
                      >
                   </li>
-                  <li class="item">
+                  <li class="item" id="users">
                      <a href="/src/admin/users/"
                         ><i class="fa-solid fa-user-group"></i>
                         <span>Users</span></a
                      >
-                  </li class="item">
-                  <li class="item">
+                  </li>
+                  <li class="item" id="campaigns">
                      <a href="/src/admin/campaigns/"
                         ><i class="fa-solid fa-bullseye"></i>
                         <span>Campaigns</span></a
                      >
                   </li>
-                  <li class="item">
+                  <li class="item" id="pledges">
                      <a href="/src/admin/pledges/"
                         ><i class="fa-solid fa-credit-card"></i
                         ><span>Pledges</span></a
@@ -47,7 +47,7 @@
                   </li>
                </ul>
                <ul class="admin__sidebar--list">
-                  <li class="item">
+                  <li class="item" id="settings">
                      <a href="/src/admin/settings/"
                         ><i class="fa-solid fa-gear"></i> Settings</a
                      >
@@ -62,29 +62,75 @@
             </aside>
             <main class="admin__main">
                <h2 class="admin__main--title">Pledge Management</h2>
-               <p>Monitor all pledges, payments, and transactions across campaigns</p>
+               <p>
+                  Monitor all pledges, payments, and transactions across
+                  campaigns
+               </p>
 
-               <section class="cards">
+               <section class="stats-cards">
                   <div class="card">
                      <div class="title">
                         <h3>Total Pledges</h3>
                         <i class="fa-solid fa-credit-card"></i>
                      </div>
-                     <h4 id="users" class="stat-number">54</h4>
+                     <h4 id="totalPledges" class="stat-number"></h4>
                   </div>
                   <div class="card">
                      <div class="title">
                         <h3>Total Amount</h3>
                         <i class="fa-solid fa-dollar-sign"></i>
                      </div>
-                     <h4 id="users" class="stat-number">$875</h4>
+                     <h4 id="totalAmount" class="stat-number"></h4>
                   </div>
-                   <div class="card">
+                  <div class="card">
                      <div class="title">
                         <h3>Average Pledge</h3>
                         <i class="fa-solid fa-chart-simple"></i>
                      </div>
-                     <h4 id="users" class="stat-number">$175</h4>
+                     <h4 id="averagePledge" class="stat-number"></h4>
+                  </div>
+               </section>
+               <section class="card data-section">
+                  <div id="emptyPledges" class="empty">
+                     <i class="fa-solid fa-hand-holding-dollar"></i>
+                     <h4 class="data-section--title">No pledges yet</h4>
+                     <p class="text-muted">
+                        our platform doesn't have any pledges yet. Pledges will
+                        appear here once users start backing campaigns on your
+                        platform.
+                     </p>
+                  </div>
+                  <div id="pledgesInfo" class="data-container">
+                     <h4 class="data-section--title">All Pledges</h4>
+                     <p class="text-muted">
+                        Search and manage platform pledges
+                     </p>
+                     <label for="searchInput" class="search">
+                        <i
+                           class="fa-solid fa-magnifying-glass"
+                           aria-hidden="true"></i>
+                        <input
+                           type="search"
+                           id="searchInput"
+                           placeholder="Search pledges by " />
+                     </label>
+                     <div class="table-container">
+                        <table>
+                           <thead>
+                              <tr>
+                                 <th>Name</th>
+                                 <th>Email</th>
+                                 <th>Join Date</th>
+                                 <th>Status</th>
+                                 <!-- <th>Campaigns</th>
+                              <th>Total Pledged</th> -->
+                                 <th>Role</th>
+                                 <th>Actions</th>
+                              </tr>
+                           </thead>
+                           <tbody id="pledgesList"></tbody>
+                        </table>
+                     </div>
                   </div>
                </section>
             </main>

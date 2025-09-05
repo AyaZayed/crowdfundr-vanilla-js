@@ -1,5 +1,5 @@
-import { getCurrentUser } from "../../utils/auth";
-import { changeUserStatus, changeRole, getAllUsersExcept } from "../../utils/users";
+import { allUsers } from "..";
+import { changeUserStatus, changeRole } from "../../utils/users";
 
 const emptyUsers = document.querySelector("#emptyUsers");
 const usersInfo = document.querySelector("#usersInfo");
@@ -8,9 +8,6 @@ const totalUsers = document.querySelector("#totalUsers");
 const totalBanned = document.querySelector("#totalBanned");
 const totalAdmins = document.querySelector("#totalAdmins");
 
-const currentUser = await getCurrentUser();
-
-const allUsers = await getAllUsersExcept(currentUser[0].id);
 const bannedUsers = allUsers.filter((user) => !user.isActive);
 const admins = allUsers.filter((user) => user.role === "admin");
 
@@ -35,10 +32,12 @@ usersList.innerHTML = allUsers
                         <td>${user.joinDate}</td>
                         <td>${user.isActive ? "Active" : "Banned"}</td>
                         <td>${user.role}</td>
-                        <td>
+                        <td class="actions">
                                 <button class="btn  ${user.role === "admin" ? "userBtn btn-secondary-outline" : "adminBtn btn-blue-outline"}"
                                         >
-                                        ${user.role === "admin" ? "Remove Admin" : "Make Admin"}
+                                        ${user.role === "admin" ?
+                                `<i class="fa-solid fa-user-xmark"></i> Remove Admin`
+                                : `<i class="fa-solid fa-user-check"></i> Make Admin`}
                                 </button>
                                  ${user.role === 'admin' ? '' : `
                                         <button class="btn ${user.isActive ? "banBtn btn-danger-outline" : "btn-success-outline unbanBtn"}"

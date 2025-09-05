@@ -26,6 +26,7 @@ $dashboard-violet: #8b5cf6;
 $primary-font: "Poppins", sans-serif;
 // $secondary-font: "Outfit", sans-serif;
 $tertiary-font: "Dosis", sans-serif;
+$sidebar-width: 200px;
 
 @mixin transitionAll($duration: 0.3s) {
    transition: all $duration ease-in-out;
@@ -41,4 +42,42 @@ $tertiary-font: "Dosis", sans-serif;
    -moz-border-radius: $radius;
    -ms-border-radius: $radius;
    -o-border-radius: $radius;
+}
+
+@mixin closeSidebar() {
+   transform: translateX(-100%);
+   -webkit-transform: translateX(-100%);
+   -moz-transform: translateX(-100%);
+   -ms-transform: translateX(-100%);
+   -o-transform: translateX(-100%);
+   transition: transform 0.3s ease;
+   -webkit-transition: transform 0.3s ease;
+   -moz-transition: transform 0.3s ease;
+   -ms-transition: transform 0.3s ease;
+   -o-transition: transform 0.3s ease;
+}
+
+@mixin openSidebar() {
+   transform: translateX(0);
+   -webkit-transform: translateX(0);
+   -moz-transform: translateX(0);
+   -ms-transform: translateX(0);
+   -o-transform: translateX(0);
+   transition: transform 0.3s ease;
+   -webkit-transition: transform 0.3s ease;
+   -moz-transition: transform 0.3s ease;
+   -ms-transition: transform 0.3s ease;
+   -o-transition: transform 0.3s ease;
+}
+
+@mixin md() {
+   @media screen and (min-width: 768px) {
+      @content;
+   }
+}
+
+@mixin lg() {
+   @media screen and (min-width: 1024px) {
+      @content;
+   }
 }

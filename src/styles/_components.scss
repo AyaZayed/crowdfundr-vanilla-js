@@ -3,14 +3,10 @@
 .btn {
    border: none;
    outline: none;
-   padding: 0.6em;
+   padding: 0.5em 0.6em;
    display: inline-block;
-   border-radius: 5px;
-   -webkit-border-radius: 5px;
-   -moz-border-radius: 5px;
-   -ms-border-radius: 5px;
-   -o-border-radius: 5px;
-   margin: 1em 0;
+   @include borderRadius(7px);
+   font-size: 14px;
 
    &-primary {
       background-color: $primary-color;
@@ -78,4 +74,33 @@
 
 .text-muted {
    color: $dashboard-text-grey;
+}
+
+.bullet {
+   padding: 0.2em 0.6em;
+   @include borderRadius(10px);
+   font-size: 13px;
+
+   &[data-bullet="success"] {
+      color: #026630;
+      background-color: #dbfce7;
+   }
+
+   &[data-bullet="primary"] {
+      color: #3b82f6;
+      background-color: #eef2ff;
+   }
+
+   &[data-bullet="danger"] {
+      color: #9f1239;
+      background-color: #f8d7da;
+   }
+
+   &[data-bullet="violet"] {
+      background-color: #f3e8ff;
+      color: #6f3d97;
+   }
+   &[data-bullet="outline"] {
+      border: 1px solid #f3e8ff;
+   }
 }

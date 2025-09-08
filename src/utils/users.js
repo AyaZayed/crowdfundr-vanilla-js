@@ -6,6 +6,11 @@ export async function getAllUsersExcept(id) {
         return filtered
 }
 
+export async function getUserById(id) {
+        const res = await fetch(`${DB_SERVER}/users/${id}`)
+        return res.json()
+}
+
 export async function changeRole(id, role) {
         const res = await fetch(`${DB_SERVER}/users/${id}`, {
                 method: 'PATCH',

@@ -112,6 +112,18 @@
                            id="searchInput"
                            placeholder="Search users by name or email..." />
                      </label>
+                     <div class="pagination">
+                        <button id="prevBtn" class="btn btn--prev">
+                           <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <span
+                           >Page <span id="page">1</span> of
+                           <span id="pages">1</span></span
+                        >
+                        <button id="nextBtn" class="btn btn--next">
+                           <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                     </div>
                      <div class="table-container">
                         <table>
                            <thead>
@@ -135,7 +147,7 @@
          </div>
       </div>
       <script type="module" src="./index.js"></script>
-      <script type="module" src="../index.js"></script>
+      <script type="module" src="../scripts/dashboard.js"></script>
       <script type="module" src="/src/main.js"></script>
    </body>
 </html>

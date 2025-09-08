@@ -6,7 +6,7 @@
          "id": 1,
          "name": "Janine Doe",
          "role": "user",
-         "isActive": false,
+         "isActive": true,
          "joinDate": "2023-01-01"
       },
       {
@@ -22,12 +22,70 @@
          "email": "aya@example.com",
          "password": "$2a$10$TURLtMX5kFq3IjHU1BJWgeN4FkD8DClcO94ERVCmH6pA5GWtMrOQW",
          "name": "aya zayed",
-         "isActive": "true",
+         "isActive": false,
          "role": "user",
          "id": 3,
          "joinDate": "2023-01-01"
       }
    ],
-   "campaigns": [],
-   "pledges": []
+   "campaigns": [
+      {
+         "id": 1,
+         "title": "Smart Watch",
+         "creatorId": 1,
+         "goal": 5000,
+         "raised": 3000,
+         "created_at": "2023-01-01",
+         "deadline": "2025-12-31",
+         "isApproved": true,
+         "isFeatured": true,
+         "status": "active",
+         "category": "Business",
+         "rewards": [
+            {
+               "id": 1,
+               "title": "Early Bird",
+               "amount": 50
+            }
+         ]
+      },
+      {
+         "id": 2,
+         "title": "Health awareness",
+         "creatorId": 3,
+         "goal": 2000,
+         "raised": 500,
+         "created_at": "2023-01-01",
+         "deadline": "2025-09-16",
+         "isApproved": false,
+         "isFeatured": false,
+         "status": "pending",
+         "category": "Charity"
+      }
+   ],
+   "pledges": [
+      {
+         "id": 1,
+         "campaignId": 1,
+         "userId": 2,
+         "amount": 100,
+         "rewardId": 1,
+         "created_at": "2023-01-01"
+      },
+      {
+         "id": 2,
+         "campaignId": 2,
+         "userId": 1,
+         "amount": 200,
+         "rewardId": 1,
+         "created_at": "2024-01-01"
+      },
+      {
+         "id": 3,
+         "campaignId": 1,
+         "userId": 2,
+         "amount": 50,
+         "created_at": "2023-01-01"
+      }
+   ]
 }

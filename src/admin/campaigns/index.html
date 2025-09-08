@@ -120,22 +120,34 @@
                            id="searchInput"
                            placeholder="Search camapigns by title" />
                      </label>
+                     <div class="pagination">
+                        <button id="prevBtn" class="btn btn--prev">
+                           <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <span
+                           >Page <span id="page">1</span> of
+                           <span id="pages">1</span></span
+                        >
+                        <button id="nextBtn" class="btn btn--next">
+                           <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                     </div>
                      <div class="table-container">
                         <table>
                            <thead>
                               <tr>
                                  <th>Title</th>
                                  <th>Goal</th>
+                                 <th>Progress</th>
                                  <th>Creation Date</th>
                                  <th>Deadline</th>
+                                 <th>Approved</th>
+                                 <th>Featured</th>
                                  <th>Status</th>
-                                 <!-- <th>Campaigns</th>
-                              <th>Total Pledged</th> -->
-                                 <th>Reward</th>
                                  <th>Actions</th>
                               </tr>
                            </thead>
-                           <tbody id="camapignsList"></tbody>
+                           <tbody id="campaignsList"></tbody>
                         </table>
                      </div>
                   </div>
@@ -144,7 +156,7 @@
          </div>
       </div>
       <script type="module" src="./index.js"></script>
-      <script type="module" src="../index.js"></script>
+      <script type="module" src="../scripts/dashboard.js"></script>
       <script type="module" src="/src/main.js"></script>
    </body>
 </html>

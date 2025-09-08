@@ -112,20 +112,29 @@
                         <input
                            type="search"
                            id="searchInput"
-                           placeholder="Search pledges by " />
+                           placeholder="Search pledges by campaign, backer email, or amount..." />
                      </label>
+                     <div class="pagination">
+                        <button id="prevBtn" class="btn btn--prev">
+                           <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <span
+                           >Page <span id="page">1</span> of
+                           <span id="pages">1</span></span
+                        >
+                        <button id="nextBtn" class="btn btn--next">
+                           <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                     </div>
                      <div class="table-container">
                         <table>
                            <thead>
                               <tr>
-                                 <th>Name</th>
-                                 <th>Email</th>
-                                 <th>Join Date</th>
-                                 <th>Status</th>
-                                 <!-- <th>Campaigns</th>
-                              <th>Total Pledged</th> -->
-                                 <th>Role</th>
-                                 <th>Actions</th>
+                                 <th>Backer</th>
+                                 <th>Campaign</th>
+                                 <th>Amount</th>
+                                 <th>Date</th>
+                                 <th>Reward</th>
                               </tr>
                            </thead>
                            <tbody id="pledgesList"></tbody>
@@ -138,7 +147,7 @@
       </div>
 
       <script type="module" src="./index.js"></script>
-      <script type="module" src="../index.js"></script>
+      <script type="module" src="../scripts/dashboard.js"></script>
       <script type="module" src="/src/main.js"></script>
    </body>
 </html>

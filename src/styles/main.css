@@ -71,10 +71,10 @@ ul {
   opacity: 1;
 }
 .admin__header button:after {
-  content: "Ctrl + O";
+  content: "Ctrl + /";
   position: absolute;
   top: 50%;
-  right: -170%;
+  right: -60px;
   transform: translateY(-50%);
   border: 1px solid #000000;
   color: #000000;
@@ -286,6 +286,9 @@ ul {
   width: 80%;
   color: #717182;
 }
+.admin__main .data-section .data-container {
+  flex-direction: column;
+}
 .admin__main .data-section .pagination {
   margin-top: 1em;
   display: flex;
@@ -323,7 +326,6 @@ ul {
 }
 .admin__main .data-section table th,
 .admin__main .data-section table td {
-  white-space: nowrap;
   padding: 0.7em;
 }
 .admin__main .data-section table tr:not(:last-child) th,
@@ -360,12 +362,47 @@ ul {
     flex-direction: row;
   }
 }
+.admin__home #emptyData .data-section--title,
+.admin__home #dataInfo .data-section--title {
+  font-size: 18px;
+  margin-bottom: 1em;
+}
 .admin__home .empty {
   display: flex !important;
   flex-direction: column;
   align-items: center;
   gap: 1em;
   padding: 2rem 0;
+}
+.admin__home .card:has(#chart) {
+  flex: 2;
+}
+.admin__home #chart {
+  width: 100%;
+  min-width: 400px;
+}
+.admin__home .stat {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 2em;
+}
+.admin__home .stat i {
+  font-size: 20px;
+}
+.admin__home .stat .fa-arrow-trend-up {
+  color: #8b5cf6;
+}
+.admin__home .stat .fa-users {
+  color: #3b82f6;
+}
+.admin__home .stat .fa-check-double {
+  color: #22c55e;
+}
+.admin__home .stat--title {
+  font-weight: normal;
+  margin-bottom: 0.3em;
 }
 
 @media screen and (min-width: 1024px) {
@@ -406,6 +443,7 @@ ul {
 }
 .admin__campaigns table .progress .progress-bar .bar {
   height: 100%;
+  max-width: 100%;
   background-color: #000000;
   border-radius: 20px;
   -webkit-border-radius: 20px;

@@ -54,7 +54,7 @@ export const renderUsers = (users) => {
                 <tr data-id="${user.id}">
                 <td>${user.name}</td>
                 <td id="email">${user.email}</td>
-                <td>${user.joinDate}</td>
+                <td>${user.created_at}</td>
                 ${statusCell(user.isActive)}
                 ${roleCell(user.role)}
                 ${actionsCell(user)}

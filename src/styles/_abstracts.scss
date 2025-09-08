@@ -27,6 +27,7 @@ $primary-font: "Poppins", sans-serif;
 // $secondary-font: "Outfit", sans-serif;
 $tertiary-font: "Dosis", sans-serif;
 $sidebar-width: 200px;
+$sidebar-shortcut: "Ctrl + /";
 
 @mixin transitionAll($duration: 0.3s) {
    transition: all $duration ease-in-out;

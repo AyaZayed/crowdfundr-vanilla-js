@@ -9,6 +9,8 @@
          content="Crowdfundr is a crowdfunding platform that allows users to create and fund campaigns." />
       <meta name="author" content="Aya Zayed" />
       <title>Admin Dashboard</title>
+      <!-- Apex Charts -->
+      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
    </head>
    <body>
       <div id="app" class="admin admin__home">
@@ -103,9 +105,9 @@
                   <div id="emptyData">
                      <div class="card empty">
                         <i class="fa-solid fa-chart-line"></i>
-                        <h4 class="data-section--title">
+                        <h2 class="data-section--title">
                            Welcome to your crowdfunding platform!
-                        </h4>
+                        </h2>
                         <p class="text-muted">
                            Your dashboard will come to life once users start
                            signing up, creating campaigns, and making pledges.
@@ -114,16 +116,45 @@
                      </div>
                      <div class="card empty">
                         <i class="fa-solid fa-chart-column"></i>
-                        <h4 class="data-section--title">No stats yet</h4>
+                        <h2 class="data-section--title">No stats yet</h2>
                         <p class="text-muted">
                            Stats will appear here once you have activity on your
                            platform.
                         </p>
                      </div>
                   </div>
-                  <div id="dataInfo">
-                     <div class="card"></div>
-                     <div class="card"></div>
+                  <div id="dataInfo" class="data-container">
+                     <div class="card">
+                        <div id="chart"></div>
+                     </div>
+                     <div class="card">
+                        <h2 class="data-section--title">Quick Stats</h2>
+                        <div class="stat">
+                           <i class="fa-solid fa-arrow-trend-up"></i>
+                           <div>
+                              <h3 class="stat--title">Average Campaign Goal</h3>
+                              <h4 class="stat--num" id="avgCampaignGoal">
+                                 $12,500
+                              </h4>
+                           </div>
+                        </div>
+                        <div class="stat">
+                           <i class="fa-solid fa-check-double"></i>
+                           <div>
+                              <h3 class="stat--title">Success Rate</h3>
+                              <h4 class="stat--num" id="successRate">%75</h4>
+                           </div>
+                        </div>
+                        <div class="stat">
+                           <i class="fa-solid fa-users"></i>
+                           <div>
+                              <h3 class="stat--title">
+                                 Average Backers Per Campaign
+                              </h3>
+                              <h4 class="stat--num" id="avgBackers">150</h4>
+                           </div>
+                        </div>
+                     </div>
                   </div>
                </section>
             </main>

@@ -24,3 +24,26 @@ export async function getTotalBackers() {
         const backers = new Set(pledges.map(pledge => pledge.userId))
         return backers.size
 }
+
+export async function getAvgBackersPerCamp() {
+        const res = await fetch(`${DB_SERVER}/pledges`)
+        const pledges = await res.json()
+        const res2 = await fetch(`${DB_SERVER}/campaigns`)
+        const campaigns = await res2.json()
+
+        let totalBackers = 0;
+
+        campaigns.forEach(campaign => {
+                const backers = new Set(
+                        pledges
+                                .filter(p => p.campaignId === campaign.id)
+                                .map(p => p.userId)
+                );
+                totalBackers += backers.size;
+        });
+
+        const averageBackers = totalBackers / campaigns.length;
+
+        return averageBackers.toFixed(2);
+
+}

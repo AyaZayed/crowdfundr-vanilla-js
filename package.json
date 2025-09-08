@@ -6,7 +6,7 @@
    "scripts": {
       "dev": "concurrently \"npm run vite\" \"npm run server\" \"npm run sass\"",
       "vite": "vite",
-      "server": "json-server --watch db.json -m ./node_modules/json-server-auth --port 5000",
+      "server": "json-server --watch expanded_db.json -m ./node_modules/json-server-auth --port 5000",
       "sass": "sass --watch src/styles/main.scss src/styles/main.css",
       "build": "vite build",
       "preview": "vite preview"

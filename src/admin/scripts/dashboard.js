@@ -21,7 +21,8 @@ openSidebar && openSidebar.addEventListener('click', () => {
 })
 
 window.addEventListener('keydown', (e) => {
-        if (e.ctrlKey && (e.key === 'o' || e.key === 'O')) {
+        // e.preventDefault()
+        if (e.ctrlKey && (e.key === '/' || e.key === '/')) {
                 toggleSidebar()
         }
 })

@@ -20,7 +20,7 @@ const raised = allCamapaigns && allCamapaigns.reduce((acc, curr) => acc + curr.r
 
 totalActive.textContent = activeCampaigns && activeCampaigns.length || 0
 totalCompleted.textContent = completedCampaigns && completedCampaigns.length || 0
-totalRaised.textContent = raised || 0;
+totalRaised.textContent = `$${raised.toLocaleString() || 0}`;
 totalBackers.textContent = backers || 0
 
 EmptyCase(allCamapaigns, emptyCampaigns, campaignsInfo)
@@ -94,7 +94,6 @@ export const renderCampaigns = (campaigns) => {
                         <td>${campaign.title}</td>
                         <td>$${campaign.goal}</td>
                         ${progressCell(campaign.raised, campaign.goal)}
-                        <td>${campaign.created_at}</td>
                         <td>${campaign.deadline}</td>
                         ${approvalCell(campaign.isApproved)}
                         ${featuredCell(campaign.isFeatured)}

@@ -4,6 +4,6 @@ export default function EmptyCase(data, emptySection, infoSection) {
                 infoSection.style.display = "none";
         } else {
                 emptySection.style.display = "none";
-                infoSection.style.display = "block";
+                infoSection.style.display = "flex";
         }
 }

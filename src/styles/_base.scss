@@ -6,10 +6,6 @@
    box-sizing: border-box;
 }
 
-html {
-   font-family: $primary-font;
-}
-
 a {
    text-decoration: none;
    color: inherit;
@@ -29,16 +25,11 @@ ul {
 }
 
 @font-face {
-   font-family: "Dosis";
-   src: url(/fonts/Dosis/Dosis-VariableFont_wght.ttf);
+   font-family: "Roboto Slab";
+   src: url(/fonts/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf);
 }
 
 @font-face {
-   font-family: "Poppins-Medium";
-   src: url(/fonts/Poppins/Poppins-Medium.ttf);
-}
-
-@font-face {
-   font-family: "Poppins-SemiBold";
-   src: url(/fonts/Poppins/Poppins-SemiBold.ttf);
+   font-family: "Source Serif";
+   src: url(/fonts/Source_Serif_4/SourceSerif4-VariableFont_opsz\,wght.ttf);
 }

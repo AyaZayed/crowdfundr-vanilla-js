@@ -1,0 +1,22 @@
+@use "./abstracts" as *;
+
+.admin {
+   font-family: $dashboard-font;
+   background-color: $dashboard-background;
+   color: $dashboard-text;
+}
+
+.home {
+   font-family: $home-primary-font;
+   background-color: $home-background;
+   color: $home-text;
+   font-size: 18px;
+
+   ::-moz-selection {
+      background-color: $secondary-color;
+   }
+
+   ::selection {
+      background-color: $secondary-color;
+   }
+}

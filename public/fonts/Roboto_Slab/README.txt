@@ -1,24 +1,26 @@
-Dosis Variable Font
-===================
+Roboto Slab Variable Font
+=========================
 
-This download contains Dosis as both a variable font and static fonts.
+This download contains Roboto Slab as both a variable font and static fonts.
 
-Dosis is a variable font with this axis:
+Roboto Slab is a variable font with this axis:
   wght
 
 This means all the styles are contained in a single file:
-  Dosis/Dosis-VariableFont_wght.ttf
+  Roboto_Slab/RobotoSlab-VariableFont_wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles
 that aren’t available as static fonts. Not all apps support variable fonts, and
-in those cases you can use the static font files for Dosis:
-  Dosis/static/Dosis-ExtraLight.ttf
-  Dosis/static/Dosis-Light.ttf
-  Dosis/static/Dosis-Regular.ttf
-  Dosis/static/Dosis-Medium.ttf
-  Dosis/static/Dosis-SemiBold.ttf
-  Dosis/static/Dosis-Bold.ttf
-  Dosis/static/Dosis-ExtraBold.ttf
+in those cases you can use the static font files for Roboto Slab:
+  Roboto_Slab/static/RobotoSlab-Thin.ttf
+  Roboto_Slab/static/RobotoSlab-ExtraLight.ttf
+  Roboto_Slab/static/RobotoSlab-Light.ttf
+  Roboto_Slab/static/RobotoSlab-Regular.ttf
+  Roboto_Slab/static/RobotoSlab-Medium.ttf
+  Roboto_Slab/static/RobotoSlab-SemiBold.ttf
+  Roboto_Slab/static/RobotoSlab-Bold.ttf
+  Roboto_Slab/static/RobotoSlab-ExtraBold.ttf
+  Roboto_Slab/static/RobotoSlab-Black.ttf
 
 Get started
 -----------
@@ -59,7 +61,7 @@ Android Apps
 
 License
 -------
-Please read the full license text (OFL.txt) to understand the permissions,
+Please read the full license text (LICENSE.txt) to understand the permissions,
 restrictions and requirements for usage, redistribution, and modification.
 
 You can use them in your products & projects – print or digital,

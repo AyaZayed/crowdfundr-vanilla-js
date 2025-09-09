@@ -36,6 +36,7 @@ export async function login(email, password) {
         }
 
         localStorage.setItem('token', data.accessToken)
+        localStorage.setItem('isAdmin', data.user.role === 'admin' ? 'true' : 'false')
 
         return
 }
@@ -81,21 +82,20 @@ export function authenticate() {
 }
 
 export async function isAdmin() {
-        const user = await getCurrentUser();
+        const admin = localStorage.getItem('isAdmin')
         localStorage.setItem('redirect-url', window.location.href)
 
-        if (!user || user[0].role !== 'admin') {
-                window.location.href = "/src/login/";
+        if (!admin) {
+                window.location.href = '/src/login/';
         }
-        return user
 }
 
 const logoutBtn = document.querySelector('#logoutBtn')
 
 if (logoutBtn) {
-        logoutBtn.addEventListener('click', function (e) {
-                localStorage.removeItem('user')
+        logoutBtn.addEventListener('click', function () {
                 localStorage.removeItem('token')
+                localStorage.removeItem('isAdmin')
         })
 }
 

@@ -7,10 +7,17 @@
    display: inline-block;
    @include borderRadius(7px);
    font-size: 14px;
+   @include transitionAll();
 
    &-primary {
-      background-color: $primary-color;
-      color: $white;
+      background-color: $home-text;
+      color: $home-background;
+
+      &:hover {
+         background-color: transparent;
+         color: $primary-color;
+         outline: 1px solid $primary-color;
+      }
    }
 
    &-danger-outline {

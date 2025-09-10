@@ -47,7 +47,7 @@
    }
 
    &__sidebar {
-      @include closeSidebar();
+      @include closeSidebar(-100%);
       border-right: 1px solid $sidebar-border;
       font-size: 14px;
       padding-top: 1em;
@@ -55,7 +55,7 @@
       overflow: hidden;
 
       &.open {
-         @include openSidebar();
+         @include openSidebar(0%);
          min-width: $sidebar-width !important;
          overflow: auto !important;
       }
@@ -423,24 +423,13 @@
       .progress {
          font-size: 14px;
 
-         .progress-nums {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.3em;
-         }
-
          .progress-bar {
             width: 100px;
-            height: 8px;
-            background-color: $dashboard-grey;
-            @include borderRadius(20px);
+            height: 7px;
+         }
 
-            .bar {
-               height: 100%;
-               max-width: 100%;
-               background-color: $black;
-               @include borderRadius(20px);
-            }
+         .bar {
+            background-color: $dashboard-text;
          }
       }
 
@@ -521,9 +510,11 @@
       z-index: 100;
       display: flex;
       justify-content: space-between;
-      padding: 1.5em 3em;
       background-color: $home-background;
       font-size: 16px;
+      height: $navbar-height;
+      align-items: center;
+      padding: 0 2rem;
 
       &__logo {
          display: flex;
@@ -540,7 +531,63 @@
 
       .nav {
          &--list {
-            display: none;
+            display: flex;
+            position: absolute;
+            right: 0;
+            top: $navbar-height;
+            flex-direction: column;
+            align-items: flex-end;
+            padding: 1em 2em;
+            height: 100vh;
+            gap: 2em;
+            background-color: $home-background;
+            text-transform: capitalize;
+            @include closeSidebar(100%);
+
+            &.open {
+               @include openSidebar(0%);
+            }
+
+            @include md() {
+               position: unset;
+               flex-direction: row;
+               gap: 1em;
+               align-items: center;
+               border: 1px solid #dad7ca;
+               padding: 0.6em 1.2em;
+               height: auto;
+               @include borderRadius(20px);
+               @include openSidebar();
+
+               &__link {
+                  @include transitionAll();
+
+                  &:hover {
+                     color: $primary-color;
+                  }
+               }
+            }
+
+            div {
+               display: flex;
+               flex-direction: column;
+               gap: 2em;
+               align-items: flex-end;
+
+               @include md() {
+                  flex-direction: row;
+                  gap: 1em;
+                  align-items: center;
+               }
+            }
+         }
+
+         .btn-primary {
+            @include borderRadius(20px);
+            padding: 0.6em 1em;
+            @include md() {
+               margin-left: 1em;
+            }
          }
 
          #menuBtn {
@@ -553,42 +600,8 @@
             justify-content: center;
             align-items: center;
             font-size: 20px;
-         }
 
-         @include md() {
-            &--list {
-               display: flex;
-               gap: 1em;
-               align-items: center;
-               border: 1px solid #dad7ca;
-               padding: 0.6em 1.2em;
-               text-transform: capitalize;
-               @include borderRadius(20px);
-
-               &__link {
-                  @include transitionAll();
-
-                  &:hover {
-                     color: $primary-color;
-                  }
-
-                  &:last-child {
-                     background-color: $home-text;
-                     color: $home-background;
-                     padding: 0.4em 0.8em;
-                     @include borderRadius(20px);
-                     @include transitionAll();
-
-                     &:hover {
-                        color: $primary-color;
-                        background-color: $white;
-                        outline: 1px solid $primary-color;
-                     }
-                  }
-               }
-            }
-
-            #menuBtn {
+            @include md() {
                display: none;
             }
          }
@@ -680,7 +693,7 @@
       }
 
       .cards {
-         padding: 2em;
+         padding: 4em 2em;
          width: 100%;
          display: grid;
          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -704,12 +717,92 @@
                flex-direction: column;
                gap: 0.5em;
             }
+
+            .progress {
+               .progress-bar {
+                  width: 100%;
+                  height: 7px;
+                  margin: 1em 0;
+               }
+
+               .bar {
+                  background-color: $primary-color;
+               }
+            }
          }
       }
 
       .btn-primary {
          @include borderRadius(15px);
          padding: 0.7em 1.5em;
+      }
+   }
+
+   .call-to-action {
+      margin: 5em 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+
+      &--title {
+         font-size: 32px;
+      }
+
+      .btns {
+         margin-top: 2em;
+         display: flex;
+         gap: 1em;
+
+         .btn {
+            font-size: 18px;
+            padding: 0.5em 1.5em;
+            @include borderRadius(18px);
+
+            i {
+               margin-right: 0.5em;
+            }
+         }
+      }
+   }
+
+   .footer {
+      margin-top: 5em;
+      padding: 2em;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+
+      &__links {
+         display: flex;
+         justify-content: space-between;
+         border-bottom: 1px solid $home-border;
+         width: 100%;
+         padding: 1em 0;
+
+         &--nav,
+         &--social {
+            display: flex;
+            gap: 1em;
+            font-size: large;
+
+            a {
+               @include transitionAll();
+
+               &:hover {
+                  color: $primary-color;
+               }
+            }
+            i {
+               font-size: 20px;
+            }
+         }
+      }
+
+      &__copyright {
+         margin-top: 1em;
+         font-size: 14px;
+         width: 100%;
       }
    }
 }

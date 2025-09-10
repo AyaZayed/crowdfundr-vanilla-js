@@ -20,6 +20,7 @@ $dashboard-green: #22c55e;
 $dashboard-orange: #f59e0b;
 $dashboard-violet: #8b5cf6;
 $sidebar-width: 200px;
+$navbar-height: 100px;
 $sidebar-shortcut: "Ctrl + /";
 $dashboard-padding: 1rem;
 
@@ -39,12 +40,12 @@ $dashboard-padding: 1rem;
    -o-border-radius: $radius;
 }
 
-@mixin closeSidebar() {
-   transform: translateX(-100%);
-   -webkit-transform: translateX(-100%);
-   -moz-transform: translateX(-100%);
-   -ms-transform: translateX(-100%);
-   -o-transform: translateX(-100%);
+@mixin closeSidebar($x: 0) {
+   transform: translateX($x);
+   -webkit-transform: translateX($x);
+   -moz-transform: translateX($x);
+   -ms-transform: translateX($x);
+   -o-transform: translateX($x);
    transition: transform 0.3s ease;
    -webkit-transition: transform 0.3s ease;
    -moz-transition: transform 0.3s ease;
@@ -52,12 +53,12 @@ $dashboard-padding: 1rem;
    -o-transition: transform 0.3s ease;
 }
 
-@mixin openSidebar() {
-   transform: translateX(0);
-   -webkit-transform: translateX(0);
-   -moz-transform: translateX(0);
-   -ms-transform: translateX(0);
-   -o-transform: translateX(0);
+@mixin openSidebar($x: 0) {
+   transform: translateX($x);
+   -webkit-transform: translateX($x);
+   -moz-transform: translateX($x);
+   -ms-transform: translateX($x);
+   -o-transform: translateX($x);
    transition: transform 0.3s ease;
    -webkit-transition: transform 0.3s ease;
    -moz-transition: transform 0.3s ease;

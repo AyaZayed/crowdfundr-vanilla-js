@@ -27,6 +27,11 @@ export async function getCompletedCampaigns() {
         return res.json()
 }
 
+export async function getFeaturedCampaigns() {
+        const res = await fetch(`${DB_SERVER}/campaigns?isFeatured=true`)
+        return res.json().then(campaigns => campaigns.slice(0, 3))
+}
+
 export async function createCampaign(campaign) {
         const token = getToken()
         const res = await fetch(`${DB_SERVER}/campaigns`, {

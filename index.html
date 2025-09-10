@@ -35,16 +35,32 @@
                      >Campaigns</a
                   >
 
-                  <div id="loggedOut">
-                     <a class="nav--list__link" href="/src/login/">Login</a>
-                     <a class="nav--list__link" href="/src/register/"
-                        >Register</a
+                  <div id="userBtns">
+                     <div id="loggedOut">
+                        <a class="nav--list__link" href="/src/login/">Login</a>
+                     </div>
+                     <div id="profile">
+                        <a class="nav--list__link" href="/src/profile/"
+                           >Profile</a
+                        >
+                     </div>
+                     <a
+                        class="btn btn-primary nav--list__link"
+                        href="/src/campaigns/create/"
+                        >Launch Campaign</a
                      >
                   </div>
-                  <a class="nav--list__link" href="/" id="logoutBtn">logout</a>
-                  <a class="nav--list__link" href="/src/admin/" id="adminBtn"
-                     >Dashboard</a
-                  >
+                  <div id="adminBtns">
+                     <a class="nav--list__link" href="/" id="logoutBtn"
+                        >Logout</a
+                     >
+                     <a
+                        class="btn btn-primary nav--list__link"
+                        href="/src/admin/"
+                        id="adminBtn"
+                        >Dashboard</a
+                     >
+                  </div>
                </ul>
             </nav>
          </header>
@@ -91,26 +107,57 @@
                <p>
                   Discover our hand-picked campaigns making the biggest impact.
                </p>
-               <div id="featuredCampaigns" class="cards">
-                  <div class="card">
-                     <img
-                        src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="" />
-                     <div class="card__content">
-                        <h3>Save the Children</h3>
-                        <div class="progress-bar">
-                           <div class="progress-bar__fill"></div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="card"></div>
-                  <div class="card"></div>
-               </div>
+               <div id="featuredCampaigns" class="cards"></div>
                <a href="/src/campaigns/" id="viewAll" class="btn btn-primary"
                   >View All Campaigns</a
                >
             </section>
+            <section class="call-to-action">
+               <img src="/images/unity.png" alt="" width="200" />
+               <h2 class="call-to-action--title">Ready to Make Your Mark?</h2>
+               <p>
+                  Join a community of backers and creators working together to
+                  fund projects that make a difference
+               </p>
+               <div class="btns">
+                  <a href="/src/campaigns/" class="btn btn-primary"
+                     ><i class="fa-solid fa-heart"></i> Start Supporting</a
+                  >
+                  <a
+                     href="/src/campaigns/create/"
+                     class="btn btn-primary-outline"
+                     ><i class="fa-solid fa-arrow-trend-up"></i> Launch
+                     Campaign</a
+                  >
+               </div>
+            </section>
          </main>
+         <footer class="footer">
+            <div class="footer__links">
+               <div class="footer__links--nav">
+                  <a href="/">Home</a>
+                  <a href="/src/about/">About</a>
+                  <a href="/src/campaigns/">Campaigns</a>
+               </div>
+               <div class="footer__links--social">
+                  <a href="https://www.facebook.com"
+                     ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="https://www.x.com"
+                     ><i class="fa-brands fa-x-twitter"></i
+                  ></a>
+                  <a href="https://www.instagram.com"
+                     ><i class="fa-brands fa-instagram"></i
+                  ></a>
+               </div>
+            </div>
+            <div class="fotter__copyright">
+               <p>
+                  <span id="siteName">Crowdfundr</span> 2025, All Rights
+                  Reserved
+               </p>
+            </div>
+         </footer>
       </div>
       <script type="module" src="./index.js"></script>
       <script type="module" src="src/main.js"></script>

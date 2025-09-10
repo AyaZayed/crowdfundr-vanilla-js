@@ -20,6 +20,19 @@
       }
    }
 
+   &-primary-outline {
+      outline: 1px solid $home-text;
+      color: $home-text;
+      background-color: transparent;
+      @include transitionAll();
+
+      &:hover {
+         background-color: transparent;
+         color: $primary-color;
+         outline: 1px solid $primary-color;
+      }
+   }
+
    &-danger-outline {
       border: 1px solid $dashboard-red;
       color: $dashboard-red;
@@ -109,5 +122,24 @@
    }
    &[data-bullet="outline"] {
       border: 1px solid #f3e8ff;
+   }
+}
+
+.progress {
+   .progress-nums {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.3em;
+   }
+
+   .progress-bar {
+      background-color: $dashboard-grey;
+      @include borderRadius(20px);
+
+      .bar {
+         height: 100%;
+         max-width: 100%;
+         @include borderRadius(20px);
+      }
    }
 }

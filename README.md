@@ -4,6 +4,10 @@ A full-stack crowdfunding platform built with **HTML, CSS, JavaScript**, and **J
 
 ---
 
+## Screenshot
+
+![Crowdfundr](/public/images/screenshot.png)
+
 ## ✨ Features
 
 ### 👤 Anonymous Users

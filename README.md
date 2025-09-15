@@ -8,6 +8,13 @@ A full-stack crowdfunding platform built with **HTML, CSS, JavaScript**, and **J
 
 ![Crowdfundr](/public/images/screenshot.png)
 
+## Inspiration
+
+-  [Kickstarter](https://www.kickstarter.com)
+-  [GoFundMe](https://www.gofundme.com)
+-  [Black Jays](https://blackjays.vc/)
+-  [Figma Ai Dashboard](https://www.figma.com/make/uLh6MW5IdjXIa6VXoTmQQP/Crowdfunding-Admin-Dashboard?t=9NXonGpRB1MIPPvO-1)
+
 ## ✨ Features
 
 ### 👤 Anonymous Users
@@ -37,7 +44,7 @@ A full-stack crowdfunding platform built with **HTML, CSS, JavaScript**, and **J
 
 ```bash
 git clone https://github.com/your-username/crowdfunding-clone-vanilla-js
-cd WeFund
+cd crowdfunding-clone-vanilla-js
 ```
 
 ### 2. Install Dependencies
@@ -54,4 +61,4 @@ npm run dev
 
 ### 4. Access the App
 
-Open your web browser and navigate to [http://localhost:3000](http://localhost:3000) to explore the app.
+Open your web browser and navigate to [http://localhost:5173](http://localhost:5173) to explore the app.

@@ -50,6 +50,9 @@ createForm.addEventListener('submit', async function (e) {
         try {
                 const campaign = await createCampaign(data);
                 if (rewards.length > 0) {
+                        if (!isValidReward()) {
+                                return
+                        }
                         for (let i = 0; i < rewards.length; i++) {
                                 await createReward(rewards[i], campaign.id)
                         }
@@ -218,15 +221,23 @@ addRewardBtn.addEventListener('click', () => {
 
 
 function isValidSubmission() {
-        return titleErrors.textContent === '' &&
-                descErrors.textContent === '' &&
-                goalErrors.textContent === '' &&
-                deadlineErrors.textContent === '' &&
-                imgErrors.textContent === ''
-                && rewardTitleErrors.textContent === '' &&
-                rewardDescErrors.textContent === ''
-                && rewardDeliveryErrors.textContent === ''
-                && rewardAmountErrors.textContent === ''
+        let isValid = true
+        if (titleErrors.textContent !== '') isValid = false
+        if (descErrors.textContent !== '') isValid = false
+        if (goalErrors.textContent !== '') isValid = false
+        if (deadlineErrors.textContent !== '') isValid = false
+        if (imgErrors.textContent !== '') isValid = false
+
+        return isValid
+}
+
+function isValidReward() {
+        let isValid = true
+        if (rewardTitleErrors.textContent !== '') isValid = false
+        if (rewardDescErrors.textContent !== '') isValid = false
+        if (rewardDeliveryErrors.textContent !== '') isValid = false
+        if (rewardAmountErrors.textContent !== '') isValid = false
+        return isValid
 }
 
 function collectRewards(formData) {

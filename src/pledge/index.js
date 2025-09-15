@@ -33,7 +33,7 @@ pledgeForm.addEventListener("submit", async (e) => {
         const formData = new FormData(pledgeForm);
 
         const data = {
-                campaignId: campaignId,
+                campaignId: Number(campaignId),
                 amount: Number(formData.get("amount")),
                 created_at: new Date().toLocaleDateString(),
                 userId: user[0].id,

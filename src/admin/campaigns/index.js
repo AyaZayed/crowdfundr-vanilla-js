@@ -45,24 +45,24 @@ const progressCell = (raised, goal) => `
 const featuredCell = (isFeatured) => `
   <td class="featured">
    <label class="switch">
-    <input type="checkbox" id="featureSwitch" ${isFeatured ? "checked" : ""}>
-    <span class="slider"></span>
+    <input type="checkbox" data-action="feature" ${isFeatured ? "checked" : ""}>
+    <span class="slider" id="featureSwitch"></span>
   </label>
   </td>
 `;
 
 campaignsList.addEventListener('click', async function (e) {
   const id = e.target.closest("tr").dataset.id;
+
   if (!id) return;
 
-  if (e.target.id === "featureSwitch") {
-    await featureCamapaign(id, e.target.checked);
+  if (e.target.id === 'featureSwitch') {
+    const input = e.target.closest("label").querySelector("input")
+
+    input.checked = !input.checked
+    await featureCamapaign(id, input.checked)
   }
 })
-
-// < a href = "/src/campaigns/details" class="btn btn-secondary-outline" >
-//   <i class="fa-solid fa-eye"></i> View
-//   </ >
 
 const actionsCell = (isApproved) => `
   <td class="actions">

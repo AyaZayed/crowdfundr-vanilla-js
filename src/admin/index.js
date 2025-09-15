@@ -40,6 +40,9 @@ const usersByMonth = groupByMonth(allUsers);
 const campaignsByMonth = groupByMonth(allCamapaigns);
 const pledgesByMonth = groupByMonth(allPledges);
 
+console.log(usersByMonth, campaignsByMonth, pledgesByMonth);
+
+
 const options = {
         chart: {
                 type: 'line',
@@ -75,7 +78,8 @@ const options = {
 const chart = new ApexCharts(document.querySelector("#chart"), options)
 chart.render()
 
-const avgCampGoal = allCamapaigns && allCamapaigns.reduce((acc, curr) => acc + curr.goal, 0) / allCamapaigns.length || 0
+const avgCampGoal = allCamapaigns && allCamapaigns.reduce((acc, curr) => acc + Number(curr.goal), 0) / allCamapaigns.length
+
 const completedCampaigns = allCamapaigns && allCamapaigns.filter(camp => camp.status === "completed").length || 0
 
 avgCampaignGoal.textContent = `$${avgCampGoal.toFixed(2) || 0}`

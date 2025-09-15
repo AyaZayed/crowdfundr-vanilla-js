@@ -18,12 +18,69 @@
    </head>
    <script type="module"></script>
    <body>
-      <div id="app">
-         <h1>Campaigns</h1>
-         <a href="./create/" class="btn btn-primary">Add Campaign</a>
-         <div id="campaigns"></div>
-      </div>
-      <script type="module" src="./index.js"></script>
-      <script type="module" src="/src/main.js"></script>
+      <body>
+         <div id="app" class="home">
+            <header class="header" id="header"></header>
+
+            <main class="campaigns">
+               <img
+                  src="/images/campaigns1.png"
+                  alt="campaigns"
+                  width="600"
+                  height="150"
+                  class="campaigns__img" />
+               <h1 class="campaigns__title">Campaigns</h1>
+               <p>
+                  Explore campaigns from creators around the world. Support them
+                  and see your contribution turn into real-world impact.
+               </p>
+               <div id="searchAndFilter" class="searchAndFilter">
+                  <input
+                     type="search"
+                     placeholder="Search campaigns by title"
+                     id="searchInput" />
+                  <select id="categorySelect"></select>
+                  <select id="filterSelect">
+                     <option value="sort">Sort By</option>
+                     <option value="newest">Newest</option>
+                     <option value="oldest">Oldest</option>
+                     <option value="highest">Most Funded</option>
+                     <option value="lowest">Least Funded</option>
+                  </select>
+               </div>
+               <div class="campaigns__cards" id="campaignsList"></div>
+               <div class="btn btn-primary" id="loadMoreBtn">Load More</div>
+            </main>
+            <footer class="footer">
+               <div class="footer__links">
+                  <div class="footer__links--nav">
+                     <a href="/">Home</a>
+                     <a href="/src/about/">About</a>
+                     <a href="/src/campaigns/">Campaigns</a>
+                  </div>
+                  <div class="footer__links--social">
+                     <a href="https://www.facebook.com"
+                        ><i class="fa-brands fa-facebook"></i
+                     ></a>
+                     <a href="https://www.x.com"
+                        ><i class="fa-brands fa-x-twitter"></i
+                     ></a>
+                     <a href="https://www.instagram.com"
+                        ><i class="fa-brands fa-instagram"></i
+                     ></a>
+                  </div>
+               </div>
+               <div class="fotter__copyright">
+                  <p>
+                     <span id="siteName">Crowdfundr</span> 2025, All Rights
+                     Reserved
+                  </p>
+               </div>
+            </footer>
+         </div>
+         <script type="module" src="./index.js"></script>
+         <script type="module" src="/src/scripts/header.js"></script>
+         <script type="module" src="/src/main.js"></script>
+      </body>
    </body>
 </html>

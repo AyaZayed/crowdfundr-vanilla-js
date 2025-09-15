@@ -1,6 +1,7 @@
+import { getCurrentUser } from "../../utils/auth";
 import { changeUserStatus, changeRole, getAllUsersExcept } from "../../utils/users";
+import Confirm from "../scripts/confirm";
 import EmptyCase from "../scripts/emptyCase";
-import Modal from "../scripts/modal";
 import Pagination from "../scripts/paginationAndSearch";
 
 const emptyUsers = document.querySelector("#emptyUsers");
@@ -15,6 +16,8 @@ totalBanned.textContent = bannedUsers && bannedUsers.length || 0;
 totalAdmins.textContent = admins && admins.length || 0;
 
 EmptyCase(allUsers, emptyUsers, usersInfo);
+
+const loggedUser = await getCurrentUser();
 
 const statusCell = (isActive) => `
   <td class="status">
@@ -35,17 +38,15 @@ const roleCell = (role) => `
 const actionsCell = (user) => `
   <td class="actions">
     ${user.role !== "admin" ? `
-      <button class="btn ${user.isActive ? "banBtn btn-danger-outline" : "btn-success-outline unbanBtn"}">
+      <button data-action="${user.isActive ? "ban" : "unban"}" class="btn ${user.isActive ? " btn-danger-outline" : "btn-success-outline"}">
         ${user.isActive ? `<i class="fa-solid fa-ban"></i> Ban` : "Unban"}
       </button>
     ` : ""}
-    ${user.isActive ?
-    `<button class="btn ${user.role === "admin" ? "userBtn btn-secondary-outline" : "adminBtn btn-blue-outline"}">
-        ${user.role === "admin"
-      ? `<i class="fa-solid fa-user-xmark"></i> Remove Admin`
-      : `<i class="fa-solid fa-user-check"></i> Make Admin`}
-        </button>` : ""
-  }
+   ${loggedUser[0].role === 'superAdmin' ? user.isActive ? user.role === 'admin' ? `
+      <button data-action="user" class="btn btn-secondary-outline">Remove Admin</button>
+    ` : `
+    <button data-action="admin" class="btn btn-blue-outline">Make Admin</button>
+    ` : '' : ''}
   </td>
 `;
 
@@ -54,7 +55,7 @@ export const renderUsers = (users) => {
                 <tr data-id="${user.id}">
                 <td>${user.name}</td>
                 <td id="email">${user.email}</td>
-                <td>${user.created_at}</td>
+                <td class="date">${user.created_at}</td>
                 ${statusCell(user.isActive)}
                 ${roleCell(user.role)}
                 ${actionsCell(user)}
@@ -64,9 +65,19 @@ export const renderUsers = (users) => {
 
 const filters = ["name", "email"]
 
-Pagination(allUsers, renderUsers, filters)
+const roleSelect = document.querySelector("#roleSelect")
+const isActiveSelect = document.querySelector("#isActiveSelect")
 
-Modal(usersList, "adminBtn", changeRole, "admin", "Are you sure you want to make this user an admin?");
-Modal(usersList, "userBtn", changeRole, "user", "Are you sure you want to remove this user as admin?");
-Modal(usersList, "banBtn", changeUserStatus, false, "Are you sure you want to ban this user?");
-Modal(usersList, "unbanBtn", changeUserStatus, true, "Are you sure you want to unban this user?");
+Pagination(allUsers, renderUsers, filters, roleSelect, user => user.role === roleSelect.value)
+Pagination(allUsers, renderUsers, filters, isActiveSelect, (user, filter) => user.isActive === (filter === "true"))
+
+Confirm(usersList, "admin", changeRole,
+  "admin", "Are you sure you want to make this user an admin?", "Make Admin");
+Confirm(usersList, "user", changeRole,
+  "user", "Are you sure you want to remove admin role from this user?", "Remove Admin");
+Confirm(usersList, "ban", changeUserStatus,
+  false, "Are you sure you want to ban this user?", "Ban User");
+Confirm(usersList, "unban", changeUserStatus,
+  true, "Are you sure you want to unban this user?", "Unban User");
+
+

@@ -1,3 +1,4 @@
+import Alert from "../scripts/alert"
 import { login } from "../utils/auth"
 
 const loginForm = document.querySelector('#loginForm')
@@ -8,13 +9,20 @@ loginForm.addEventListener('submit', async function (e) {
 
         try {
                 await login(formData.get('email'), formData.get('password'))
-                alert('Logged In!')
+                await Alert('Logged In!')
 
                 const redirectUrl = localStorage.getItem('redirect-url')
 
+                if (redirectUrl === window.location.href) {
+                        window.location.href = '/'
+                }
                 window.location.href = redirectUrl || '/'
+
         } catch (err) {
-                alert(err.message)
+                if (err.message === "Cannot find user") {
+                        window.location.href = '/src/register/'
+                }
+                await Alert(err.message)
         }
 })
 

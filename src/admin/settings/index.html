@@ -19,6 +19,13 @@
          <header class="admin__header">
             <button id="openSidebar"><i class="fa-solid fa-bars"></i></button>
          </header>
+         <div id="customAlert" class="alert__overlay alert__overlay hidden">
+            <div class="alert__box">
+               <h2 id="alertTitle" class="alert__title">Alert</h2>
+               <p id="alertMessage" class="alert__message"></p>
+               <button id="alertBtn" class="alert__btn">OK</button>
+            </div>
+         </div>
          <div class="main-content">
             <aside class="admin__sidebar open" id="sidebar">
                <h1 class="admin__sidebar--title">
@@ -51,6 +58,12 @@
                   </li>
                </ul>
                <ul class="admin__sidebar--list">
+                  <li class="item">
+                     <a href="/"
+                        ><i class="fa-solid fa-shop"></i>
+                        <span id="siteName"></span
+                     ></a>
+                  </li>
                   <li class="item" id="settings">
                      <a href="/src/admin/settings/"
                         ><i class="fa-solid fa-gear"></i> Settings</a
@@ -64,12 +77,51 @@
                   </li>
                </ul>
             </aside>
-            <main class="admin__main"></main>
+            <main class="admin__main">
+               <h1>Settings</h1>
+               <div class="card">
+                  <form id="settingsForm" class="form">
+                     <div class="form__group">
+                        <label for="siteNameInput">Site Name</label>
+                        <input
+                           type="text"
+                           name="siteName"
+                           id="siteNameInput"
+                           class="form__input" />
+                     </div>
+                     <div class="form__group">
+                        <label for="siteEmail">Site Email</label>
+                        <input
+                           type="email"
+                           name="siteEmail"
+                           id="siteEmail"
+                           class="form__input" />
+                     </div>
+                     <div class="form__group">
+                        <label for="siteFee">Site Fee</label>
+                        <input
+                           type="text"
+                           name="siteFee"
+                           id="siteFee"
+                           class="form__input" />
+                     </div>
+                     <div class="form__group">
+                        <label for="minPledge">Min Pledge</label>
+                        <input
+                           type="number"
+                           id="minPledge"
+                           name="minPledge"
+                           class="form__input" />
+                     </div>
+                     <button type="submit" class="btn btn-primary">Save</button>
+                  </form>
+               </div>
+            </main>
          </div>
       </div>
 
+      <script type="module" src="/src/main.js"></script>
       <script type="module" src="./index.js"></script>
       <script type="module" src="../scripts/dashboard.js"></script>
-      <script type="module" src="/src/main.js"></script>
    </body>
 </html>

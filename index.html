@@ -17,53 +17,7 @@
 
    <body>
       <div id="app" class="home">
-         <header class="header">
-            <a href="/" class="header__logo">
-               <img
-                  src="/images/logo.png"
-                  alt="black elephant logo"
-                  width="50" />
-               <span id="siteName">Crowdfundr</span>
-            </a>
-            <nav class="nav">
-               <div id="menuBtn">
-                  <i class="fa-solid fa-bars"></i>
-               </div>
-               <ul class="nav--list">
-                  <a class="nav--list__link" href="/src/about/">About</a>
-                  <a class="nav--list__link" href="/src/campaigns/"
-                     >Campaigns</a
-                  >
-
-                  <div id="userBtns">
-                     <div id="loggedOut">
-                        <a class="nav--list__link" href="/src/login/">Login</a>
-                     </div>
-                     <div id="profile">
-                        <a class="nav--list__link" href="/src/profile/"
-                           >Profile</a
-                        >
-                     </div>
-                     <a
-                        class="btn btn-primary nav--list__link"
-                        href="/src/campaigns/create/"
-                        >Launch Campaign</a
-                     >
-                  </div>
-                  <div id="adminBtns">
-                     <a class="nav--list__link" href="/" id="logoutBtn"
-                        >Logout</a
-                     >
-                     <a
-                        class="btn btn-primary nav--list__link"
-                        href="/src/admin/"
-                        id="adminBtn"
-                        >Dashboard</a
-                     >
-                  </div>
-               </ul>
-            </nav>
-         </header>
+         <header class="header" id="header"></header>
          <main>
             <section class="hero">
                <div class="hero__content">
@@ -112,14 +66,14 @@
                   >View All Campaigns</a
                >
             </section>
-            <section class="call-to-action">
+            <section class="call-to-action" id="callToAction">
                <img src="/images/unity.png" alt="" width="200" />
                <h2 class="call-to-action--title">Ready to Make Your Mark?</h2>
                <p>
                   Join a community of backers and creators working together to
                   fund projects that make a difference
                </p>
-               <div class="btns">
+               <div class="btns" id="callToActionBtns">
                   <a href="/src/campaigns/" class="btn btn-primary"
                      ><i class="fa-solid fa-heart"></i> Start Supporting</a
                   >
@@ -152,14 +106,12 @@
                </div>
             </div>
             <div class="fotter__copyright">
-               <p>
-                  <span id="siteName">Crowdfundr</span> 2025, All Rights
-                  Reserved
-               </p>
+               <p><span id="siteName"></span> 2025, All Rights Reserved</p>
             </div>
          </footer>
       </div>
       <script type="module" src="./index.js"></script>
+      <script type="module" src="/src/scripts/header.js"></script>
       <script type="module" src="src/main.js"></script>
    </body>
 </html>

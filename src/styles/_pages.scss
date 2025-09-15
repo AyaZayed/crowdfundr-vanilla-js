@@ -10,13 +10,19 @@
    font-family: $home-primary-font;
    background-color: $home-background;
    color: $home-text;
-   font-size: 18px;
+   font-size: $fs-6;
 
    ::-moz-selection {
       background-color: $secondary-color;
+      color: $home-text;
    }
 
    ::selection {
       background-color: $secondary-color;
+      color: $home-text;
+   }
+
+   main {
+      min-height: 50vh;
    }
 }

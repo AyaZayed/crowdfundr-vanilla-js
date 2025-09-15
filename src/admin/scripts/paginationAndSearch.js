@@ -1,5 +1,4 @@
-
-const Pagination = function (data, renderData, filters) {
+const Pagination = function (data, renderData, filters, filterSelect, cond) {
         const prevBtn = document.querySelector('#prevBtn')
         const nextBtn = document.querySelector('#nextBtn')
         const pageSpan = document.querySelector('#page')
@@ -41,11 +40,21 @@ const Pagination = function (data, renderData, filters) {
                 disableNext()
         })
 
-        searchInput.addEventListener('input', (e) => {
+        searchInput && searchInput.addEventListener('input', (e) => {
                 const searchValue = e.target.value.toLowerCase();
                 const filteredData = data.filter(item => filters.some(filter => String(item[filter]).toLowerCase().includes(searchValue)))
                 renderData(filteredData.slice(0, dataPerPage))
         })
+
+        filterSelect && filterSelect.addEventListener('change', function () {
+                const filter = this.value;
+
+                if (filter === "all") {
+                        renderData(data.slice(0, dataPerPage));
+                } else {
+                        renderData(data.filter(item => cond(item, filter)).slice(0, dataPerPage));
+                }
+        });
 }
 
 export default Pagination

@@ -1,14 +1,19 @@
+import Alert from "../scripts/alert";
+
 const DB_SERVER = import.meta.env.VITE_DB_SERVER;
 
 export async function registerUser(name, email, password) {
         const res = await fetch(`${DB_SERVER}/register`, {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, password, isActive: 'true', role: 'user' })
+                body: JSON.stringify({
+                        name, email, password, isActive: 'true', role: 'user', created_at: new Date().toLocaleDateString()
+                })
         })
 
+
         if (!res.ok) {
-                throw new Error('Problem with registration, try again!')
+                throw new Error(res.statusText)
         }
 
         const data = await res.json()
@@ -36,7 +41,7 @@ export async function login(email, password) {
         }
 
         localStorage.setItem('token', data.accessToken)
-        localStorage.setItem('isAdmin', data.user.role === 'admin' ? 'true' : 'false')
+        localStorage.setItem('isAdmin', data.user.role === 'admin' || data.user.role === 'superAdmin' ? 'true' : 'false')
 
         return
 }
@@ -73,20 +78,25 @@ export async function getCurrentUser() {
 }
 
 export function authenticate() {
-        localStorage.setItem('redirect-url', window.location.href)
-
         const token = getToken();
         if (!token) {
-                window.location.href = '/src/register/';
+                window.location.href = '/src/login/';
         }
 }
 
 export async function isAdmin() {
         const admin = localStorage.getItem('isAdmin')
-        localStorage.setItem('redirect-url', window.location.href)
-
         if (!admin) {
                 window.location.href = '/src/login/';
+        }
+}
+
+export async function isNotAdmin() {
+        const admin = localStorage.getItem('isAdmin')
+
+        if (admin === 'true') {
+                await Alert('You are an admin! You can not access this page!')
+                window.location.href = '/src/admin/';
         }
 }
 

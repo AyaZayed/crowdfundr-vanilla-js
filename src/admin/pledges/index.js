@@ -1,9 +1,6 @@
 import EmptyCase from "../scripts/emptyCase"
-import { getAllPledges, getTotalPledge, getAveragePledge } from "../../utils/pledges"
-import { getUserById } from "../../utils/users"
-import { getCampaignById } from "../../utils/campaigns"
+import { getTotalPledge, getAveragePledge, getAllPledgesWithDetails } from "../../utils/pledges"
 import Pagination from "../scripts/paginationAndSearch"
-import { getRewardById } from "../../utils/rewards"
 
 const emptyPledges = document.querySelector('#emptyPledges')
 const pledgesInfo = document.querySelector('#pledgesInfo')
@@ -12,7 +9,7 @@ const totalPledges = document.querySelector('#totalPledges')
 const totalAmount = document.querySelector('#totalAmount')
 const averagePledge = document.querySelector('#averagePledge')
 
-const allPledges = await getAllPledges()
+const allPledges = await getAllPledgesWithDetails()
 const total = await getTotalPledge()
 const average = await getAveragePledge()
 
@@ -22,29 +19,30 @@ averagePledge.textContent = `$${average || 0}`
 
 EmptyCase(allPledges, emptyPledges, pledgesInfo)
 
+const pledgesWithDetails = allPledges.map((pledge) => {
+        return {
+                ...pledge,
+                backerName: pledge.user.name,
+                campaignTitle: pledge.campaign.title,
+                rewardTitle: pledge.reward.title
+        }
+})
+
 export const renderPledges = async (pledges) => {
         pledgesList.innerHTML = ""
-        for (let pledge of pledges) {
-                const [backer, campaign, reward] = await Promise.all([
-                        getUserById(pledge.userId),
-                        getCampaignById(pledge.campaignId),
-                        getRewardById(pledge.rewardId)
-                ]);
-
+        pledges.forEach(pledge => {
                 pledgesList.innerHTML += `
-      <tr>
-        <td class="email" style="text-transform: lowercase;">
-            ${backer.email}
-        </td>
-        <td>${campaign.title}</td>
-        <td>$${pledge.amount}</td>
-        <td>${pledge.created_at}</td>
-        <td>${reward ? reward.title : `<span class="text-muted">No reward</span>`}</td>
-      </tr>
-    `;
-        }
-};
+                <tr>
+                        <td>${pledge.backerName}</td>
+                        <td>${pledge.campaignTitle}</td>
+                        <td>${pledge.amount}</td>
+                        <td class="date">${pledge.created_at}</td>
+                        <td>${pledge.rewardTitle}</td>
+                </tr>
+                `
+        })
+}
 
-const filters = ["amount"]
+const filters = ["amount", "backerName", "campaignTitle", "rewardTitle"]
 
-Pagination(allPledges, renderPledges, filters)
+Pagination(pledgesWithDetails, renderPledges, filters)

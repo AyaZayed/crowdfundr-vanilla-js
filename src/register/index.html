@@ -17,41 +17,117 @@
       <link rel="stylesheet" href="/src/styles/main.css" />
    </head>
    <body>
-      <div id="app">
-         <h1>Register</h1>
-         <form id="registerForm" method="post">
-            <label for="nameInput">Name</label>
-            <input
-               type="text"
-               name="name"
-               id="nameInput"
-               placeholder="John Doe"
-               required />
-            <p id="nameErrors"></p>
+      <div id="app" class="home">
+         <header class="header" id="header"></header>
+         <div id="customAlert" class="alert__overlay alert__overlay hidden">
+            <div class="alert__box">
+               <h2 id="alertTitle" class="alert__title">Alert</h2>
+               <p id="alertMessage" class="alert__message"></p>
+               <button id="alertBtn" class="alert__btn">OK</button>
+            </div>
+         </div>
+         <main class="register">
+            <div id="customAlert" class="alert__overlay alert__overlay hidden">
+               <div class="alert__box">
+                  <h2 id="alertTitle" class="alert__title">Alert</h2>
+                  <p id="alertMessage" class="alert__message"></p>
+                  <button id="alertBtn" class="alert__btn">OK</button>
+               </div>
+            </div>
 
-            <label for="email">Email</label>
-            <input
-               type="email"
-               name="email"
-               id="email"
-               placeholder="john@doe.com"
-               required />
-            <p id="emailErrors"></p>
+            <div class="card">
+               <section class="register__image">
+                  <img src="/images/register.svg" alt="welcoming back" />
+               </section>
+               <section class="register__form">
+                  <h1>Register</h1>
+                  <form id="registerForm" class="form">
+                     <div class="form-groups">
+                        <div class="form__group">
+                           <label for="nameInput">Name</label>
+                           <input
+                              type="text"
+                              name="name"
+                              id="nameInput"
+                              placeholder="John Doe"
+                              class="form__input"
+                              required />
+                           <p id="nameErrors" class="errors"></p>
+                        </div>
+                        <div class="form__group">
+                           <label for="email">Email</label>
+                           <input
+                              type="email"
+                              name="email"
+                              id="email"
+                              class="form__input"
+                              placeholder="john@doe.com"
+                              required />
+                           <p id="emailErrors" class="errors"></p>
+                        </div>
+                        <div class="form__group">
+                           <label for="password">Password</label>
+                           <input
+                              type="password"
+                              name="password"
+                              id="password"
+                              class="form__input"
+                              placeholder="*************"
+                              required />
+                           <p id="passErrors" class="errors"></p>
+                        </div>
+                        <div class="form__group">
+                           <label for="password">Match Password</label>
+                           <input
+                              type="password"
+                              name="matchPassword"
+                              id="matchPassword"
+                              class="form__input"
+                              placeholder="*************"
+                              required />
+                           <p id="matchPassErrors" class="errors"></p>
+                        </div>
+                     </div>
 
-            <label for="password">Password</label>
-            <input
-               type="password"
-               name="password"
-               id="password"
-               placeholder="*************"
-               required />
-            <p id="passErrors"></p>
-
-            <a href="./login.html">already a user?</a>
-            <button type="submit">Register</button>
-         </form>
+                     <div class="form-actions">
+                        <a href="/src/login/" class="link">already a user?</a>
+                        <button type="submit" class="btn btn-primary">
+                           Register
+                        </button>
+                     </div>
+                  </form>
+               </section>
+            </div>
+         </main>
+         <footer class="footer">
+            <div class="footer__links">
+               <div class="footer__links--nav">
+                  <a href="/">Home</a>
+                  <a href="/src/about/">About</a>
+                  <a href="/src/campaigns/">Campaigns</a>
+               </div>
+               <div class="footer__links--social">
+                  <a href="https://www.facebook.com"
+                     ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="https://www.x.com"
+                     ><i class="fa-brands fa-x-twitter"></i
+                  ></a>
+                  <a href="https://www.instagram.com"
+                     ><i class="fa-brands fa-instagram"></i
+                  ></a>
+               </div>
+            </div>
+            <div class="fotter__copyright">
+               <p>
+                  <span id="siteName">Crowdfundr</span> 2025, All Rights
+                  Reserved
+               </p>
+            </div>
+         </footer>
       </div>
       <script type="module" src="./index.js"></script>
-      <script type="module" src="/src/main.js"></script>
+      <script type="module" src="/src/scripts/header.js"></script>
+      <!-- <script type="module" src="/src/main.js"></script> -->
    </body>
 </html>

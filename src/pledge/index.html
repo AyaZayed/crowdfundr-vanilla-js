@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <!-- seo -->
+      <meta
+         name="description"
+         content="Crowdfundr is a crowdfunding platform that allows users to create and fund campaigns." />
+      <meta name="author" content="Aya Zayed" />
+      <link
+         rel="shortcut icon"
+         href="/images/favicon.ico"
+         type="image/x-icon" />
+      <title>Crowdfundr | About</title>
+
+      <link rel="stylesheet" href="/src/styles/main.css" />
+   </head>
+   <body>
+      <div id="app" class="home">
+         <header class="header" id="header"></header>
+         <div id="customAlert" class="alert__overlay alert__overlay hidden">
+            <div class="alert__box">
+               <h2 id="alertTitle" class="alert__title">Alert</h2>
+               <p id="alertMessage" class="alert__message"></p>
+               <button id="alertBtn" class="alert__btn">OK</button>
+            </div>
+         </div>
+         <main class="pledge">
+            <section class="card">
+               <div class="card__img">
+                  <img src="/images/donate.webp" alt="donate" />
+               </div>
+               <div class="card__form">
+                  <div class="campaign">
+                     <img
+                        src=""
+                        alt="campaign image"
+                        class="campaign__img"
+                        id="campaignImg" />
+                     <h1 class="campaign__title">
+                        You're supporting <span id="campaignTitle"></span>
+                     </h1>
+                  </div>
+                  <form id="pledgeForm" class="form">
+                     <div id="rewardsSection">
+                        <div id="rewardInputs"></div>
+                     </div>
+                     <div class="form__group">
+                        <label for="amount">Enter your donation</label>
+                        <input
+                           type="text"
+                           id="amount"
+                           required
+                           name="amount"
+                           placeholder="$100"
+                           class="form__input" />
+                        <p id="amountErrors" class="errors"></p>
+                     </div>
+                     <div class="form__group">
+                        <label for="card">Card</label>
+                        <input
+                           type="text"
+                           id="card"
+                           required
+                           name="card"
+                           minlength="20"
+                           maxlength="20"
+                           class="form__input"
+                           placeholder="4242 4242 4242 4242" />
+                        <p id="cardErrors" class="errors"></p>
+                     </div>
+                     <div class="row">
+                        <div class="form__group">
+                           <label for="expiry">Expiry Date</label>
+                           <input
+                              type="text"
+                              id="expiry"
+                              required
+                              minlength="5"
+                              maxlength="5"
+                              name="expiry"
+                              class="form__input"
+                              placeholder="MM/YY" />
+                           <p id="expiryErrors" class="errors"></p>
+                        </div>
+                        <div class="form__group">
+                           <label for="cvv">CVV</label>
+                           <input
+                              type="text"
+                              id="cvv"
+                              required
+                              name="cvv"
+                              minlength="3"
+                              maxlength="3"
+                              class="form__input"
+                              placeholder="123" />
+                           <p id="cvvErrors" class="errors"></p>
+                        </div>
+                     </div>
+                     <div class="form__group">
+                        <label for="cardName">Name on Card</label>
+                        <input
+                           type="text"
+                           id="cardName"
+                           required
+                           name="cardName"
+                           class="form__input"
+                           placeholder="John Doe" />
+                        <p id="cardNameErrors" class="errors"></p>
+                     </div>
+                     <div class="total">
+                        <p class="total__amount">
+                           Pledge Amount: <span id="total"></span>
+                        </p>
+                        <p class="fee">
+                           Processing Fee: <span id="fee"></span>
+                        </p>
+                        <p class="total__amount">
+                           Total: <span id="totalWithFee"></span>
+                        </p>
+                     </div>
+                     <button type="submit" class="btn btn-primary">
+                        Pledge
+                     </button>
+                  </form>
+               </div>
+            </section>
+         </main>
+         <footer class="footer">
+            <div class="footer__links">
+               <div class="footer__links--nav">
+                  <a href="/">Home</a>
+                  <a href="/src/about/">About</a>
+                  <a href="/src/campaigns/">Campaigns</a>
+               </div>
+               <div class="footer__links--social">
+                  <a href="https://www.facebook.com"
+                     ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="https://www.x.com"
+                     ><i class="fa-brands fa-x-twitter"></i
+                  ></a>
+                  <a href="https://www.instagram.com"
+                     ><i class="fa-brands fa-instagram"></i
+                  ></a>
+               </div>
+            </div>
+            <div class="footer__copyright">
+               <p>
+                  <span id="siteName">Crowdfundr</span> 2025, All Rights
+                  Reserved
+               </p>
+            </div>
+         </footer>
+      </div>
+      <script type="module" src="./index.js"></script>
+      <script type="module" src="/src/scripts/header.js"></script>
+      <script type="module" src="/src/main.js"></script>
+   </body>
+</html>

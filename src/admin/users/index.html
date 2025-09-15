@@ -19,6 +19,25 @@
          <header class="admin__header">
             <button id="openSidebar"><i class="fa-solid fa-bars"></i></button>
          </header>
+         <div
+            id="customConfirm"
+            class="confirm__overlay confirm__overlay hidden">
+            <div class="confirm__box">
+               <h2 id="confirmTitle" class="confirm__title">Confirm</h2>
+               <p id="confirmMessage" class="confirm__message"></p>
+               <div class="confirm__actions">
+                  <button id="confirmOk" class="confirm__btn confirm__btn--ok">
+                     OK
+                  </button>
+                  <button
+                     id="confirmCancel"
+                     class="confirm__btn confirm__btn--cancel">
+                     Cancel
+                  </button>
+               </div>
+            </div>
+         </div>
+
          <div class="main-content">
             <aside class="admin__sidebar open" id="sidebar">
                <h1 class="admin__sidebar--title">
@@ -51,6 +70,12 @@
                   </li>
                </ul>
                <ul class="admin__sidebar--list">
+                  <li class="item">
+                     <a href="/"
+                        ><i class="fa-solid fa-shop"></i>
+                        <span id="siteName"></span
+                     ></a>
+                  </li>
                   <li class="item" id="settings">
                      <a href="/src/admin/settings/"
                         ><i class="fa-solid fa-gear"></i> Settings</a
@@ -107,15 +132,33 @@
                   <div id="usersInfo" class="data-container">
                      <h4 class="data-section--title">All Users</h4>
                      <p class="text-muted">Search and manage platform users</p>
-                     <label for="searchInput" class="search">
-                        <i
-                           class="fa-solid fa-magnifying-glass"
-                           aria-hidden="true"></i>
-                        <input
-                           type="search"
-                           id="searchInput"
-                           placeholder="Search users by name or email..." />
-                     </label>
+                     <div class="searchAndFilter">
+                        <label for="searchInput" class="search">
+                           <i
+                              class="fa-solid fa-magnifying-glass"
+                              aria-hidden="true"></i>
+                           <input
+                              type="search"
+                              id="searchInput"
+                              placeholder="Search users by name or email..." />
+                        </label>
+                        <label for="isActiveSelect" class="status">
+                           <i class="fa-solid fa-filter" aria-hidden="true"></i>
+                           <select id="isActiveSelect">
+                              <option value="all">Status</option>
+                              <option value="true">Active</option>
+                              <option value="false">Banned</option>
+                           </select>
+                        </label>
+                        <label for="roleSelect" class="role">
+                           <i class="fa-solid fa-user" aria-hidden="true"></i>
+                           <select id="roleSelect">
+                              <option value="all">Role</option>
+                              <option value="admin">Admin</option>
+                              <option value="user">User</option>
+                           </select>
+                        </label>
+                     </div>
                      <div class="pagination">
                         <button id="prevBtn" class="btn btn--prev">
                            <i class="fa-solid fa-chevron-left"></i>

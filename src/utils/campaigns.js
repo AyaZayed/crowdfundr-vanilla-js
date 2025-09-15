@@ -1,4 +1,4 @@
-import { getToken } from "./auth";
+import { getCurrentUser, getToken } from "./auth";
 
 const DB_SERVER = import.meta.env.VITE_DB_SERVER;
 
@@ -14,7 +14,12 @@ export async function getCampaignById(id) {
 
 export async function getApprovedCampaigns() {
         const res = await fetch(`${DB_SERVER}/campaigns?isApproved=true`)
-        return res.json()
+        const user = await getCurrentUser()
+        if (user) {
+                return res.json().then(campaigns => campaigns.filter(campaign => campaign.status !== "completed" && campaign.creatorId !== user[0].id))
+        } else {
+                return res.json().then(campaigns => campaigns.filter(campaign => campaign.status !== "completed"))
+        }
 }
 
 export async function getActiveCampaigns() {
@@ -27,15 +32,47 @@ export async function getCompletedCampaigns() {
         return res.json()
 }
 
+export async function completeCampaigns() {
+        const res = await fetch(`${DB_SERVER}/campaigns`)
+        const campaigns = await res.json()
+
+        const completedCampaigns = campaigns.filter(campaign => campaign.raised === campaign.goal)
+        await Promise.all(completedCampaigns.map(campaign => fetch(`${DB_SERVER}/campaigns/${campaign.id}`, {
+                method: 'PATCH',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ status: "completed" })
+        })))
+}
+
+completeCampaigns()
+
 export async function getFeaturedCampaigns() {
         const res = await fetch(`${DB_SERVER}/campaigns?isFeatured=true`)
         return res.json().then(campaigns => campaigns.slice(0, 3))
+}
+
+export async function getUserCampaigns(userId) {
+        const res = await fetch(`${DB_SERVER}/campaigns?creatorId=${userId}`)
+        return res.json()
 }
 
 export async function createCampaign(campaign) {
         const token = getToken()
         const res = await fetch(`${DB_SERVER}/campaigns`, {
                 method: 'POST',
+                headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(campaign)
+        })
+        return res.json()
+}
+
+export async function editCampaign(id, campaign) {
+        const token = getToken()
+        const res = await fetch(`${DB_SERVER}/campaigns/${id}`, {
+                method: 'PATCH',
                 headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${token}`
@@ -83,3 +120,9 @@ export async function approveCampaign(id) {
         })
         return res.json()
 }
+
+export async function getCategories() {
+        const res = await fetch(`${DB_SERVER}/categories`)
+        return res.json()
+}
+

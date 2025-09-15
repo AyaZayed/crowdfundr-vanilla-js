@@ -51,6 +51,12 @@
                   </li>
                </ul>
                <ul class="admin__sidebar--list">
+                  <li class="item">
+                     <a href="/"
+                        ><i class="fa-solid fa-shop"></i>
+                        <span id="siteName"></span
+                     ></a>
+                  </li>
                   <li class="item" id="settings">
                      <a href="/src/admin/settings/"
                         ><i class="fa-solid fa-gear"></i> Settings</a
@@ -109,15 +115,17 @@
                      <p class="text-muted">
                         Search and manage platform pledges
                      </p>
-                     <label for="searchInput" class="search">
-                        <i
-                           class="fa-solid fa-magnifying-glass"
-                           aria-hidden="true"></i>
-                        <input
-                           type="search"
-                           id="searchInput"
-                           placeholder="Search pledges by campaign, backer email, or amount..." />
-                     </label>
+                     <div class="searchAndFilter">
+                        <label for="searchInput" class="search">
+                           <i
+                              class="fa-solid fa-magnifying-glass"
+                              aria-hidden="true"></i>
+                           <input
+                              type="search"
+                              id="searchInput"
+                              placeholder="Search pledges by campaign, backer email, or amount..." />
+                        </label>
+                     </div>
                      <div class="pagination">
                         <button id="prevBtn" class="btn btn--prev">
                            <i class="fa-solid fa-chevron-left"></i>

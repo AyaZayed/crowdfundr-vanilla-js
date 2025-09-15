@@ -12,39 +12,148 @@
          rel="shortcut icon"
          href="/images/favicon.ico"
          type="image/x-icon" />
-      <title>Crowdfundr | Create a Campaign</title>
+      <title>Create Campaign</title>
 
       <link rel="stylesheet" href="/src/styles/main.css" />
    </head>
-   <script type="module" src="./index.js"></script>
-
    <body>
-      <div id="app">
-         <form id="createForm" method="post">
-            <label for="title">Camapaign Title</label>
-            <input
-               type="title"
-               name="title"
-               id="title"
-               placeholder="Ex: New Guitar"
-               required />
-            <label for="goal">Goal</label>
-            <input
-               type="number"
-               name="goal"
-               id="goal"
-               placeholder="Ex: 1000"
-               required />
-            <label for="deadline">Deadline</label>
-            <input
-               type="date"
-               name="deadline"
-               id="deadline"
-               placeholder="Ex: 2026-01-01"
-               required />
-            <button type="submit" class="btn">Add</button>
-         </form>
+      <div id="app" class="home">
+         <header class="header" id="header"></header>
+         <div id="customAlert" class="alert__overlay alert__overlay hidden">
+            <div class="alert__box">
+               <h2 id="alertTitle" class="alert__title">Alert</h2>
+               <p id="alertMessage" class="alert__message"></p>
+               <button id="alertBtn" class="alert__btn">OK</button>
+            </div>
+         </div>
+         <main class="create">
+            <!-- <img src="/images/create.webp" alt="pencil" /> -->
+            <div class="card">
+               <h1 class="create--title">Create Campaign</h1>
+               <form id="createForm" class="form">
+                  <div class="form__group">
+                     <label for="title">Camapaign Title*</label>
+                     <input
+                        type="text"
+                        name="title"
+                        id="title"
+                        minlength="3"
+                        maxlength="60"
+                        class="form__input"
+                        placeholder="Ex: New Guitar"
+                        required />
+                     <p class="errors">
+                        <span id="titleErrors"></span>
+                        <span id="titleLength"
+                           ><span id="titleCharacters"></span>/60</span
+                        >
+                     </p>
+                  </div>
+                  <div class="form__group">
+                     <label for="desc">Camapaign Description*</label>
+                     <textarea
+                        name="description"
+                        id="desc"
+                        placeholder="Describe your campaign in detail"
+                        rows="4"
+                        minlength="10"
+                        maxlength="200"
+                        class="form__input"
+                        style="resize: none"
+                        required></textarea>
+                     <p class="errors">
+                        <span id="descErrors"></span>
+                        <span id="descLength"
+                           ><span id="descCharacters"></span>/300</span
+                        >
+                     </p>
+                  </div>
+                  <div class="row">
+                     <div class="form__group">
+                        <label for="goal">Goal*</label>
+                        <input
+                           type="number"
+                           name="goal"
+                           id="goal"
+                           class="form__input"
+                           placeholder="Ex: 1000"
+                           required />
+                        <p class="errors">
+                           <span id="goalErrors"></span>
+                        </p>
+                     </div>
+                     <div class="form__group">
+                        <label for="deadline">Deadline</label>
+                        <input
+                           type="date"
+                           name="deadline"
+                           id="deadline"
+                           class="form__input"
+                           required />
+                        <p class="errors">
+                           <span id="deadlineErrors"></span>
+                        </p>
+                     </div>
+                     <div class="form__group">
+                        <label for="categorySelect">Category</label>
+                        <select name="category" id="categorySelect"></select>
+                     </div>
+                  </div>
+                  <div class="form__group">
+                     <label for="imgInput" id="fileLabel">Image*</label>
+                     <input
+                        type="file"
+                        name="img"
+                        id="imgInput"
+                        class="form__input"
+                        accept="image/*"
+                        required />
+                     <p class="errors">
+                        <span id="imgErrors"></span>
+                     </p>
+                  </div>
+                  <div class="add-reward">
+                     <i
+                        class="fa-regular fa-circle-question"
+                        data-tooltip="Add a reward to your campaign so donors can support your project"></i>
+                     <button class="btn btn-primary" id="addRewardBtn">
+                        Add Reward
+                     </button>
+                  </div>
+                  <div id="rewardsSection"></div>
+                  <button type="submit" class="btn btn-primary">Add</button>
+               </form>
+            </div>
+         </main>
+         <footer class="footer">
+            <div class="footer__links">
+               <div class="footer__links--nav">
+                  <a href="/">Home</a>
+                  <a href="/src/about/">About</a>
+                  <a href="/src/campaigns/">Campaigns</a>
+               </div>
+               <div class="footer__links--social">
+                  <a href="https://www.facebook.com"
+                     ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="https://www.x.com"
+                     ><i class="fa-brands fa-x-twitter"></i
+                  ></a>
+                  <a href="https://www.instagram.com"
+                     ><i class="fa-brands fa-instagram"></i
+                  ></a>
+               </div>
+            </div>
+            <div class="fotter__copyright">
+               <p>
+                  <span id="siteName">Crowdfundr</span> 2025, All Rights
+                  Reserved
+               </p>
+            </div>
+         </footer>
       </div>
+      <script type="module" src="./index.js"></script>
+      <script type="module" src="/src/scripts/header.js"></script>
       <script type="module" src="/src/main.js"></script>
    </body>
 </html>

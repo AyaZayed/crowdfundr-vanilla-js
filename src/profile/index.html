@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <!-- seo -->
+      <meta
+         name="description"
+         content="Crowdfundr is a crowdfunding platform that allows users to create and fund campaigns." />
+      <meta name="author" content="Aya Zayed" />
+      <link
+         rel="shortcut icon"
+         href="/images/favicon.ico"
+         type="image/x-icon" />
+      <title>Crowdfundr | Profile</title>
+
+      <link rel="stylesheet" href="/src/styles/main.css" />
+   </head>
+   <body>
+      <div id="app" class="home">
+         <header class="header" id="header"></header>
+         <div id="customAlert" class="alert__overlay alert__overlay hidden">
+            <div class="alert__box">
+               <h2 id="alertTitle" class="alert__title">Alert</h2>
+               <p id="alertMessage" class="alert__message"></p>
+               <button id="alertBtn" class="alert__btn">OK</button>
+            </div>
+         </div>
+         <main class="profile">
+            <div class="intro">
+               <h1 class="profile--title">Hi, <span id="userName"></span></h1>
+               <a href="/" class="btn btn-outline" id="introBtn"></a>
+            </div>
+            <section class="stats-cards" id="statsCards">
+               <div class="stats-cards__campaigns" id="campaignsStats">
+                  <div class="card">
+                     <div class="title">
+                        <h3>Campaigns created</h3>
+                        <i class="fa-solid fa-bullseye"></i>
+                     </div>
+                     <h4 id="totalCampaigns" class="stat-number"></h4>
+                  </div>
+                  <div class="card">
+                     <div class="title">
+                        <h3>Total Raised</h3>
+                        <i class="fa-solid fa-dollar"></i>
+                     </div>
+                     <h4 id="totalRaised" class="stat-number"></h4>
+                  </div>
+               </div>
+               <div class="stats-cards__pledges" id="pledgesStats">
+                  <div class="card">
+                     <div class="title">
+                        <h3>Campaigns Supported</h3>
+                        <i class="fa-solid fa-credit-card"></i>
+                     </div>
+                     <h4 id="totalPledges" class="stat-number"></h4>
+                  </div>
+                  <div class="card">
+                     <div class="title">
+                        <h3>Total Pledged</h3>
+                        <i class="fa-solid fa-dollar-sign"></i>
+                     </div>
+                     <h4 id="totalAmount" class="stat-number"></h4>
+                  </div>
+               </div>
+            </section>
+            <section class="data-section" id="userData">
+               <div class="tabs" id="tabs">
+                  <div class="tabs__campaigns" id="campaignsTabs">
+                     <button class="btn tab" id="activeCampaignsTab">
+                        Camapaigns
+                     </button>
+                     <button class="btn tab" id="completedCampaignsTab">
+                        Completed Campaigns
+                     </button>
+                  </div>
+                  <div class="tabs__pledges" id="pledgesTabs">
+                     <button class="btn tab" id="activePledgesTab">
+                        Active Pledges
+                     </button>
+                     <button class="btn tab" id="completedPledgesTab">
+                        Completed Pledges
+                     </button>
+                  </div>
+                  <button class="btn tab" id="settingsTab">Settings</button>
+               </div>
+               <section class="data">
+                  <div class="tabs__content" id="activeCampaigns"></div>
+                  <div class="tabs__content" id="completedCampaigns"></div>
+                  <div class="tabs__content" id="activePledges"></div>
+                  <div class="tabs__content" id="completedPledges"></div>
+                  <div class="tabs__content" id="settings" class="settings">
+                     <h3 class="settings--title">Settings</h3>
+                     <div class="card">
+                        <form id="settingsForm" class="form">
+                           <div class="form-groups">
+                              <div class="form__group">
+                                 <label for="nameInput">Name</label>
+                                 <input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    placeholder="John Doe"
+                                    class="form__input"
+                                    required />
+                                 <p id="nameErrors" class="errors"></p>
+                              </div>
+                              <div class="form__group">
+                                 <label for="email">Email</label>
+                                 <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    class="form__input"
+                                    placeholder="john@doe.com"
+                                    required />
+                                 <p id="emailErrors" class="errors"></p>
+                              </div>
+                              <div class="form__group">
+                                 <label for="password">Password</label>
+                                 <input
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    class="form__input"
+                                    placeholder="*************"
+                                    required />
+                                 <p id="passErrors" class="errors"></p>
+                              </div>
+                              <div class="form__group">
+                                 <label for="password">Match Password</label>
+                                 <input
+                                    type="password"
+                                    name="matchPassword"
+                                    id="matchPassword"
+                                    class="form__input"
+                                    placeholder="*************"
+                                    required />
+                                 <p id="matchPassErrors" class="errors"></p>
+                              </div>
+                           </div>
+
+                           <button type="submit" class="btn btn-primary">
+                              Save
+                           </button>
+                        </form>
+                     </div>
+                  </div>
+               </section>
+            </section>
+         </main>
+         <footer class="footer">
+            <div class="footer__links">
+               <div class="footer__links--nav">
+                  <a href="/">Home</a>
+                  <a href="/src/about/">About</a>
+                  <a href="/src/campaigns/">Campaigns</a>
+               </div>
+               <div class="footer__links--social">
+                  <a href="https://www.facebook.com"
+                     ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="https://www.x.com"
+                     ><i class="fa-brands fa-x-twitter"></i
+                  ></a>
+                  <a href="https://www.instagram.com"
+                     ><i class="fa-brands fa-instagram"></i
+                  ></a>
+               </div>
+            </div>
+            <div class="fotter__copyright">
+               <p>
+                  <span id="siteName">Crowdfundr</span> 2025, All Rights
+                  Reserved
+               </p>
+            </div>
+         </footer>
+      </div>
+      <script type="module" src="./index.js"></script>
+      <script type="module" src="/src/scripts/header.js"></script>
+      <script type="module" src="/src/main.js"></script>
+   </body>
+</html>

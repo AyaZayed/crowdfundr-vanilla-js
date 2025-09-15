@@ -1,7 +1,7 @@
 import { approveCampaign, deleteCampaign, featureCamapaign, getActiveCampaigns, getAllCampaigns, getCompletedCampaigns } from "../../utils/campaigns"
 import { getTotalBackers } from "../../utils/pledges"
 import EmptyCase from "../scripts/emptyCase"
-import Modal from "../scripts/modal"
+import Confirm from "../scripts/confirm"
 import Pagination from "../scripts/paginationAndSearch"
 
 const emptyCampaigns = document.querySelector('#emptyCampaigns')
@@ -32,15 +32,6 @@ const statusCell = (status) => `
     </span>
   </td>
 `;
-
-const approvalCell = (isApproved) => `
-  <td class="isApproved">
-    <span class="bullet" data-bullet="${isApproved ? "success" : "violet"}">
-      ${isApproved ? "Approved" : "Pending"}
-    </span>
-  </td>
-`;
-
 
 const progressCell = (raised, goal) => `
   <td class="progress">
@@ -73,16 +64,15 @@ campaignsList.addEventListener('click', async function (e) {
 //   <i class="fa-solid fa-eye"></i> View
 //   </ >
 
-
 const actionsCell = (isApproved) => `
   <td class="actions">
    ${isApproved ? `
-    <a href="/src/campaigns/details" class="btn btn-secondary-outline">
+    <a href="/src/campaigns/details/" target="_blank" data-action="view" class="btn btn-secondary-outline">
       <i class="fa-solid fa-eye"></i> View
     </a>
-    ` : `<button class="approveBtn btn btn-success-outline"><i class="fa-solid fa-check"></i> Approve</button></button>`
+    ` : `<button data-action="approve" class=" btn btn-success-outline"><i class="fa-solid fa-check"></i> Approve</button></button>`
   }
-    <button class="deleteBtn btn btn-danger-outline">
+    <button data-action="delete" class=" btn btn-danger-outline">
       <i class="fa-solid fa-trash-can"></i> Delete
     </button>
   </td>
@@ -94,8 +84,7 @@ export const renderCampaigns = (campaigns) => {
                         <td>${campaign.title}</td>
                         <td>$${campaign.goal}</td>
                         ${progressCell(campaign.raised, campaign.goal)}
-                        <td>${campaign.deadline}</td>
-                        ${approvalCell(campaign.isApproved)}
+                        <td class="date">${campaign.deadline}</td>
                         ${featuredCell(campaign.isFeatured)}
                         ${statusCell(campaign.status)}
                         ${actionsCell(campaign.isApproved)}
@@ -105,7 +94,23 @@ export const renderCampaigns = (campaigns) => {
 
 const filters = ["title"]
 
-Pagination(allCamapaigns, renderCampaigns, filters)
+const statusSelect = document.querySelector("#statusSelect")
+const featuredSelect = document.querySelector("#featuredSelect")
 
-Modal(campaignsList, "deleteBtn", deleteCampaign, "Are you sure you want to delete this campaign?");
-Modal(campaignsList, "approveBtn", approveCampaign, "Are you sure you want to approve this campaign?");
+Pagination(allCamapaigns, renderCampaigns, filters, statusSelect, campaign => campaign.status === statusSelect.value)
+Pagination(allCamapaigns, renderCampaigns, filters, featuredSelect, (campaign, filter) => campaign.isFeatured === (filter === "true"))
+
+Confirm(campaignsList, "delete", deleteCampaign, null, "Are you sure you want to delete this campaign?", "Delete Campaign");
+Confirm(campaignsList, "approve", approveCampaign, null, "Are you sure you want to approve this campaign?", "Approve Campaign");
+
+campaignsList.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const id = e.target.closest("tr").dataset.id;
+  if (!id) return;
+
+  if (e.target.dataset.action === "viewBtn") {
+    localStorage.setItem('campaignId', id)
+    window.location.href = "/src/campaigns/details/"
+  }
+})

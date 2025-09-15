@@ -5,10 +5,37 @@ export async function getAllPledges() {
         return res.json()
 }
 
+export async function makePledge(data) {
+        await fetch(`${DB_SERVER}/pledges`, {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+        })
+
+        const campaign = await fetch(`${DB_SERVER}/campaigns/${data.campaignId}`)
+
+        const raised = await campaign.json().then(c => c.raised)
+
+        await fetch(`${DB_SERVER}/campaigns/${data.campaignId}`, {
+                method: 'PATCH',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ raised: raised + data.amount })
+        })
+
+        return
+}
+
+export async function getUserPledges(id) {
+        const res = await fetch(`${DB_SERVER}/pledges/?userId=${id}`)
+        return res.json()
+}
+
 export async function getAveragePledge() {
         const res = await fetch(`${DB_SERVER}/pledges`)
         const pledges = await res.json()
         const total = pledges.reduce((acc, pledge) => acc + pledge.amount, 0)
+        console.log(total, pledges.length);
+
         return (total / pledges.length).toFixed(2)
 }
 
@@ -47,3 +74,18 @@ export async function getAvgBackersPerCamp() {
         return averageBackers.toFixed(2);
 
 }
+
+export async function getTotalCamapignBackers(id) {
+        const res = await fetch(`${DB_SERVER}/pledges/?campaignId=${id}`)
+        const pledges = await res.json()
+
+        const backers = new Set(pledges.map(pledge => pledge.userId))
+        return backers.size
+}
+
+export const getAllPledgesWithDetails = async () => {
+        const res = await fetch(
+                `${DB_SERVER}/pledges?_expand=user&_expand=campaign&_expand=reward`
+        );
+        return await res.json();
+};

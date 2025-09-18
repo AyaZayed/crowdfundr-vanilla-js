@@ -96,6 +96,9 @@
                      <div class="form__group">
                         <label for="categorySelect">Category</label>
                         <select name="category" id="categorySelect"></select>
+                        <p class="errors">
+                           <span id="categoryErrors"></span>
+                        </p>
                      </div>
                   </div>
                   <div class="form__group">
@@ -115,7 +118,10 @@
                      <i
                         class="fa-regular fa-circle-question"
                         data-tooltip="Add a reward to your campaign so donors can support your project"></i>
-                     <button class="btn btn-primary" id="addRewardBtn">
+                     <button
+                        class="btn btn-primary"
+                        id="addRewardBtn"
+                        type="button">
                         Add Reward
                      </button>
                   </div>

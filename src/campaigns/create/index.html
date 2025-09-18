@@ -40,12 +40,11 @@
                         minlength="3"
                         maxlength="60"
                         class="form__input"
-                        placeholder="Ex: New Guitar"
-                        required />
+                        placeholder="Ex: New Guitar" />
                      <p class="errors">
                         <span id="titleErrors"></span>
                         <span id="titleLength"
-                           ><span id="titleCharacters"></span>/60</span
+                           ><span id="titleCharacters">0</span>/60</span
                         >
                      </p>
                   </div>
@@ -59,12 +58,11 @@
                         minlength="10"
                         maxlength="200"
                         class="form__input"
-                        style="resize: none"
-                        required></textarea>
+                        style="resize: none"></textarea>
                      <p class="errors">
                         <span id="descErrors"></span>
                         <span id="descLength"
-                           ><span id="descCharacters"></span>/300</span
+                           ><span id="descCharacters">0</span>/300</span
                         >
                      </p>
                   </div>
@@ -76,8 +74,7 @@
                            name="goal"
                            id="goal"
                            class="form__input"
-                           placeholder="Ex: 1000"
-                           required />
+                           placeholder="Ex: 1000" />
                         <p class="errors">
                            <span id="goalErrors"></span>
                         </p>
@@ -88,8 +85,7 @@
                            type="date"
                            name="deadline"
                            id="deadline"
-                           class="form__input"
-                           required />
+                           class="form__input" />
                         <p class="errors">
                            <span id="deadlineErrors"></span>
                         </p>
@@ -97,6 +93,9 @@
                      <div class="form__group">
                         <label for="categorySelect">Category</label>
                         <select name="category" id="categorySelect"></select>
+                        <p class="errors">
+                           <span id="categoryErrors"></span>
+                        </p>
                      </div>
                   </div>
                   <div class="form__group">
@@ -106,8 +105,7 @@
                         name="img"
                         id="imgInput"
                         class="form__input"
-                        accept="image/*"
-                        required />
+                        accept="image/*" />
                      <p class="errors">
                         <span id="imgErrors"></span>
                      </p>
@@ -116,7 +114,10 @@
                      <i
                         class="fa-regular fa-circle-question"
                         data-tooltip="Add a reward to your campaign so donors can support your project"></i>
-                     <button class="btn btn-primary" id="addRewardBtn">
+                     <button
+                        class="btn btn-primary"
+                        id="addRewardBtn"
+                        type="button">
                         Add Reward
                      </button>
                   </div>

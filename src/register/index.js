@@ -45,8 +45,18 @@ registerForm.addEventListener('change', async function (e) {
 })
 
 function isValidSubmission() {
-        return nameErrors.textContent === '' &&
-                emailErrors.textContent === '' &&
-                passErrors.textContent === '' &&
-                matchPassErrors.textContent === ''
+        emailErrors.textContent = isValidEmail(email.value)
+        nameErrors.textContent = isValidName(nameInput.value)
+        passErrors.textContent = isValidPassword(password.value)
+        matchPassErrors.textContent = isValidMatchPass(matchPassword.value, password.value)
+
+        if (
+                emailErrors.textContent ||
+                nameErrors.textContent ||
+                passErrors.textContent ||
+                matchPassErrors.textContent
+        ) {
+                return false
+        }
+        return true
 }

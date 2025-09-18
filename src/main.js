@@ -9,7 +9,6 @@ import { getSiteEmail, getSiteName } from './utils/constants.js';
 const siteNames = document.querySelectorAll('#siteName')
 const siteEmails = document.querySelectorAll('#siteEmail')
 
-
 window.addEventListener('load', async () => {
         if (siteNames) {
                 siteNames.forEach(async (name) => {

@@ -109,6 +109,10 @@ export function validateCampaignGoal(goal) {
 export function validateCampaignDeadline(deadline) {
         const errors = [];
 
+        if (!deadline) {
+                errors.push("Deadline is required ");
+        }
+
         if (new Date(deadline) < new Date()) {
                 errors.push("Date must be in the future ");
         }
@@ -123,8 +127,18 @@ export function validateCampaignImage(image) {
                 errors.push("Image is required ");
         }
 
-        if (image.type !== 'image/jpeg' && image.type !== 'image/png' && image.type !== 'image/jpg' && image.type !== 'image/webp' && image.type !== 'image/svg' && image.type !== 'image/avif') {
+        if (image && image.type !== 'image/jpeg' && image.type !== 'image/png' && image.type !== 'image/jpg' && image.type !== 'image/webp' && image.type !== 'image/svg' && image.type !== 'image/avif') {
                 errors.push("Image must be a JPEG, PNG, JPG, WEBP, or SVG file ");
+        }
+
+        return errors;
+}
+
+export function validateSelect(option) {
+        const errors = [];
+
+        if (option === "") {
+                errors.push("Please select an option ");
         }
 
         return errors;

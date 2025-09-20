@@ -142,22 +142,38 @@
                               id="searchInput"
                               placeholder="Search users by name or email..." />
                         </label>
-                        <label for="isActiveSelect" class="status">
-                           <i class="fa-solid fa-filter" aria-hidden="true"></i>
-                           <select id="isActiveSelect">
-                              <option value="all">Status</option>
-                              <option value="true">Active</option>
-                              <option value="false">Banned</option>
-                           </select>
-                        </label>
-                        <label for="roleSelect" class="role">
-                           <i class="fa-solid fa-user" aria-hidden="true"></i>
-                           <select id="roleSelect">
-                              <option value="all">Role</option>
-                              <option value="admin">Admin</option>
-                              <option value="user">User</option>
-                           </select>
-                        </label>
+                        <div class="select" id="isActiveSelect">
+                           <input type="hidden" name="isActive" value="all" />
+                           <div class="select__selected">Status</div>
+                           <i class="fa-solid fa-chevron-down"></i>
+                           <div class="select__options">
+                              <div class="select__option" data-value="all">
+                                 Status
+                              </div>
+                              <div class="select__option" data-value="true">
+                                 Active
+                              </div>
+                              <div class="select__option" data-value="false">
+                                 Banned
+                              </div>
+                           </div>
+                        </div>
+                        <div class="select" id="roleSelect">
+                           <input type="hidden" name="role" value="all" />
+                           <div class="select__selected">Role</div>
+                           <i class="fa-solid fa-chevron-down"></i>
+                           <div class="select__options">
+                              <div class="select__option" data-value="all">
+                                 Role
+                              </div>
+                              <div class="select__option" data-value="admin">
+                                 Admin
+                              </div>
+                              <div class="select__option" data-value="user">
+                                 User
+                              </div>
+                           </div>
+                        </div>
                      </div>
                      <div class="pagination">
                         <button id="prevBtn" class="btn btn--prev">

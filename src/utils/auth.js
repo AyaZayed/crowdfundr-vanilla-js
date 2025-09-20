@@ -86,7 +86,7 @@ export function authenticate() {
 
 export async function isAdmin() {
         const admin = localStorage.getItem('isAdmin')
-        if (!admin) {
+        if (admin === 'false') {
                 window.location.href = '/src/login/';
         }
 }

@@ -1,5 +1,6 @@
 import Alert from "../../scripts/alert"
-import { collectRewards, initCategorySelect, initFormListeners, initRewardSection, isValidSubmission } from "../../scripts/campaignForm"
+import { collectRewards, imgToBase64, initFormListeners, initImgListeners, initRewardSection, isValidSubmission } from "../../scripts/campaignForm"
+import { initCategorySelect } from "../../scripts/categoryDropdown"
 import { authenticate, getCurrentUser, isNotAdmin } from "../../utils/auth"
 import { createCampaign } from "../../utils/campaigns"
 import { createReward } from "../../utils/rewards"
@@ -9,7 +10,12 @@ const createForm = document.querySelector('#createForm')
 authenticate()
 isNotAdmin()
 
-await initCategorySelect(document.querySelector('#categorySelect'))
+const categoryContainer = document.querySelector("#categoryContainer");
+
+initCategorySelect(categoryContainer, {
+        name: "category",
+        formMode: true
+});
 
 createForm.addEventListener('submit', async function (e) {
         e.preventDefault()
@@ -53,3 +59,9 @@ createForm.addEventListener('submit', async function (e) {
 
 initFormListeners(createForm)
 initRewardSection(document.querySelector('#rewardsSection'), document.querySelector('#addRewardBtn'))
+
+const imgInput = document.querySelector('#imgInput')
+const preview = document.querySelector('#preview')
+const removeImg = document.querySelector('#removeImg')
+
+initImgListeners(imgInput, removeImg, preview)

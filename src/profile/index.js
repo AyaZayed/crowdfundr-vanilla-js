@@ -1,6 +1,7 @@
 import Alert from "../scripts/alert";
 import { authenticate, getCurrentUser } from "../utils/auth";
 import { getCampaignById, getUserCampaigns } from "../utils/campaigns";
+import { getSiteEmail } from "../utils/constants";
 import { getTotalCamapignBackers, getUserPledges } from "../utils/pledges";
 import { getUserById, updateUserInfo } from "../utils/users"
 import { isValidEmail, isValidMatchPass, isValidName, isValidPassword } from "../utils/validation";
@@ -9,6 +10,7 @@ authenticate();
 const user = await getCurrentUser();
 
 const userCampaigns = await getUserCampaigns(user[0].id);
+
 const userPledges = await getUserPledges(user[0].id);
 
 const hasCampaigns = userCampaigns.length > 0;
@@ -97,66 +99,94 @@ handleHash();
 
 const campCard = async (campaign, isCompleted) => {
         const campaignBackers = await getTotalCamapignBackers(campaign.id);
-        const timeLeft = new Date(campaign.deadline) - new Date()
+        const timeLeft = new Date(campaign.deadline) - new Date();
+        const daysLeft = Math.max(0, Math.ceil(timeLeft / (1000 * 60 * 60 * 24)));
+        const supportEmail = await getSiteEmail()
+
+        console.log(campaign);
 
         return `
-        <div class="campaign card" id="${campaign.id}">
-                <div class="campaign__img">
-                        <img src="${campaign.img}" alt="${campaign.title}" />
-                </div>
-                <div class="campaign__info">
-                        <div class="row">
-                                <div class="row">
-                                <h3 class="campaign__title">${campaign.title}</h3>
-                                                <span class="bullet" data-bullet="completed">${campaign.isApproved ? "Approved" : "Pending"}</span>
-                                </div>
+    <div class="campaign card" id="${campaign.id}">
+      <div class="campaign__img">
+        <img src="${campaign.img}" alt="${campaign.title}" />
+      </div>
 
-                                ${isCompleted ? '<span class="bullet" data-bullet="completed">Completed</span>' : `
-                                        <div class="actions">
-                                        <a href="/src/campaigns/details/"  data-action="view" class="btn btn-primary-outline"><i class="fa-solid fa-eye"></i> View</a>
-                                        <a href="/src/campaigns/edit/" data-action="edit" class="btn btn-outline"><i class="fa-solid fa-pen"></i> Edit</a>
-                                </div>
-                                        `}
-                        </div>
-                        <p class="campaign__description">${campaign.description}</p>
-                        <div class="campaign__stats">
-                                <div class="stat">
-                                        <p class="stat--title">Raised</p>
-                                        
-                                         <div class="progress">
-                                          <div class="progress-nums">
-                                        <span>$${campaign.raised} of $${campaign.goal}</span>
-                                </div>
-                                <div class="progress-bar">
-                                        <div class="bar" style="width: ${Math.floor((campaign.raised / campaign.goal) * 100)}%"></div>
-                                        </div>
-                               
-                        </div>
-                                </div>
-                                <div class="stat">
-                                        <p class="stat--title">Backers</p>
-                                        <p class="stat--value">${campaignBackers}</p>
-                                </div>
-                                <div class="stat">
-                                        ${isCompleted ? `
-                                                <p class="stat--title"><i class="fa-regular fa-calendar"></i></p>
-                                        <p class="stat--value">Ended</p>
-                                                ` : `
-                                                <p class="stat--title">Days Left</p>
-                                        <p class="stat--value">${new Date(timeLeft).getDate()}</p>
-                                                `}
-                                </div>
-                                
-                        </div>
+      <div class="campaign__info">
+        <div class="row">
+          <div class="row">
+            <h3 class="campaign__title">${campaign.title}</h3>
+            <span class="bullet" data-bullet="completed">
+              ${campaign.isApproved
+                        ? "Approved"
+                        : campaign.status === "rejected"
+                                ? "Rejected"
+                                : "Pending"}
+            </span>
+          </div>
+
+          ${isCompleted
+                        ? `<span class="bullet" data-bullet="completed">Completed</span>`
+                        : `
+                <div class="actions">
+                  <a href="/src/campaigns/details/" data-action="view" class="btn btn-primary-outline">
+                    <i class="fa-solid fa-eye"></i> View
+                  </a>
+                  <a href="/src/campaigns/edit/" data-action="edit" class="btn btn-outline">
+                    <i class="fa-solid fa-pen"></i> Edit
+                  </a>
                 </div>
+              `
+                }
         </div>
-`
-}
+
+        <p class="campaign__description">${campaign.description}</p>
+
+        ${campaign.status === "rejected" ? `
+                <a href="mailto:${supportEmail}" class="btn btn-primary supportBtn">Contact Support</a>
+                ` : `
+                <div class="campaign__stats">
+          <div class="stat">
+            <p class="stat--title">Raised</p>
+            <div class="progress">
+              <div class="progress-nums">
+                <span>$${campaign.raised} of $${campaign.goal}</span>
+              </div>
+              <div class="progress-bar">
+                <div class="bar" style="width: ${Math.floor((campaign.raised / campaign.goal) * 100)}%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat">
+            <p class="stat--title">Backers</p>
+            <p class="stat--value">${campaignBackers}</p>
+          </div>
+
+          <div class="stat">
+            ${isCompleted
+                        ? `
+                  <p class="stat--title"><i class="fa-regular fa-calendar"></i></p>
+                  <p class="stat--value">Ended</p>
+                `
+                        : `
+                  <p class="stat--title">Days Left</p>
+                  <p class="stat--value">${daysLeft}</p>
+                `
+                }
+          </div>
+        </div>
+                `}
+      </div>
+    </div>
+  `;
+};
+
 
 const completedCamps = userCampaigns.filter((c) => c.raised === c.goal);
 
 (async () => {
         const cards = await Promise.all(userCampaigns.map((c) => campCard(c, false)));
+
         activeCampaigns.innerHTML = cards.join("");
 })();
 
@@ -284,38 +314,37 @@ settingsForm.addEventListener('submit', async function (e) {
         }
 })
 
-nameInput.addEventListener('input', async function (e) {
-        e.preventDefault()
-        const nameVal = this.value
-        const msgs = isValidName(nameVal)
-        nameErrors.textContent = msgs
-})
-
-email.addEventListener('input', async function (e) {
-        e.preventDefault()
-        const emailVal = this.value
-        const msgs = isValidEmail(emailVal)
-        emailErrors.textContent = msgs
-})
-
-password.addEventListener('input', async function (e) {
-        e.preventDefault()
-        const passVal = this.value
-        const msgs = isValidPassword(passVal)
-        passErrors.textContent = msgs
-})
-
-matchPassword.addEventListener('input', async function (e) {
-        e.preventDefault()
-        const matchVal = this.value
-        const passVal = password.value
-        const msgs = isValidMatchPass(passVal, matchVal)
-        matchPassErrors.textContent = msgs
+settingsForm.addEventListener('change', async function (e) {
+        if (e.target.id === 'name') {
+                const msgs = isValidName(e.target.value)
+                nameErrors.textContent = msgs
+        } if (e.target.id === 'email') {
+                const msgs = isValidEmail(e.target.value)
+                emailErrors.textContent = msgs
+        }
+        if (e.target.id === 'password') {
+                const msgs = isValidPassword(e.target.value)
+                passErrors.textContent = msgs
+        }
+        if (e.target.id === 'matchPassword') {
+                const msgs = isValidMatchPass(e.target.value, password.value)
+                matchPassErrors.textContent = msgs
+        }
 })
 
 function isValidSubmission() {
-        return nameErrors.textContent === '' &&
-                emailErrors.textContent === '' &&
-                passErrors.textContent === '' &&
-                matchPassErrors.textContent === ''
+        emailErrors.textContent = isValidEmail(email.value)
+        nameErrors.textContent = isValidName(nameInput.value)
+        passErrors.textContent = isValidPassword(password.value)
+        matchPassErrors.textContent = isValidMatchPass(matchPassword.value, password.value)
+
+        if (
+                emailErrors.textContent ||
+                nameErrors.textContent ||
+                passErrors.textContent ||
+                matchPassErrors.textContent
+        ) {
+                return false
+        }
+        return true
 }

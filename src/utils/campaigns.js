@@ -82,14 +82,15 @@ export async function editCampaign(id, campaign) {
         return res.json()
 }
 
-export async function deleteCampaign(id) {
+export async function rejectCampaign(id, reason) {
         const token = getToken()
         const res = await fetch(`${DB_SERVER}/campaigns/${id}`, {
-                method: 'DELETE',
+                method: 'PATCH',
                 headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${token}`
-                }
+                },
+                body: JSON.stringify({ isApproved: false, status: "rejected", reason })
         })
         return res.json()
 }

@@ -39,14 +39,28 @@
                      type="search"
                      placeholder="Search campaigns by title"
                      id="searchInput" />
-                  <select id="categorySelect"></select>
-                  <select id="filterSelect">
-                     <option value="sort">Sort By</option>
-                     <option value="newest">Newest</option>
-                     <option value="oldest">Oldest</option>
-                     <option value="highest">Most Funded</option>
-                     <option value="lowest">Least Funded</option>
-                  </select>
+                  <div id="categoryContainer"></div>
+                  <div class="select" id="filterSelect">
+                     <div class="select__selected">Sort by</div>
+                     <i class="fa-solid fa-chevron-down"></i>
+                     <ul class="select__options">
+                        <li class="select__option" data-value="sort">
+                           Default
+                        </li>
+                        <li class="select__option" data-value="newest">
+                           Newest
+                        </li>
+                        <li class="select__option" data-value="oldest">
+                           Oldest
+                        </li>
+                        <li class="select__option" data-value="highest">
+                           Most Funded
+                        </li>
+                        <li class="select__option" data-value="lowest">
+                           Least Funded
+                        </li>
+                     </ul>
+                  </div>
                </div>
                <div class="campaigns__cards" id="campaignsList"></div>
                <div class="btn btn-primary" id="loadMoreBtn">Load More</div>

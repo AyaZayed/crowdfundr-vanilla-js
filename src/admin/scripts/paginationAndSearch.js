@@ -1,3 +1,5 @@
+import Dropdown from "/src/scripts/dropdown.js"
+
 const Pagination = function (data, renderData, filters, filterSelect, cond) {
         const prevBtn = document.querySelector('#prevBtn')
         const nextBtn = document.querySelector('#nextBtn')
@@ -46,15 +48,17 @@ const Pagination = function (data, renderData, filters, filterSelect, cond) {
                 renderData(filteredData.slice(0, dataPerPage))
         })
 
-        filterSelect && filterSelect.addEventListener('change', function () {
-                const filter = this.value;
-
-                if (filter === "all") {
-                        renderData(data.slice(0, dataPerPage));
-                } else {
-                        renderData(data.filter(item => cond(item, filter)).slice(0, dataPerPage));
-                }
-        });
+        if (filterSelect) {
+                Dropdown(filterSelect, (value) => {
+                        if (value === "all") {
+                                renderData(data.slice(0, dataPerPage));
+                        } else {
+                                renderData(
+                                        data.filter(item => cond(item, value)).slice(0, dataPerPage)
+                                );
+                        }
+                });
+        }
 }
 
 export default Pagination

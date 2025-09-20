@@ -68,7 +68,7 @@ const filters = ["name", "email"]
 const roleSelect = document.querySelector("#roleSelect")
 const isActiveSelect = document.querySelector("#isActiveSelect")
 
-Pagination(allUsers, renderUsers, filters, roleSelect, user => user.role === roleSelect.value)
+Pagination(allUsers, renderUsers, filters, roleSelect, (user, filter) => user.role === filter);
 Pagination(allUsers, renderUsers, filters, isActiveSelect, (user, filter) => user.isActive === (filter === "true"))
 
 Confirm(usersList, "admin", changeRole,

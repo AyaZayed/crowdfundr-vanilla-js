@@ -123,8 +123,30 @@
                            <input
                               type="search"
                               id="searchInput"
-                              placeholder="Search pledges by campaign, backer email, or amount..." />
+                              placeholder="Search pledges by campaign, backer name, or amount..." />
                         </label>
+                        <div class="select" id="pledgeSort">
+                           <input type="hidden" name="sort" value="all" />
+                           <div class="select__selected">Sort By</div>
+                           <i class="fa-solid fa-chevron-down"></i>
+                           <div class="select__options">
+                              <div class="select__option" data-value="all">
+                                 Sort By
+                              </div>
+                              <div class="select__option" data-value="lowest">
+                                 Amount: Low to High
+                              </div>
+                              <div class="select__option" data-value="highest">
+                                 Amount: High to Low
+                              </div>
+                              <div class="select__option" data-value="newest">
+                                 Date: Newest to Oldest
+                              </div>
+                              <div class="select__option" data-value="oldest">
+                                 Date: Oldest to Newest
+                              </div>
+                           </div>
+                        </div>
                      </div>
                      <div class="pagination">
                         <button id="prevBtn" class="btn btn--prev">

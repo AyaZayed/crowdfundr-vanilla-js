@@ -1,8 +1,17 @@
 import { getMinPledgeAmount } from "./constants";
 
-export function isValidEmail(name) {
+export function isNotEmpty(value, fieldName) {
+        const errors = [];
+        if (!value) {
+                errors.push(`${fieldName} is required`);
+        }
+        return errors
+}
+
+export function isValidEmail(email) {
         const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        if (!pattern.test(name)) {
+        if (!email) return ['Email is required']
+        if (!pattern.test(email)) {
                 return ['Please enter a valid email address']
         }
         return []
@@ -12,33 +21,33 @@ export function isValidPassword(password) {
         const errors = [];
 
         if (password.length < 8) {
-                errors.push("Password must be at least 8 characters long ");
+                errors.push("Password must be at least 8 characters long");
         }
 
         if (!/[A-Z]/.test(password)) {
-                errors.push("Password must contain at least one uppercase letter ");
+                errors.push("Password must contain at least one uppercase letter");
         }
 
         if (!/[a-z]/.test(password)) {
-                errors.push("Password must contain at least one lowercase letter ");
+                errors.push("Password must contain at least one lowercase letter");
         }
 
         if (!/[0-9]/.test(password)) {
-                errors.push("Password must contain at least one number ");
+                errors.push("Password must contain at least one number");
         }
 
         if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-                errors.push("Password must contain at least one special character ");
+                errors.push("Password must contain at least one special character");
         }
 
-        return errors
+        return errors.join(", ");
 }
 
 export function isValidMatchPass(password, matchPassword) {
         const errors = [];
 
         if (password !== matchPassword) {
-                errors.push("Passwords do not match ");
+                errors.push("Passwords do not match");
         }
 
         return errors
@@ -50,18 +59,18 @@ export function isValidName(name) {
         const trimmed = name.trim();
 
         if (trimmed.length === 0) {
-                errors.push("Name can't be empty ");
+                errors.push("Name can't be empty");
         }
 
         if (trimmed.length > 0 && trimmed.length < 3) {
-                errors.push("Name must be at least 3 characters long ");
+                errors.push("Name must be at least 3 characters long");
         }
 
         if (!/^[A-Za-z\s'-]+$/.test(trimmed)) {
-                errors.push("Name can't contain numbers or special characters ");
+                errors.push("Name can't contain numbers or special characters");
         }
 
-        return errors;
+        return errors.join(", ");
 }
 
 export function validateCampaignTitle(title) {
@@ -120,14 +129,14 @@ export function validateCampaignDeadline(deadline) {
         return errors;
 }
 
-export function validateCampaignImage(image) {
+export function validateCampaignImage(image, isFile = true) {
         const errors = [];
 
         if (!image) {
                 errors.push("Image is required ");
         }
 
-        if (image && image.type !== 'image/jpeg' && image.type !== 'image/png' && image.type !== 'image/jpg' && image.type !== 'image/webp' && image.type !== 'image/svg' && image.type !== 'image/avif') {
+        if (image && isFile && image.type !== 'image/jpeg' && image.type !== 'image/png' && image.type !== 'image/jpg' && image.type !== 'image/webp' && image.type !== 'image/svg' && image.type !== 'image/avif') {
                 errors.push("Image must be a JPEG, PNG, JPG, WEBP, or SVG file ");
         }
 
@@ -137,7 +146,7 @@ export function validateCampaignImage(image) {
 export function validateSelect(option) {
         const errors = [];
 
-        if (option === "") {
+        if (option === "" || option === null || option === "all") {
                 errors.push("Please select an option ");
         }
 

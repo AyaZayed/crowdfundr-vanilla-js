@@ -1,4 +1,4 @@
-import { approveCampaign, deleteCampaign, featureCamapaign, getActiveCampaigns, getAllCampaigns, getCompletedCampaigns } from "../../utils/campaigns"
+import { approveCampaign, featureCamapaign, getActiveCampaigns, getAllCampaigns, getCompletedCampaigns, rejectCampaign } from "../../utils/campaigns"
 import { getTotalBackers } from "../../utils/pledges"
 import EmptyCase from "../scripts/emptyCase"
 import Confirm from "../scripts/confirm"
@@ -27,8 +27,8 @@ EmptyCase(allCamapaigns, emptyCampaigns, campaignsInfo)
 
 const statusCell = (status) => `
   <td class="status">
-    <span class="bullet" data-bullet="${status === "active" ? "success" : status === "completed" ? "primary" : status === "cancelled" ? "danger" : "violet"}">
-      ${status === "active" ? "Active" : status === "completed" ? "Completed" : status === "cancelled" ? "Cancelled" : "Pending"}
+    <span class="bullet" data-bullet="${status === "active" ? "success" : status === "completed" ? "primary" : status === "rejected" ? "danger" : "violet"}">
+      ${status === "active" ? "Active" : status === "completed" ? "Completed" : status === "rejected" ? "Rejected" : "Pending"}
     </span>
   </td>
 `;
@@ -64,17 +64,18 @@ campaignsList.addEventListener('click', async function (e) {
   }
 })
 
-const actionsCell = (isApproved) => `
+const actionsCell = (isApproved, status) => `
   <td class="actions">
    ${isApproved ? `
     <a href="/src/campaigns/details/" target="_blank" data-action="view" class="btn btn-secondary-outline">
       <i class="fa-solid fa-eye"></i> View
     </a>
-    ` : `<button data-action="approve" class=" btn btn-success-outline"><i class="fa-solid fa-check"></i> Approve</button></button>`
-  }
-    <button data-action="delete" class=" btn btn-danger-outline">
-      <i class="fa-solid fa-trash-can"></i> Delete
+    ` : status === "rejected" ? `` : `<button data-action="approve" class=" btn btn-success-outline"><i class="fa-solid fa-check"></i> Approve</button></button> 
+      <button data-action="reject" class=" btn btn-danger-outline">
+      <i class="fa-solid fa-xmark"></i> Reject
     </button>
+    `
+  }
   </td>
 `;
 
@@ -87,7 +88,7 @@ export const renderCampaigns = (campaigns) => {
                         <td class="date">${campaign.deadline}</td>
                         ${featuredCell(campaign.isFeatured)}
                         ${statusCell(campaign.status)}
-                        ${actionsCell(campaign.isApproved)}
+                        ${actionsCell(campaign.isApproved, campaign.status)}
                 </tr>
   `).join("");
 };
@@ -97,10 +98,11 @@ const filters = ["title"]
 const statusSelect = document.querySelector("#statusSelect")
 const featuredSelect = document.querySelector("#featuredSelect")
 
-Pagination(allCamapaigns, renderCampaigns, filters, statusSelect, campaign => campaign.status === statusSelect.value)
+Pagination(allCamapaigns, renderCampaigns, filters, statusSelect, (campaign, filter) => campaign.status === filter)
 Pagination(allCamapaigns, renderCampaigns, filters, featuredSelect, (campaign, filter) => campaign.isFeatured === (filter === "true"))
 
-Confirm(campaignsList, "delete", deleteCampaign, null, "Are you sure you want to delete this campaign?", "Delete Campaign");
+
+Confirm(campaignsList, "reject", rejectCampaign, null, "Are you sure you want to reject this campaign?", "Reject Campaign");
 Confirm(campaignsList, "approve", approveCampaign, null, "Are you sure you want to approve this campaign?", "Approve Campaign");
 
 campaignsList.addEventListener('click', function (e) {

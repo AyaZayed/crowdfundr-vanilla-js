@@ -5,7 +5,7 @@ export async function getAllUsersExcept() {
         const res = await fetch(`${DB_SERVER}/users`)
         const user = await getCurrentUser()
         const id = user[0].id
-        const filtered = await res.json().then(users => users.filter(user => user.id !== id))
+        const filtered = await res.json().then(users => users.filter(user => user.id !== id && user.role !== "superAdmin"))
         return filtered
 }
 

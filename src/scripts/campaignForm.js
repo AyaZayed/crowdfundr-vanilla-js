@@ -1,18 +1,9 @@
 import { authenticate, isNotAdmin } from "../utils/auth";
-import { getCategories } from "../utils/campaigns";
 import { validateCampaignDeadline, validateCampaignDescription, validateCampaignGoal, validateCampaignImage, validateCampaignTitle, validateSelect } from "../utils/validation";
+import initRewardSelect from "./rewardDropdown";
 
 authenticate()
 isNotAdmin()
-
-export async function initCategorySelect(categorySelect, selectedCategory = '') {
-        const categories = await getCategories();
-        categorySelect.insertAdjacentHTML('beforeend', `<option value="">Categories</option>`)
-        categories.forEach(category => {
-                categorySelect.insertAdjacentHTML('beforeend', `<option ${category === selectedCategory ? 'selected' : ''} value="${category}">${category}</option>`)
-        })
-}
-
 
 export function imgToBase64(file) {
         return new Promise((resolve, reject) => {
@@ -23,7 +14,12 @@ export function imgToBase64(file) {
         })
 }
 
+export function base64ToImg(base64) {
+        return base64.split('data:image/png;base64,')[1]
+}
+
 export function rewardCard(i, reward = {}) {
+
         return `
     <div class="form__group reward card">
       <input type="hidden" name="rewardId" value="${reward.id || ''}" />
@@ -50,13 +46,18 @@ export function rewardCard(i, reward = {}) {
           </p>
         </div>
         <div class="form__group">
-          <label for="rewardType${i}">Reward Type</label>
-          <select name="rewardType" id="rewardType${i}" class="form__input rewardType">
-            <option value="">Reward Type</option>
-            <option value="digital" ${reward.type === 'digital' ? 'selected' : ''}>Digital</option>
-            <option value="physical" ${reward.type === 'physical' ? 'selected' : ''}>Physical</option>
-            <option value="recognition" ${reward.type === 'recognition' ? 'selected' : ''}>Recognition</option>
-          </select>
+          <label>Reward Type</label>
+         <div class="select rewardType">
+                <input type="hidden" name="rewardType" value="${reward.type || ''}">
+                <div class="select__selected">${reward.type || 'Reward Type'}</div>
+                     <i class="fa-solid fa-chevron-down"></i>
+                <div class="select__options">
+                <div class="select__option" data-value="">Reward Type</div>
+                <div class="select__option" data-value="digital">Digital</div>
+                <div class="select__option" data-value="physical">Physical</div>
+                <div class="select__option" data-value="recognition">Recognition</div>
+                </div>
+        </div>
           <p class="errors">
             <span id="rewardTypeErrors${i}" class="rewardTypeErrors"></span>
           </p>
@@ -115,18 +116,29 @@ export function rewardCard(i, reward = {}) {
     </div>`;
 }
 
+export function initAllRewardTypeSelects() {
+        document.querySelectorAll(".select").forEach(selectEl => {
+                initRewardSelect(selectEl);
+        });
+}
+
 export const isValidSubmission = () => {
         deadlineErrors.textContent = validateCampaignDeadline(deadline.value)
         titleErrors.textContent = validateCampaignTitle(title.value)
         descErrors.textContent = validateCampaignDescription(desc.value)
         goalErrors.textContent = validateCampaignGoal(goal.value)
-        imgErrors.textContent = validateCampaignImage(imgInput.files[0])
-        categoryErrors.textContent = validateSelect(categorySelect.value)
+        const hiddenImgInput = document.getElementById("imageBase64");
+        imgErrors.textContent = imgInput.files[0] && validateCampaignImage(imgInput.files[0]) || validateCampaignImage(hiddenImgInput.value, false)
+
+        const hiddenInput = categoryContainer.querySelector("input[name=category]");
+        categoryErrors.textContent = validateSelect(hiddenInput.value);
+
+        const rewardsSection = document.querySelector('#rewardsSection')
 
         const rewardTitles = document.querySelectorAll('.rewardTitle')
         const rewardDescs = document.querySelectorAll('.rewardDesc')
         const rewardAmounts = document.querySelectorAll('.rewardAmount')
-        const rewardTypes = document.querySelectorAll('.rewardType')
+        const selectedRewardTypes = rewardsSection.querySelectorAll('input[name=rewardType]')
         const rewardDeliveries = document.querySelectorAll('.rewardDelivery')
 
         const rewardTitleErrors = document.querySelectorAll('.rewardTitleErrors')
@@ -140,7 +152,7 @@ export const isValidSubmission = () => {
                         rewardTitleErrors[i].textContent = validateCampaignTitle(rewardTitles[i].value)
                         rewardDescErrors[i].textContent = validateCampaignDescription(rewardDescs[i].value)
                         rewardAmountErrors[i].textContent = validateCampaignGoal(rewardAmounts[i].value)
-                        rewardTypeErrors[i].textContent = validateSelect(rewardTypes[i].value)
+                        rewardTypeErrors[i].textContent = validateSelect(selectedRewardTypes[i].value)
                         rewardDeliveryErrors[i].textContent = validateCampaignDeadline(rewardDeliveries[i].value)
                 }
         }
@@ -254,6 +266,7 @@ export function initRewardSection(rewardsSection, addRewardBtn) {
                         "beforeend",
                         rewardCard(rewardsSection.children.length + 1)
                 );
+                initAllRewardTypeSelects();
         });
 
         rewardsSection.addEventListener("click", (e) => {
@@ -297,3 +310,18 @@ export function initRewardSection(rewardsSection, addRewardBtn) {
         });
 }
 
+export function initImgListeners(imgInput, removeImg, preview) {
+        imgInput.addEventListener('change', async function (e) {
+                const img = await imgToBase64(e.target.files[0])
+                preview.style.display = "block"
+
+                const imgPreview = document.querySelector('#previewImg')
+                imgPreview.src = img
+        })
+
+        removeImg.addEventListener('click', () => {
+                preview.style.display = "none"
+                imgInput.value = ""
+                imageBase64.value = ""
+        })
+}

@@ -91,8 +91,8 @@
                         </p>
                      </div>
                      <div class="form__group">
-                        <label for="categorySelect">Category</label>
-                        <select name="category" id="categorySelect"></select>
+                        <label for="category">Category</label>
+                        <div id="categoryContainer"></div>
                         <p class="errors">
                            <span id="categoryErrors"></span>
                         </p>
@@ -109,6 +109,10 @@
                      <p class="errors">
                         <span id="imgErrors"></span>
                      </p>
+                     <div class="preview hidden" id="preview">
+                        <img src="" alt="" id="previewImg" />
+                        <i class="fa-solid fa-circle-xmark" id="removeImg"></i>
+                     </div>
                   </div>
                   <div class="add-reward">
                      <i

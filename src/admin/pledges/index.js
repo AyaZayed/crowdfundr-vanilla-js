@@ -1,6 +1,7 @@
 import EmptyCase from "../scripts/emptyCase"
 import { getTotalPledge, getAveragePledge, getAllPledgesWithDetails } from "../../utils/pledges"
 import Pagination from "../scripts/paginationAndSearch"
+import Dropdown from "../../scripts/dropdown"
 
 const emptyPledges = document.querySelector('#emptyPledges')
 const pledgesInfo = document.querySelector('#pledgesInfo')
@@ -45,4 +46,31 @@ export const renderPledges = async (pledges) => {
 
 const filters = ["amount", "backerName", "campaignTitle", "rewardTitle"]
 
-Pagination(pledgesWithDetails, renderPledges, filters)
+const pledgeSort = document.querySelector("#pledgeSort")
+
+const sortPledges = (value) => {
+        switch (value) {
+                case "lowest":
+                        pledgesWithDetails.sort((a, b) => a.amount - b.amount)
+                        renderPledges(pledgesWithDetails)
+                        break;
+                case "highest":
+                        pledgesWithDetails.sort((a, b) => b.amount - a.amount)
+                        renderPledges(pledgesWithDetails)
+                        break;
+                case "newest":
+                        pledgesWithDetails.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                        renderPledges(pledgesWithDetails)
+                        break;
+                case "oldest":
+                        pledgesWithDetails.sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
+                        renderPledges(pledgesWithDetails)
+                        break;
+                default:
+                        break;
+        }
+}
+
+Dropdown(pledgeSort, sortPledges)
+
+Pagination(pledgesWithDetails, renderPledges, filters);

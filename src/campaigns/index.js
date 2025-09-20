@@ -1,5 +1,7 @@
 import Card from "../scripts/campaignCard"
-import { getApprovedCampaigns, getCategories } from "../utils/campaigns"
+import { initCategorySelect } from "../scripts/categoryDropdown"
+import Dropdown from "../scripts/dropdown"
+import { getApprovedCampaigns } from "../utils/campaigns"
 const campaignsCards = document.querySelector('#campaignsList')
 
 const approvedCampaigns = await getApprovedCampaigns()
@@ -41,50 +43,56 @@ searchInput.addEventListener('input', function () {
         renderCampaigns(filteredCampaigns)
 })
 
-const categoryOptions = (categories) => {
-        let options = [`<option value="all">Categories</option>`]
-        categories.forEach(category => {
-                options += `<option value="${category}">${category}</option>`
-        })
-        return options
-}
+const categoryContainer = document.querySelector("#categoryContainer");
 
-const categories = await getCategories()
+initCategorySelect(categoryContainer, {
+        selectedCategory: "all",
+        onChange: (value) => {
+                if (value === "all") {
+                        renderCampaigns(approvedCampaigns.slice(0, shownCount));
+                        return;
+                }
+                const filtered = approvedCampaigns
+                        .filter(c => c.category.toLowerCase() === value.toLowerCase())
+                        .slice(0, shownCount);
+                renderCampaigns(filtered);
+        }
+});
 
-categorySelect.innerHTML = categoryOptions(categories)
 
-categorySelect.addEventListener('change', function () {
-        if (this.value === 'all') {
-                const filteredCampaigns = approvedCampaigns.slice(0, shownCount)
-                renderCampaigns(filteredCampaigns)
-        }
-        const filteredCampaigns = approvedCampaigns.filter(campaign => campaign.category.toLowerCase() === this.value.toLowerCase()).slice(0, shownCount)
+const filterSelect = document.querySelector("#filterSelect");
 
-        renderCampaigns(filteredCampaigns)
-})
+Dropdown(filterSelect, (value) => {
+        if (value === "sort") {
+                const filteredCampaigns = approvedCampaigns.slice(0, shownCount);
+                renderCampaigns(filteredCampaigns);
+        }
+        if (value === "newest") {
+                const filteredCampaigns = approvedCampaigns
+                        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                        .slice(0, shownCount);
+                renderCampaigns(filteredCampaigns);
+        }
+        if (value === "oldest") {
+                const filteredCampaigns = approvedCampaigns
+                        .sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
+                        .slice(0, shownCount);
+                renderCampaigns(filteredCampaigns);
+        }
+        if (value === "highest") {
+                const filteredCampaigns = approvedCampaigns
+                        .sort((a, b) => b.raised - a.raised)
+                        .slice(0, shownCount);
+                renderCampaigns(filteredCampaigns);
+        }
+        if (value === "lowest") {
+                const filteredCampaigns = approvedCampaigns
+                        .sort((a, b) => a.raised - b.raised)
+                        .slice(0, shownCount);
+                renderCampaigns(filteredCampaigns);
+        }
+});
 
-filterSelect.addEventListener('change', function () {
-        if (this.value === 'sort') {
-                const filteredCampaigns = approvedCampaigns.slice(0, shownCount)
-                renderCampaigns(filteredCampaigns)
-        }
-        if (this.value === 'newest') {
-                const filteredCampaigns = approvedCampaigns.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, shownCount)
-                renderCampaigns(filteredCampaigns)
-        }
-        if (this.value === 'oldest') {
-                const filteredCampaigns = approvedCampaigns.sort((a, b) => new Date(a.created_at) - new Date(b.created_at)).slice(0, shownCount)
-                renderCampaigns(filteredCampaigns)
-        }
-        if (this.value === 'highest') {
-                const filteredCampaigns = approvedCampaigns.sort((a, b) => b.raised - a.raised).slice(0, shownCount)
-                renderCampaigns(filteredCampaigns)
-        }
-        if (this.value === 'lowest') {
-                const filteredCampaigns = approvedCampaigns.sort((a, b) => a.raised - b.raised).slice(0, shownCount)
-                renderCampaigns(filteredCampaigns)
-        }
-})
 
 const cards = document.querySelectorAll('.card')
 

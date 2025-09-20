@@ -149,23 +149,46 @@
                               id="searchInput"
                               placeholder="Search camapigns by title" />
                         </label>
-                        <label for="statusSelect" class="status">
-                           <i class="fa-solid fa-filter" aria-hidden="true"></i>
-                           <select id="statusSelect">
-                              <option value="all">Status</option>
-                              <option value="active">Active</option>
-                              <option value="pending">Pending</option>
-                              <option value="completed">Completed</option>
-                           </select>
-                        </label>
-                        <label for="featuredSelect" class="featured">
-                           <i class="fa-solid fa-star" aria-hidden="true"></i>
-                           <select id="featuredSelect">
-                              <option value="all">Is Featured</option>
-                              <option value="true">Featured</option>
-                              <option value="false">Not Featured</option>
-                           </select>
-                        </label>
+                        <div class="select" id="statusSelect">
+                           <input type="hidden" name="status" value="all" />
+                           <div class="select__selected">Status</div>
+                           <i class="fa-solid fa-chevron-down"></i>
+                           <div class="select__options">
+                              <div class="select__option" data-value="all">
+                                 Status
+                              </div>
+                              <div class="select__option" data-value="active">
+                                 Active
+                              </div>
+                              <div
+                                 class="select__option"
+                                 data-value="completed">
+                                 Completed
+                              </div>
+                              <div class="select__option" data-value="pending">
+                                 Pending
+                              </div>
+                              <div class="select__option" data-value="rejected">
+                                 Rejected
+                              </div>
+                           </div>
+                        </div>
+                        <div class="select" id="featuredSelect">
+                           <input type="hidden" name="isFeatured" value="all" />
+                           <div class="select__selected">Featured</div>
+                           <i class="fa-solid fa-chevron-down"></i>
+                           <div class="select__options">
+                              <div class="select__option" data-value="all">
+                                 Featured
+                              </div>
+                              <div class="select__option" data-value="true">
+                                 Yes
+                              </div>
+                              <div class="select__option" data-value="false">
+                                 No
+                              </div>
+                           </div>
+                        </div>
                      </div>
                      <div class="pagination">
                         <button id="prevBtn" class="btn btn--prev">
